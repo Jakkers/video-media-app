@@ -1,7 +1,10 @@
-import requests from "../../utils/requestData";
+import requests from "../../../utils/requestData";
+const apiKey = process.env.API_KEY;
 
-export default async function MoviePage() {
-  const response = await fetch(requests.fetchGenres);
+export default async function MoviePage({ params }) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&language=en-US`
+  );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
 
