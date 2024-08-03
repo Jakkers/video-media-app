@@ -19,6 +19,9 @@ export default function Header() {
         <ActiveLink href="/">
           <p>Home</p>
         </ActiveLink>
+        <ActiveLink href={"/movie-page"}>
+          <p>Movie-page</p>
+        </ActiveLink>
         {/* <ActiveLink href="/posts">
           <p>Post Feed</p>
         </ActiveLink>
