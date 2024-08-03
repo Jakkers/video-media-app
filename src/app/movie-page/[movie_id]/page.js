@@ -1,4 +1,4 @@
-import requests from "../../../utils/requestData";
+// import requests from "../../../utils/requestData";
 const apiKey = process.env.API_KEY;
 
 export default async function MoviePage({ params }) {
