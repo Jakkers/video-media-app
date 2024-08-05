@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 // Importing radix theme
 import "@radix-ui/themes/styles.css";
@@ -23,7 +24,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Theme appearance="dark">{children}</Theme>
+          <Theme appearance="dark">          <Header />{children}</Theme>
         </body>
       </html>
     </ClerkProvider>
