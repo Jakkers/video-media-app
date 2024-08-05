@@ -66,14 +66,15 @@ export default async function MoviePageId({ params }) {
               <DataList.Value minWidth="200px">{data.runtime}</DataList.Value>
             </DataList.Item>
             <DataList.Item>
-              <DataList.Label minWidth="88px">
-                Genre:{" "}
+              <DataList.Label minWidth="88px">Genres</DataList.Label>
+              {/* I am trying to map multiple genres from the data  */}
+              <DataList.Value>
                 {data.genres.map((item) => (
-                  <DataList.Value key={item.id}>
-                    {item.name} {", "}
-                  </DataList.Value>
+                  <p key={item.id} className="pr-2">
+                    {item.name}
+                  </p>
                 ))}
-
+              </DataList.Value>
             </DataList.Item>
           </DataList.Root>
         </Box>
