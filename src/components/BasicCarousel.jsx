@@ -6,30 +6,25 @@ export default function BasicCarousel({ dataArray }) {
   // console.log("FACK4");
   // console.log(dataArray);
   return (
-    <div
-      // id="main-box"
-      id={Style.main_box}
-      // className="border-2 border-white flex flex-row overflow-x-scroll overscroll-y-hidden max-w-[95vw] max-h-[200px] scroll-smooth "
-    >
-      <div id={Style.imgdiv}>
-        {dataArray.map((item) => (
-          <div key={item.id} className="imgs">
-            <Link href={`/movie-page/${item.id}`}>
-              <Image
-                src={`${base_url}${item.poster_path}`}
-                alt={`Poster for the ${item.original_title} film.`}
-                width={100}
-                height={80}
-                id={Style.imgs}
-                className="p-[8px] hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-red-500 "
-              />
-              {/* <p>{item.vote_average}</p>
+    <div id={Style.main_box}>
+      {dataArray.map((item) => (
+        <div key={item.id} id={Style.imgs}>
+          <Link href={`/movie-page/${item.id}`}>
+            <Image
+              src={`${base_url}${item.poster_path}`}
+              alt={`Poster for the ${item.original_title} film.`}
+              width={100}
+              height={80}
+              id={Style.imgs}
+              className="p-[8px] hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-red-500 "
+            />
+            {/* <p>{item.vote_average}</p>
             //!might want to put this data into a div and overlay on image? maybe just on hover?
             <h1>{item.title}</h1> */}
-            </Link>
-          </div>
-        ))}
-      </div>
+          </Link>
+        </div>
+      ))}
     </div>
+    // </div>
   );
 }

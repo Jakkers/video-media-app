@@ -1,25 +1,15 @@
 #main_box {
-  background-color: aqua;
   display: flex;
-  /* flex-direction: row; */
-  overflow: scroll;
+  flex-direction: row;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   width: 70vw;
-  height: 200px;
-}
-
-#imgdiv {
-  display: flex;
-  /* flex-wrap: wrap; */
-  /* flex-basis: 95vw; */
-  /* flex-direction: row; */
-  overflow: scroll;
-  scroll-behavior: smooth;
-  /* max-width: 50vw; */
-  /* max-height: inherit; */
 }
 
 #imgs {
-  width: 500px;
+  width: 200px;
   height: auto;
+  padding: 20px;
+  flex-shrink: 0;
+  position: relative;
 }
