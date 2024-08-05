@@ -1,7 +1,15 @@
 // import requests from "../../../utils/requestData";
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
-import { Button } from "@radix-ui/themes";
+import {
+  Button,
+  Card,
+  Flex,
+  Heading,
+  Text,
+  DataList,
+  Box,
+} from "@radix-ui/themes";
 import Link from "next/link";
 
 export default async function MoviePageId({ params }) {
@@ -24,39 +32,71 @@ export default async function MoviePageId({ params }) {
   return (
     <main className="flex min-h-screen flex-col items-center ">
       <div className="relative text-center">
-        <div className="w-full absolute top-[70%] left-0 text-center mt-10">
-          <h1 className="z-10 text-4xl font-bold text-center ">{data.title}</h1>
+        <div className="w-full absolute top-[50%] left-0 text-center mt-10">
+          <h1 className="z-10 text-6xl font-bold text-center ">{data.title}</h1>
+          <br></br>
           <Button>
             <Link href={data.homepage}>View film</Link>
           </Button>
         </div>
         <Image
-          className="opacity-60 relative -z-10"
+          className="opacity-40 relative -z-10"
           src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
           width={1200}
           height={1000}
           alt={`backdrop for the ${data.original_title} film.`}
         />
       </div>
-      <h1>{data.title}</h1>
-      <h2>{data.overview}</h2>
+      {/* Adding datalist for the film  */}
+      <Flex align="left">
+        <Box>
+          <DataList.Root
+            orientation={{ initial: "vertical", sm: "horizontal" }}
+          >
+            <DataList.Item>
+              <DataList.Label minWidth="88px">Release Date</DataList.Label>
+              <DataList.Value>{data.release_date}</DataList.Value>
+            </DataList.Item>
+            <DataList.Item>
+              <DataList.Label minWidth="88px">Runtime</DataList.Label>
+              <DataList.Value>{data.runtime}</DataList.Value>
+            </DataList.Item>
+            <DataList.Item>
+              <DataList.Label minWidth="88px">Genres</DataList.Label>
+              {/* I am trying to map multiple genres from the data  */}
+              {data.map((item) => (
+                <DataList.Value key={item.id}>
+                  {item.genres.name}{" "}
+                </DataList.Value>
+              ))}
+            </DataList.Item>
+          </DataList.Root>
+        </Box>
+      </Flex>
+
+      <Flex direction="column" className="p-6">
+        <Heading>{data.title}</Heading>
+        <Text>{data.overview}</Text>
+      </Flex>
       {/* <Image
         src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
         width={500}
         height={500}
         alt={`Poster for the ${data.title} film.`}
       /> */}
-      <h1>{data.title} Trailer</h1>
-      <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${video[0].key}`}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <Card>
+        <Heading>{data.title} Trailer</Heading>
+        <iframe
+          width="560"
+          height="315"
+          src={`https://www.youtube.com/embed/${video[0].key}`}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </Card>
     </main>
   );
 }
