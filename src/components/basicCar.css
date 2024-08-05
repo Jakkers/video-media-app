@@ -1,7 +1,0 @@
-#main-box {
-  background-color: aqua;
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
