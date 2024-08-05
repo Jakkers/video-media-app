@@ -23,6 +23,7 @@ export default async function MoviePageId({ params }) {
   // console.log(data);
   return (
     <main className="flex min-h-screen flex-col items-center ">
+
       <iframe
         width="560"
         height="315"
@@ -44,6 +45,7 @@ export default async function MoviePageId({ params }) {
       <Button>
         <Link href={data.homepage}>View film</Link>
       </Button>
+
     </main>
   );
 }
