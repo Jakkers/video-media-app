@@ -24,10 +24,10 @@ export default function Header() {
         </ActiveLink>
         {/* <ActiveLink href="/posts">
           <p>Post Feed</p>
-        </ActiveLink>
+        </ActiveLink> */}
         <ActiveLink href={`/user/${userId}`}>
           <p>Profile</p>
-        </ActiveLink> */}
+        </ActiveLink>
         <SignedIn>
           <UserButton />
         </SignedIn>

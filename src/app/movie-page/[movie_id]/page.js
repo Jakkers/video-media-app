@@ -5,7 +5,10 @@ import Image from "next/image";
 export default async function MoviePageId({ params }) {
   const response = await fetch(
     // `https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&language=en-US`
+
+   
     `https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&language=en-US&page=1`
+
   );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
