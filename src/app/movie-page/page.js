@@ -4,11 +4,11 @@ const apiKey = process.env.API_KEY;
 
 export default async function MoviePage() {
   const response = await fetch(
-    ` https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
   );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
-  //   const base_url = `https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=${apiKey}`;
+  const base_url = `https://image.tmdb.org/t/p/w500/`;
 
   //   console.log(data.results);
 
@@ -22,7 +22,7 @@ export default async function MoviePage() {
               <Link href={`/movie-page/${item.id}`}>
                 <h1>{item.title}</h1>
                 <image
-                  //   src={`${base_url}${item.poster_path}`}
+                  src={`${base_url}${item.poster_path}`}
                   alt={item.title}
                 />
                 <p>{item.vote_average}</p>
