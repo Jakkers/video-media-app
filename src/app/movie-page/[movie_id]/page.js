@@ -1,6 +1,8 @@
 // import requests from "../../../utils/requestData";
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
+import { Flex, Text, Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 export default async function MoviePageId({ params }) {
   const response = await fetch(
@@ -28,8 +30,11 @@ export default async function MoviePageId({ params }) {
             src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
             width={500}
             height={500}
-            alt="Picture of film"
+            alt={`Poster for the ${data.original_title} film.`}
           />
+          <Button>
+            <Link href={data.homepage}>View film</Link>
+          </Button>
         </li>
       </>
 
