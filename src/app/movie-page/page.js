@@ -11,7 +11,7 @@ export default async function MoviePage() {
   const data = await response.json();
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
-  console.log(data);
+
 
   //   console.log(data.results);
 
@@ -29,6 +29,7 @@ export default async function MoviePage() {
                   width={500}
                   height={500}
                   alt={`Poster for the ${item.title} film.`}
+
                 />
                 <p>{item.vote_average}</p>
               </Link>

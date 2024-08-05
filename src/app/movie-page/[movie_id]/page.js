@@ -14,6 +14,7 @@ export default async function MoviePageId({ params }) {
   const data = await response.json();
   // const wrangledData = data.now_playing.results;
 
+
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/${params.movie_id}/videos?api_key=${apiKey}&language=en-US`
   );
