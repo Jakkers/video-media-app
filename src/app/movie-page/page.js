@@ -1,6 +1,6 @@
 // import { Row } from "@radix-ui/themes/src/components/table.jsx";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 const apiKey = process.env.API_KEY;
@@ -13,7 +13,6 @@ export default async function MoviePage() {
   const data = await response.json();
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
-  console.log(data.results);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
