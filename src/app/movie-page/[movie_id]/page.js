@@ -19,11 +19,34 @@ export default async function MoviePageId({ params }) {
   );
   const video = (await res.json()).results;
 
-  console.log(video);
-  // console.log(data);
+  // console.log(video);
+  console.log(data);
   return (
     <main className="flex min-h-screen flex-col items-center ">
-
+      <div className="relative text-center">
+        <div className="w-full absolute top-[70%] left-0 text-center mt-10">
+          <h1 className="z-10 text-4xl font-bold text-center ">{data.title}</h1>
+          <Button>
+            <Link href={data.homepage}>View film</Link>
+          </Button>
+        </div>
+        <Image
+          className="opacity-60 relative -z-10"
+          src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+          width={1200}
+          height={1000}
+          alt={`backdrop for the ${data.original_title} film.`}
+        />
+      </div>
+      <h1>{data.title}</h1>
+      <h2>{data.overview}</h2>
+      {/* <Image
+        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+        width={500}
+        height={500}
+        alt={`Poster for the ${data.title} film.`}
+      /> */}
+      <h1>{data.title} Trailer</h1>
       <iframe
         width="560"
         height="315"
@@ -34,18 +57,6 @@ export default async function MoviePageId({ params }) {
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
-      <h1>{data.original_title}</h1>
-      <h2>{data.overview}</h2>
-      <Image
-        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-        width={500}
-        height={500}
-        alt={`Poster for the ${data.original_title} film.`}
-      />
-      <Button>
-        <Link href={data.homepage}>View film</Link>
-      </Button>
-
     </main>
   );
 }
