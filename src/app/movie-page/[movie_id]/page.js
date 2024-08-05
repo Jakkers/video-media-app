@@ -28,7 +28,7 @@ export default async function MoviePageId({ params }) {
   const video = (await res.json()).results;
 
   // console.log(video);
-  // console.log(data);
+
   return (
     <main className="flex min-h-screen flex-col items-center ">
       <div className="relative text-center">
@@ -64,8 +64,16 @@ export default async function MoviePageId({ params }) {
               <DataList.Value minWidth="200px">{data.runtime}</DataList.Value>
             </DataList.Item>
             <DataList.Item>
-              <DataList.Label minWidth="88px">Genres</DataList.Label>
+              <DataList.Label minWidth="88px">
+                Genre:{" "}
+                {data.genres.map((item) => (
+                  <DataList.Value key={item.id}>
+                    {item.name} {", "}
+                  </DataList.Value>
+                ))}
+              </DataList.Label>
               {/* I am trying to map multiple genres from the data  */}
+
               <DataList.Value>
                 {data.genres.map((item) => (
                   <p key={item.id} className="pr-2">
@@ -73,6 +81,7 @@ export default async function MoviePageId({ params }) {
                   </p>
                 ))}
               </DataList.Value>
+
             </DataList.Item>
           </DataList.Root>
         </Box>

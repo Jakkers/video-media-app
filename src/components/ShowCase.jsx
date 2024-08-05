@@ -2,31 +2,41 @@ import Link from "next/link";
 import Image from "next/image";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-export default function BasicCarousel({ dataArray }) {
+import Style from "./showCase.module.css";
+export default function ShowCase({ dataArray }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
-  console.log("FACK5");
+  console.log("lalalala");
   console.log(dataArray);
   return (
-    <div className="border-2 border-white flex flex-row overflow-auto w-[80vw]">
+    <div id={Style.main_box2}>
       {dataArray.map((item) => (
-        <div key={item.id}>
-          <Theme>
-            <Link href={`/movie-page/${item.id}`}>
-              <Image
-                src={`${base_url}${item.poster_path}`}
-                alt={`Poster for the ${item.original_title} film.`}
-                width={50}
-                height={80}
-              />
-              <div className="">
-                {/* We want this place to the side,and a bit see through */}
-              </div>
-              {/* <p>{item.vote_average}</p>
-            <h1>{item.title}</h1> */}
-            </Link>
-          </Theme>
+        <div key={item.id} id={Style.show_box}>
+          <Link href={`/movie-page/${item.id}`}>
+            {/* <section id={Style.show_box}> */}
+            <Image
+              src={`${base_url}${item.poster_path}`}
+              alt={`Poster for the ${item.original_title} film.`}
+              width={400}
+              height={400}
+              id={Style.imgs2}
+              className="p-[8px]  "
+            />
+          </Link>
+          <div
+            id={Style.show_info}
+            className="w-[50vw] text-center text-purple-500 bg-yellow-300 mr-[20px]"
+          >
+            <h1>{item.title}</h1>
+            <p> Average Score:{item.vote_average}</p>
+            <h3>{item.overview}</h3>
+          </div>
+          {/* </section> */}
+          {/* <
+              //!might want to put this data into a div and overlay on image? maybe just on hover?
+               */}
         </div>
       ))}
     </div>
+    // </div>
   );
 }
