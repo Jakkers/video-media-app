@@ -30,10 +30,12 @@ export default async function MoviePageId({ params }) {
   // console.log(video);
 
   return (
-    <main className="flex min-h-screen flex-col items-center ">
+    <main>
       <div className="relative text-center">
         <div className="w-full absolute top-[50%] left-0 text-center mt-10">
           <h1 className="z-10 text-6xl font-bold text-center ">{data.title}</h1>
+          <Text className="z-10 text-center ">{data.tagline}</Text>
+          <br></br>
           <br></br>
           <Button>
             <Link href={data.homepage}>View film</Link>
@@ -48,7 +50,7 @@ export default async function MoviePageId({ params }) {
         />
       </div>
       {/* Adding datalist for the film  */}
-      <Flex align="left">
+      <Flex direction="column" className="p-6">
         <Box>
           <DataList.Root
             orientation={{ initial: "vertical", sm: "horizontal" }}
@@ -71,45 +73,53 @@ export default async function MoviePageId({ params }) {
                     {item.name} {", "}
                   </DataList.Value>
                 ))}
-              </DataList.Label>
-              {/* I am trying to map multiple genres from the data  */}
-
-              <DataList.Value>
-                {data.genres.map((item) => (
-                  <p key={item.id} className="pr-2">
-                    {item.name}
-                  </p>
-                ))}
-              </DataList.Value>
 
             </DataList.Item>
           </DataList.Root>
         </Box>
-      </Flex>
-
-      <Flex direction="column" className="p-6">
-        <Heading>{data.title}</Heading>
-        <Text>{data.overview}</Text>
-      </Flex>
-      {/* <Image
+        <Box>
+          <br></br>
+          <Heading>{data.title}</Heading>
+          <br></br>
+          <Text>{data.overview}</Text>
+          <br></br>
+          <br></br>
+        </Box>
+        {/* <Image
         src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
         width={500}
         height={500}
         alt={`Poster for the ${data.title} film.`}
       /> */}
-      <Card>
-        <Heading>{data.title} Trailer</Heading>
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${video[0].key}`}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </Card>
+        <Card>
+          <iframe
+            width="100%"
+            height="650px"
+            src={`https://www.youtube.com/embed/${video[0].key}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </Card>
+      </Flex>
+
+      {/* {data.production_companies.map((item) => (
+        <div
+          className="bg-white w-[100%] h-[100px] flex flex-row"
+          key={item.id}
+        >
+          <div className="justify-around">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${item.logo_path}`}
+              alt="Image 1"
+              width={100}
+              height={100}
+            />
+          </div>
+        </div>
+      ))} */}
     </main>
   );
 }
