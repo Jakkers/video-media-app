@@ -2,19 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@radix-ui/themes";
 
 export function ActiveLink({ href, children }) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
-    <Link
-      href={href}
-      className={
-        isActive ? "flex text-green-600 bg-white rounded-lg items-center" : ""
-      }
-    >
-      {children}
-    </Link>
+    <Button variant={isActive ? "solid" : "soft"}>
+      <Link href={href}>{children}</Link>
+    </Button>
   );
 }
