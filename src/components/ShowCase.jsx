@@ -29,6 +29,12 @@ export default function ShowCase({ dataArray }) {
             <h1>{item.title}</h1>
             <p> Average Score:{item.vote_average}</p>
             <h3>{item.overview}</h3>
+            <Link href={`/movie-page/${item.id}`}>
+              <button className="bg-orange-400 border-white border-2 m-2 p-2">
+                {" "}
+                Watch trailer
+              </button>
+            </Link>
           </div>
           {/* </section> */}
           {/* <
