@@ -8,10 +8,10 @@ export default function BasicCarousel({ dataArray }) {
   return (
     <div
       id="main-box"
-      className="border-2 border-white flex flex-row overflow-x-scroll overscroll-y-hidden w-[95vw] h-[200px] "
+      className="border-2 border-white flex flex-row overflow-x-scroll overscroll-y-hidden w-[95vw] h-[200px] flex-nowrap "
     >
       {dataArray.map((item) => (
-        <div key={item.id} className="flex ">
+        <div key={item.id}>
           <Link href={`/movie-page/${item.id}`}>
             <Image
               src={`${base_url}${item.poster_path}`}
