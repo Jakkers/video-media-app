@@ -3,6 +3,7 @@ import Link from "next/link";
 // import Image from "next/image";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
+import ShowCase from "@/components/ShowCase";
 const apiKey = process.env.API_KEY;
 
 export default async function MoviePage() {
@@ -13,11 +14,10 @@ export default async function MoviePage() {
   const data = await response.json();
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Media App</h1>
-
+      <ShowCase dataArray={data.results} />
       <BasicCarousel dataArray={data.results} />
     </main>
   );
