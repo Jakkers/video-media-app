@@ -10,7 +10,7 @@ export default function ShowCase({ dataArray }) {
   return (
     <div id={Style.main_box2}>
       {dataArray.map((item) => (
-        <div key={item.id} id={Style.show_box}>
+        <Theme key={item.id} id={Style.show_box}>
           <Link href={`/movie-page/${item.id}`}>
             {/* <section id={Style.show_box}> */}
             <Image
@@ -34,7 +34,7 @@ export default function ShowCase({ dataArray }) {
           {/* <
               //!might want to put this data into a div and overlay on image? maybe just on hover?
                */}
-        </div>
+        </Theme>
       ))}
     </div>
     // </div>
