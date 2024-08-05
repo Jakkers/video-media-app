@@ -10,7 +10,7 @@ import { auth } from "@clerk/nextjs/server";
 import { ActiveLink } from "@/components/ActiveLink";
 
 //importing theme
-import { Button, Flex, Heading, Separator, Card } from "@radix-ui/themes";
+import { Button, Flex, Heading, Card } from "@radix-ui/themes";
 
 export default function Header() {
   //? destructure the userId for Auth
