@@ -14,8 +14,14 @@ export default async function MoviePageId({ params }) {
   const data = await response.json();
   // const wrangledData = data.now_playing.results;
 
-  // console.log(data);
 
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.movie_id}/videos?api_key=${apiKey}&language=en-US`
+  );
+  const video = (await res.json()).results;
+
+  console.log(video);
+  // console.log(data);
   return (
     <main className="flex min-h-screen flex-col items-center ">
       <h1>Single movie page</h1>
@@ -33,6 +39,26 @@ export default async function MoviePageId({ params }) {
             height={500}
             alt={`Poster for the ${data.original_title} film.`}
           />
+          {video.map((trailer) => {
+            <div className="w-3 h-3 bg-slate-100">
+              <video
+                width="560"
+                height="315"
+                src={`https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&append_to_response=videos`}
+              ></video>
+              {/* <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${trailer.id}?si=${trailer.key}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe> */}
+              ;
+            </div>;
+          })}
           <Button>
             <Link href={data.homepage}>View film</Link>
           </Button>
