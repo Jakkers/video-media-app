@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS m_users
 CREATE TABLE IF NOT EXISTS m_reviews
 (
   id SERIAL PRIMARY KEY,
-  user_id TEXT UNIQUE,
+  user_id TEXT,
   review TEXT,
   movie_id BIGINT,
   likes BIGINT,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS m_reviews
 CREATE TABLE IF NOT EXISTS m_comments
 (
   id SERIAL PRIMARY KEY,
-  user_id TEXT UNIQUE,
+  user_id TEXT,
   review_id BIGINT,
   comment TEXT,
   likes BIGINT,
