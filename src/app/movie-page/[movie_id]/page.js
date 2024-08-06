@@ -73,11 +73,11 @@ export default async function MoviePageId({ params }) {
   ).rows;
 
   return (
-    <Container size="4">
+    <Container className="ml-6 mr-6" size="4">
       <Header />
       <main>
         <div className="relative text-center">
-          <div className="w-full absolute top-[20%] md:top-[50%] left-0 text-center mt-10">
+          <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
             <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
               {data.title}
             </h1>
