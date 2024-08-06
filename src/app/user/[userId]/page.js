@@ -48,7 +48,8 @@ export default async function UserIdPage() {
 
   if (usersData.length > 0) {
     return (
-      <main className="flex flex-col items-center">
+      <Container size="4">
+        <Header />
         <h1 size={"8"} className="m-2">
           {userData.username} Profile Page
         </h1>
@@ -59,7 +60,7 @@ export default async function UserIdPage() {
             </div>
           ))}
         </div>
-      </main>
+      </Container>
     );
   } else {
     return (
