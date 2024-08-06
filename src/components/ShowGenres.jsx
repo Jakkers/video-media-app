@@ -8,9 +8,9 @@ export async function ShowGenres(params) {
   );
 
   const genresData = await genresRes.json();
-  console.log("genresCheck");
+  // console.log("genresCheck");
 
-  console.log(genresData);
+  // console.log(genresData);
 
   return <>genre burp</>;
 }
