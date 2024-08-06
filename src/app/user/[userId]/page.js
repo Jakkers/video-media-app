@@ -50,7 +50,7 @@ export default async function UserIdPage({ params }) {
 
   if (usersData.length > 0) {
     return (
-      <Container size="4">
+      <Container className="ml-6 mr-6" size="4">
         <Header />
         <br></br>
         <Heading size={"8"}>
