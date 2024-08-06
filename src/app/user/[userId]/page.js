@@ -2,6 +2,8 @@ import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import Header from "@/components/Header";
+
 import { Container } from "@radix-ui/themes";
 export default async function UserIdPage() {
   const userData = await currentUser();
@@ -62,6 +64,7 @@ export default async function UserIdPage() {
   } else {
     return (
       <Container size="4">
+        <Header />
         <h1>Create your Profile</h1>
         <form
           action={handleSubmit}

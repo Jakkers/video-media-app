@@ -2,7 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 
 // Importing radix theme
 import "@radix-ui/themes/styles.css";
@@ -58,11 +58,7 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Theme appearance="dark">
-            {" "}
-            <Header />
-            {children}
-          </Theme>
+          <Theme appearance="dark"> {children}</Theme>
         </body>
       </html>
     </ClerkProvider>
