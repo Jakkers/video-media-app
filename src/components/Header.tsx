@@ -8,6 +8,8 @@ import {
 
 import { auth } from "@clerk/nextjs/server";
 
+import SearchBar from "@/components/SearchBar";
+
 //importing theme
 import {
   Button,
@@ -43,6 +45,8 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
+            {/* Adding a search bar */}
+            <SearchBar />
             {/* Adding a DropdownMenu */}
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>

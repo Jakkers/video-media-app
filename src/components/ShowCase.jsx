@@ -28,7 +28,7 @@ export default function ShowCase({ dataArray }) {
             >
               <h1 className="z-10 text-4xl font-bold">{item.title}</h1>
               <br></br>
-              <p> Average Score:{item.vote_average}</p>
+              <p>{`Average Score: ${item.vote_average}`}</p>
               <br></br>
               <h3>{item.overview}</h3>
               <br></br>
