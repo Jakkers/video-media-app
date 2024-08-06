@@ -26,7 +26,8 @@
 #show_info {
   width: 45vw;
   flex-shrink: 0;
-  border: 3px groove cyan;
+  padding: 3rem;
+  text-align: left;
 }
 #show_box {
   display: flex;
