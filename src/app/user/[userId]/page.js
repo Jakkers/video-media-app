@@ -3,9 +3,10 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Header from "@/components/Header";
+import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
+import TitleData from "@/components/ProfileTitleData";
 
-import { Container } from "@radix-ui/themes";
-export default async function UserIdPage() {
+export default async function UserIdPage({ params }) {
   const userData = await currentUser();
   const { userId } = auth();
   if (userId) {
@@ -41,6 +42,10 @@ export default async function UserIdPage() {
     await db.query(`SELECT * FROM m_users WHERE clerk_id = $1`, [userId])
   ).rows;
 
+  const reviewData = (
+    await db.query(`SELECT * FROM m_reviews WHERE user_id = $1`, [userId])
+  ).rows;
+
   if (usersData.length > 0) {
     return (
       <Container size="4">
@@ -55,6 +60,18 @@ export default async function UserIdPage() {
             </div>
           ))}
         </div>
+        <Flex direction={"column"} gap={"3"}>
+          <Heading>Your Reviews</Heading>
+          {reviewData.map((item) => (
+            <Card key={item.id}>
+              <Text>
+                <TitleData TitleData={item.movie_id} />
+              </Text>
+              <br />
+              <Text>{item.review}</Text>
+            </Card>
+          ))}
+        </Flex>
       </Container>
     );
   } else {

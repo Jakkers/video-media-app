@@ -11,6 +11,7 @@ export async function ShowGenresMenu(params) {
 
   const genresData = await genresRes.json();
 
+
   return (
     <>
       <DropdownMenu.Root>
@@ -32,4 +33,6 @@ export async function ShowGenresMenu(params) {
       </DropdownMenu.Root>
     </>
   );
+
+
 }
