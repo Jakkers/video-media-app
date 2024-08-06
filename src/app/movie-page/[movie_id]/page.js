@@ -1,5 +1,6 @@
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
+import BasicCarousel from "@/components/BasicCarousel";
 import {
   Button,
   Card,
@@ -33,7 +34,10 @@ export default async function MoviePageId({ params }) {
   );
   const video = (await res.json()).results;
 
-  // console.log(video);
+  const similarRes = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.movie_id}/similar?api_key=${apiKey}&language=en-US&page=1`
+  );
+  const similarData = await similarRes.json();
 
   async function addReview(formData) {
     "use server";
@@ -152,7 +156,9 @@ export default async function MoviePageId({ params }) {
             ></iframe>
           </Card>
 
+
           {/* {data.production_companies.map((item) => (
+
         <div
           className="bg-white w-[100%] h-[100px] flex flex-row"
           key={item.id}
@@ -167,6 +173,12 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
+
+        Similar Media
+        <div className="content-center">
+          <BasicCarousel dataArray={similarData.results} />
+        </div>
+ 
           <br></br>
           <form action={addReview} className="flex flex-col">
             <input
@@ -193,19 +205,26 @@ export default async function MoviePageId({ params }) {
             <button
               type="submit"
               className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
+
              w-32 p-1 justify-center text-base"
             >
               Submit
             </button>
           </form>
           <br />
+
+          
+
           <Flex direction={"column-reverse"} gap={"3"}>
+
             {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
                   <Strong>{item.username}</Strong>
                 </Text>
+
                 <br />
+
                 <Text>{item.review}</Text>
               </Card>
             ))}
