@@ -64,17 +64,13 @@ export default async function MoviePageId({ params }) {
       [userId]
     );
   }
-  //  WHERE m_reviews.user_id = m_users.clerk_id
-  // async function getReview() {
+
   const db = dbConnect();
   const reviewData = (
     await db.query(
       `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id}`
-      // `SELECT * FROM m_reviews WHERE movie_id = ${params.movie_id}`
     )
   ).rows;
-  // return reviewData;
-  // }
 
   return (
     <Container size="4">
@@ -155,8 +151,6 @@ export default async function MoviePageId({ params }) {
               allowfullscreen
             ></iframe>
           </Card>
-
-
           {/* {data.production_companies.map((item) => (
 
         <div
@@ -173,12 +167,10 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
-
-        Similar Media
-        <div className="content-center">
-          <BasicCarousel dataArray={similarData.results} />
-        </div>
- 
+          Similar Media
+          <div className="content-center">
+            <BasicCarousel dataArray={similarData.results} />
+          </div>
           <br></br>
           <form action={addReview} className="flex flex-col">
             <input
@@ -212,19 +204,13 @@ export default async function MoviePageId({ params }) {
             </button>
           </form>
           <br />
-
-          
-
           <Flex direction={"column-reverse"} gap={"3"}>
-
             {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
                   <Strong>{item.username}</Strong>
                 </Text>
-
                 <br />
-
                 <Text>{item.review}</Text>
               </Card>
             ))}
