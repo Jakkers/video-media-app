@@ -4,8 +4,11 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
-import { Container } from "@radix-ui/themes";
+
 import { ShowGenres } from "@/components/ShowGenres";
+
+import { Container, Heading } from "@radix-ui/themes";
+
 const apiKey = process.env.API_KEY;
 
 export default async function MoviePage() {
@@ -41,16 +44,30 @@ export default async function MoviePage() {
   return (
     <Container size="4">
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>Media App</h1>
+
+      <main className="flex min-h-screen flex-col justify-between p-24">
+        <Heading>Featured films</Heading>
+        <br></br>
+        <div className="flex flex-col items-center ">
         <ShowCase dataArray={data.results} />
-        Popular
+  </div>
+         <Heading>Popular</Heading>
+        <br></br>
+         <div className="flex flex-col items-center ">
         <BasicCarousel dataArray={popularData.results} />
-        #Top rated
+           </div>
+         <Heading>Top Rated</Heading>
+        <br></br>
+         <div className="flex flex-col items-center ">
         <ShowCase dataArray={topData.results} />
-        coming soon
+           </div>
+       <Heading>Coming Soon</Heading>
+        <br></br>
+         <div className="flex flex-col items-center ">
         <BasicCarousel dataArray={comingSoonData.results} />
-        history
+           </div>
+          <Heading>History?</Heading>
+        <br></br>
         <ShowGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>

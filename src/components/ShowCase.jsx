@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
+import { Button, Theme } from "@radix-ui/themes";
 import Style from "./showCase.module.css";
 export default function ShowCase({ dataArray }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
@@ -21,18 +21,15 @@ export default function ShowCase({ dataArray }) {
               className="p-[8px]  "
             />
           </Link>
-          <div
-            id={Style.show_info}
-            className="w-[50vw] text-center text-purple-500 bg-yellow-300 mr-[20px]"
-          >
-            <h1>{item.title}</h1>
+          <div id={Style.show_info} className="w-[50vw] text-center mr-[20px]">
+            <h1 className="z-10 text-4xl font-bold">{item.title}</h1>
+            <br></br>
             <p> Average Score:{item.vote_average}</p>
+            <br></br>
             <h3>{item.overview}</h3>
+            <br></br>
             <Link href={`/movie-page/${item.id}`}>
-              <button className="bg-orange-400 border-white border-2 m-2 p-2">
-                {" "}
-                Watch trailer
-              </button>
+              <Button> Watch trailer</Button>
             </Link>
           </div>
           {/* </section> */}
@@ -45,3 +42,24 @@ export default function ShowCase({ dataArray }) {
     // </div>
   );
 }
+
+// <div className="relative text-center">
+// <div className="w-full absolute top-[50%] left-0 text-center mt-10">
+//   <h1 className="z-10 text-6xl font-bold text-center ">
+//     {data.title}
+//   </h1>
+//   <Text className="z-10 text-center ">{data.tagline}</Text>
+//   <br></br>
+//   <br></br>
+//   <Button>
+//     <Link href={data.homepage}>View film</Link>
+//   </Button>
+// </div>
+// <Image
+//   className="opacity-40 relative -z-10"
+//   src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
+//   width={1200}
+//   height={1000}
+//   alt={`backdrop for the ${data.original_title} film.`}
+// />
+// </div>

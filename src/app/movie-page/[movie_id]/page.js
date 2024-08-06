@@ -11,6 +11,7 @@ import {
   DataList,
   Box,
   Container,
+  Strong,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
 
@@ -40,11 +41,9 @@ export default async function MoviePageId({ params }) {
 
   async function addReview(formData) {
     "use server";
-
     const user_id = formData.get("user_id");
     const review = formData.get("review");
     const movie_id = formData.get("movie_id");
-
     const db = dbConnect();
     await db.query(
       `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
@@ -65,6 +64,18 @@ export default async function MoviePageId({ params }) {
       [userId]
     );
   }
+  // m_reviews.movie_id WHERE ${params.movie_id}
+  // async function getReview() {
+  const db = dbConnect();
+  const reviewData = (
+    await db.query(
+      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
+      // `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
+    )
+  ).rows;
+  // return reviewData;
+  // }
+
   return (
     <Container size="4">
       <Header />
@@ -144,8 +155,10 @@ export default async function MoviePageId({ params }) {
               allowfullscreen
             ></iframe>
           </Card>
-        </Flex>
-        {/* {data.production_companies.map((item) => (
+
+
+          {/* {data.production_companies.map((item) => (
+
         <div
           className="bg-white w-[100%] h-[100px] flex flex-row"
           key={item.id}
@@ -160,40 +173,56 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
+
         Similar Media
         <div className="content-center">
           <BasicCarousel dataArray={similarData.results} />
         </div>
-        <form action={addReview} className="flex flex-col">
-          <input
-            name="user_id"
-            className="text-black"
-            defaultValue={userData.id}
-            hidden
-          />
-          <input
-            name="movie_id"
-            className="text-white"
-            defaultValue={params.movie_id}
-            hidden
-          />
-          <label htmlFor="review">Review</label>
-          <textarea
-            name="review"
-            type="text"
-            placeholder="Your Review Here"
-            id="review"
-            className="text-white"
-            required
-          />
-          <button
-            type="submit"
-            className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
+ 
+          <br></br>
+          <form action={addReview} className="flex flex-col">
+            <input
+              name="user_id"
+              className="text-black"
+              defaultValue={userData.id}
+              hidden
+            />
+            <input
+              name="movie_id"
+              className="text-white"
+              defaultValue={params.movie_id}
+              hidden
+            />
+            <label htmlFor="review">Review</label>
+            <textarea
+              name="review"
+              type="text"
+              placeholder="Your Review Here"
+              id="review"
+              className="text-white"
+              required
+            />
+            <button
+              type="submit"
+              className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
+
              w-32 p-1 justify-center text-base"
           >
             Submit
           </button>
         </form>
+        <br />
+        <Flex>
+          {reviewData.map((item) => (
+            <Card key={item.id}>
+              <Text>
+                <Strong>{item.username}</Strong>
+              </Text>
+              <Text>{item.review}</Text>
+            </Card>
+          ))}
+
+        </Flex>
       </main>
     </Container>
   );
