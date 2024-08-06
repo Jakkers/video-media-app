@@ -12,6 +12,8 @@ import {
   Container,
 } from "@radix-ui/themes";
 import Link from "next/link";
+import { dbConnect } from "@/utils/dbConnection";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 export default async function MoviePageId({ params }) {
   const response = await fetch(
@@ -30,6 +32,33 @@ export default async function MoviePageId({ params }) {
 
   // console.log(video);
 
+  async function addReview(formData) {
+    "use server";
+
+    const user_id = formData.get("user_id");
+    const review = formData.get("review");
+    const movie_id = formData.get("movie_id");
+
+    const db = dbConnect();
+    await db.query(
+      `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
+      [user_id, review, movie_id]
+    );
+    // revalidatePath("/");
+    // redirect("/");
+  }
+
+  const userData = await currentUser();
+  const { userId } = auth();
+  if (userId) {
+    const db = dbConnect();
+    await db.query(
+      `
+          SELECT * FROM social_users WHERE clerk_id = $1
+            `,
+      [userId]
+    );
+  }
   return (
     <Container size="4">
       <main>
@@ -125,7 +154,41 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
+
+      <form action={addReview} className="flex flex-col">
+        <input
+          name="user_id"
+          className="text-black"
+          defaultValue={userData.id}
+          hidden
+        />
+        <input
+          name="movie_id"
+          className="text-white"
+          defaultValue={params.movie_id}
+          hidden
+        />
+        <label htmlFor="review">Review</label>
+        <textarea
+          name="review"
+          type="text"
+          placeholder="Your Review Here"
+          id="review"
+          className="text-white"
+          required
+        />
+        <button
+          type="submit"
+          className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
+             w-32 p-1 justify-center text-base"
+        >
+          Submit
+        </button>
+      </form>
+   
+
       </main>
     </Container>
+
   );
 }

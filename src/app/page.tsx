@@ -23,6 +23,8 @@ export default function Home() {
       <br></br>
       <Card>
         <Flex direction="column" justify="between" wrap="wrap" gap={"5"}>
+
+
           <SignedIn>
             <UserButton />
             <Button size="4" color="orange" variant="outline">
@@ -31,10 +33,10 @@ export default function Home() {
           </SignedIn>
           <SignedOut>
             <Button size="4" color="orange">
-              <SignUpButton />
+              <SignUpButton mode="modal" />
             </Button>
             <Button size="4" color="orange" variant="outline">
-              <SignInButton />
+              <SignInButton mode="modal" />
             </Button>
           </SignedOut>
         </Flex>
