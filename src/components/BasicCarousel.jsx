@@ -17,7 +17,8 @@ export default function BasicCarousel({ dataArray }) {
               id={Style.imgs}
               className="p-[8px] hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-purple-500 "
             />
-            {/* <div
+            {/* //!this inserts film data into a div and overlay on image with hover. may not iplement, but here incase helps accesibilty later?
+            <div
               // id={Style.img_info}
               className=" text-transparent hover:text-white
               hover:border-2 border-purple-400 hover:bg-transparent z-10 absolute top-0 bg-transparent "
@@ -25,7 +26,7 @@ export default function BasicCarousel({ dataArray }) {
               <div className="h-[213px] w-[154px]"></div>
               <div>
                 <p>{item.vote_average}</p>
-                {/* //!might want to put this data into a div and overlay on image? maybe just on hover? */}
+                {/*  */}
             {/* <h1>{item.title}</h1>
               </div>
             </div> */}
