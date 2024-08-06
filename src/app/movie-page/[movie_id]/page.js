@@ -207,21 +207,21 @@ export default async function MoviePageId({ params }) {
               className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
 
              w-32 p-1 justify-center text-base"
-          >
-            Submit
-          </button>
-        </form>
-        <br />
-        <Flex>
-          {reviewData.map((item) => (
-            <Card key={item.id}>
-              <Text>
-                <Strong>{item.username}</Strong>
-              </Text>
-              <Text>{item.review}</Text>
-            </Card>
-          ))}
-
+            >
+              Submit
+            </button>
+          </form>
+          <br />
+          <Flex>
+            {reviewData.map((item) => (
+              <Card key={item.id}>
+                <Text>
+                  <Strong>{item.username}</Strong>
+                </Text>
+                <Text>{item.review}</Text>
+              </Card>
+            ))}
+          </Flex>
         </Flex>
       </main>
     </Container>

@@ -44,8 +44,8 @@ export default async function MoviePage() {
   return (
     <Container size="4">
       <Header />
-
       <main className="flex min-h-screen flex-col justify-between p-24">
+
         <Heading>Featured films</Heading>
         <br></br>
         <div className="flex flex-col items-center ">
