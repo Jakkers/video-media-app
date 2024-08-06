@@ -29,6 +29,9 @@ export default async function Home() {
       <br></br>
       <br></br>
       <Card>
+
+        
+
         <Flex
           direction="column"
           justify="between"
@@ -36,11 +39,17 @@ export default async function Home() {
           wrap="wrap"
           gap={"5"}
         >
+
           <SignedIn>
             <UserButton />
             <Button size="4" color="orange" variant="outline">
               <SignOutButton />
             </Button>
+            <a href={`/user/userId`}>
+              <Button size="4" color="blue" variant="outline">
+                Profile
+              </Button>
+            </a>
           </SignedIn>
           <SignedOut>
             <Button size="4" color="orange">
