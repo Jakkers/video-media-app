@@ -1,5 +1,6 @@
 import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
 import Image from "next/image";
+import Link from "next/link";
 const apiKey = process.env.API_KEY;
 
 export default async function ImageData({ ImageData }) {
@@ -15,13 +16,15 @@ export default async function ImageData({ ImageData }) {
 
   return (
     <>
-      <Image
-        src={`${base_url}${data.poster_path}`}
-        alt={`Poster for the ${data.original_title} film.`}
-        width={100}
-        height={100}
-        className="p-[8px]"
-      />
+      <Link href={`/movie-page/${data.id}`}>
+        <Image
+          src={`${base_url}${data.poster_path}`}
+          alt={`Poster for the ${data.original_title} film.`}
+          width={100}
+          height={100}
+          className="p-[8px]"
+        />
+      </Link>
     </>
   );
 }

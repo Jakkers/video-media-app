@@ -5,7 +5,7 @@ import { Button, Container, Theme } from "@radix-ui/themes";
 import Style from "./showCase.module.css";
 export default function ShowCase({ dataArray }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
-
+  // console.log(dataArray);
   return (
     <Container size="4">
       <div id={Style.main_box2}>
@@ -19,18 +19,19 @@ export default function ShowCase({ dataArray }) {
                 width={400}
                 height={400}
                 id={Style.imgs2}
-                className="p-[8px]"
               />
             </Link>
             <div
               id={Style.show_info}
-              className="w-[50vw] text-center mr-[20px]"
+              className="w-[70vw] xl:w-[50vw] text-center mr-[20px]"
             >
-              <h1 className="z-10 text-4xl font-bold">{item.title}</h1>
+              <h1 className="z-10 text-3xl font-bold md:text-5xl">
+                {item.title}
+              </h1>
               <br></br>
-              <p>{`Average Score: ${item.vote_average}`}</p>
+              <p>{`Average Score: ${item.vote_average} / 10`}</p>
               <br></br>
-              <h3>{item.overview}</h3>
+              <h3 id={Style.item_overview}>{item.overview}</h3>
               <br></br>
               <Link href={`/movie-page/${item.id}`}>
                 <Button> Watch trailer</Button>

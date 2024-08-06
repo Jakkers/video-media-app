@@ -58,7 +58,9 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Theme appearance="dark"> {children}</Theme>
+          <Theme appearance="dark">
+            <div className="ml-4 mr-4"> {children}</div>
+          </Theme>
         </body>
       </html>
     </ClerkProvider>
