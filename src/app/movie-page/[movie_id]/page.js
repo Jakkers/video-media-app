@@ -11,6 +11,8 @@ import {
   Box,
   Container,
 } from "@radix-ui/themes";
+import Header from "@/components/Header";
+
 import Link from "next/link";
 import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
@@ -61,6 +63,7 @@ export default async function MoviePageId({ params }) {
   }
   return (
     <Container size="4">
+      <Header />
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[50%] left-0 text-center mt-10">
@@ -155,40 +158,37 @@ export default async function MoviePageId({ params }) {
         </div>
       ))} */}
 
-      <form action={addReview} className="flex flex-col">
-        <input
-          name="user_id"
-          className="text-black"
-          defaultValue={userData.id}
-          hidden
-        />
-        <input
-          name="movie_id"
-          className="text-white"
-          defaultValue={params.movie_id}
-          hidden
-        />
-        <label htmlFor="review">Review</label>
-        <textarea
-          name="review"
-          type="text"
-          placeholder="Your Review Here"
-          id="review"
-          className="text-white"
-          required
-        />
-        <button
-          type="submit"
-          className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
+        <form action={addReview} className="flex flex-col">
+          <input
+            name="user_id"
+            className="text-black"
+            defaultValue={userData.id}
+            hidden
+          />
+          <input
+            name="movie_id"
+            className="text-white"
+            defaultValue={params.movie_id}
+            hidden
+          />
+          <label htmlFor="review">Review</label>
+          <textarea
+            name="review"
+            type="text"
+            placeholder="Your Review Here"
+            id="review"
+            className="text-white"
+            required
+          />
+          <button
+            type="submit"
+            className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
              w-32 p-1 justify-center text-base"
-        >
-          Submit
-        </button>
-      </form>
-   
-
+          >
+            Submit
+          </button>
+        </form>
       </main>
     </Container>
-
   );
 }
