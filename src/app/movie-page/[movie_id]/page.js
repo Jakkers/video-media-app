@@ -10,6 +10,7 @@ import {
   DataList,
   Box,
   Container,
+  Strong,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
 
@@ -36,11 +37,9 @@ export default async function MoviePageId({ params }) {
 
   async function addReview(formData) {
     "use server";
-
     const user_id = formData.get("user_id");
     const review = formData.get("review");
     const movie_id = formData.get("movie_id");
-
     const db = dbConnect();
     await db.query(
       `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
@@ -61,6 +60,18 @@ export default async function MoviePageId({ params }) {
       [userId]
     );
   }
+  // m_reviews.movie_id WHERE ${params.movie_id}
+  // async function getReview() {
+  const db = dbConnect();
+  const reviewData = (
+    await db.query(
+      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
+      // `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
+    )
+  ).rows;
+  // return reviewData;
+  // }
+
   return (
     <Container size="4">
       <Header />
@@ -188,6 +199,17 @@ export default async function MoviePageId({ params }) {
             Submit
           </button>
         </form>
+        <br />
+        <Flex>
+          {reviewData.map((item) => (
+            <Card key={item.id}>
+              <Text>
+                <Strong>{item.username}</Strong>
+              </Text>
+              <Text>{item.review}</Text>
+            </Card>
+          ))}
+        </Flex>
       </main>
     </Container>
   );
