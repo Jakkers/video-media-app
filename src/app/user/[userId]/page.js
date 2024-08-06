@@ -2,6 +2,7 @@ import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { Container } from "@radix-ui/themes";
 export default async function UserIdPage() {
   const userData = await currentUser();
   const { userId } = auth();
@@ -60,7 +61,7 @@ export default async function UserIdPage() {
     );
   } else {
     return (
-      <>
+      <Container size="4">
         <h1>Create your Profile</h1>
         <form
           action={handleSubmit}
@@ -89,7 +90,7 @@ export default async function UserIdPage() {
             Create profile
           </button>
         </form>
-      </>
+      </Container>
     );
   }
 }

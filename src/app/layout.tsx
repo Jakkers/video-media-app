@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 
 // Importing radix theme
 import "@radix-ui/themes/styles.css";
-import { Container, Section, Theme } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { url } from "inspector";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -60,11 +60,8 @@ export default async function RootLayout({
         <body className={inter.className}>
           <Theme appearance="dark">
             {" "}
-            <Container size="4">
-              {" "}
-              <Header />
-              {children}
-            </Container>{" "}
+            <Header />
+            {children}
           </Theme>
         </body>
       </html>
