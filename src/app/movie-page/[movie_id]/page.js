@@ -1,6 +1,7 @@
 // import requests from "../../../utils/requestData";
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
+import BasicCarousel from "@/components/BasicCarousel";
 import {
   Button,
   Card,
@@ -32,7 +33,10 @@ export default async function MoviePageId({ params }) {
   );
   const video = (await res.json()).results;
 
-  // console.log(video);
+  const similarRes = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.movie_id}/similar?api_key=${apiKey}&language=en-US&page=1`
+  );
+  const similarData = await similarRes.json();
 
   async function addReview(formData) {
     "use server";
@@ -141,7 +145,6 @@ export default async function MoviePageId({ params }) {
             ></iframe>
           </Card>
         </Flex>
-
         {/* {data.production_companies.map((item) => (
         <div
           className="bg-white w-[100%] h-[100px] flex flex-row"
@@ -157,7 +160,10 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
-
+        Similar Media
+        <div className="content-center">
+          <BasicCarousel dataArray={similarData.results} />
+        </div>
         <form action={addReview} className="flex flex-col">
           <input
             name="user_id"
