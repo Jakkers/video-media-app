@@ -167,9 +167,11 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
+
           <br></br>
           <Heading>Similar films</Heading>
           <div className="content-center">
+
             <BasicCarousel dataArray={similarData.results} />
           </div>
           <br></br>

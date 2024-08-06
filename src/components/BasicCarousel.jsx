@@ -7,7 +7,7 @@ export default function BasicCarousel({ dataArray }) {
   return (
     <div id={Style.main_box}>
       {dataArray.map((item) => (
-        <div key={item.id} id={Style.imgs}>
+        <div key={item.id} id={Style.imgs} className="relative">
           <Link href={`/movie-page/${item.id}`}>
             <Image
               src={`${base_url}${item.poster_path}`}
@@ -17,11 +17,18 @@ export default function BasicCarousel({ dataArray }) {
               id={Style.imgs}
               className="p-[8px] hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-purple-500 "
             />
-            <div className="hidden hover:visible bg-transparent">
-              <p>{item.vote_average}</p>
-              {/* //!might want to put this data into a div and overlay on image? maybe just on hover? */}
-              <h1>{item.title}</h1>
-            </div>
+            {/* <div
+              // id={Style.img_info}
+              className=" text-transparent hover:text-white
+              hover:border-2 border-purple-400 hover:bg-transparent z-10 absolute top-0 bg-transparent "
+            >
+              <div className="h-[213px] w-[154px]"></div>
+              <div>
+                <p>{item.vote_average}</p>
+                {/* //!might want to put this data into a div and overlay on image? maybe just on hover? */}
+            {/* <h1>{item.title}</h1>
+              </div>
+            </div> */}
           </Link>
         </div>
       ))}
