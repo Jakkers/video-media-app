@@ -5,8 +5,7 @@ import { Button, Theme } from "@radix-ui/themes";
 import Style from "./showCase.module.css";
 export default function ShowCase({ dataArray }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
-  console.log("lalalala");
-  console.log(dataArray);
+
   return (
     <div id={Style.main_box2}>
       {dataArray.map((item) => (
