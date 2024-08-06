@@ -47,7 +47,7 @@ export default async function MoviePageId({ params }) {
           </div>
           <Image
             className="opacity-40 relative -z-10"
-            src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
             width={1200}
             height={1000}
             alt={`backdrop for the ${data.original_title} film.`}

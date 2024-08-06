@@ -8,10 +8,18 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { Button, Flex, Text, Card } from "@radix-ui/themes";
+import Image from "next/image";
 
-export default function Home() {
+const apiKey = process.env.API_KEY;
+
+export default async function Home() {
+  //fetching image to use for bg
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/533535?api_key=${apiKey}&language=en-US&page=1`
+  );
+  const data = await response.json();
   return (
-    <main className="h-screen w-[100%] flex min-h-screen flex-col items-center bg-gradient-to-r from-cyan-900 to-blue-900">
+    <main className="h-screen w-[100%] flex min-h-screen flex-col items-center  bg-gradient-to-r from-cyan-900 to-blue-900">
       <h1 className="pt-[30vh] z-10 text-6xl font-bold text-center ">
         Eggscape
       </h1>
