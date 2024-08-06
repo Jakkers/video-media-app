@@ -7,33 +7,31 @@ import {
 } from "@clerk/nextjs";
 
 import { auth } from "@clerk/nextjs/server";
-import { ActiveLink } from "@/components/ActiveLink";
 
 //importing theme
-import { Button, Flex, Heading, Card, Container } from "@radix-ui/themes";
+import {
+  Button,
+  Flex,
+  Heading,
+  Card,
+  Container,
+  DropdownMenu,
+} from "@radix-ui/themes";
+import Link from "next/link";
 
 export default function Header() {
   //? destructure the userId for Auth
   const { userId } = auth();
   //
   return (
-    <Container size="4">
-      <nav className="sticky top-0 sm:bottom-0 z-40 pt-4 max-w-[1450px] self-center">
+    <nav className="sticky top-0 sm:bottom-0 z-40 pt-4 max-w-[1450px] self-center">
+      <Container size="4">
         <Card>
           <Flex direction="row" justify="between" wrap="wrap">
-            <Heading>Eggscape</Heading>
-            <ActiveLink href="/">
-              <p>Home</p>
-            </ActiveLink>
-            <ActiveLink href={"/movie-page"}>
-              <p>Movie-page</p>
-            </ActiveLink>
-            {/* <ActiveLink href="/posts">
-          <p>Post Feed</p>
-        </ActiveLink> */}
-            <ActiveLink href={`/user/${userId}`}>
-              <p>Profile</p>
-            </ActiveLink>
+            <Link href="/">
+              <Heading>Eggscape</Heading>
+            </Link>
+            {/* Signed in buttons  */}
             <SignedIn>
               <UserButton />
             </SignedIn>
@@ -45,9 +43,38 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
+            {/* Adding a DropdownMenu */}
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Button variant="soft">
+                  Menu
+                  <DropdownMenu.TriggerIcon />
+                </Button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                <DropdownMenu.Item>
+                  <Link href={`/user/${userId}`}>
+                    <p>Profile</p>
+                  </Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  {" "}
+                  <Link href={"/movie-page"}>
+                    <p>Movies</p>
+                  </Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item>
+                  {" "}
+                  <Link href="/">
+                    <p>Home</p>
+                  </Link>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
           </Flex>
         </Card>
-      </nav>
-    </Container>
+      </Container>
+    </nav>
   );
 }
