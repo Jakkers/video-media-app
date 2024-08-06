@@ -5,6 +5,8 @@ import { revalidatePath } from "next/cache";
 import Header from "@/components/Header";
 import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
 import TitleData from "@/components/ProfileTitleData";
+import ImageData from "@/components/ProfileImgReviews";
+import Image from "next/image";
 
 export default async function UserIdPage({ params }) {
   const userData = await currentUser();
@@ -50,27 +52,35 @@ export default async function UserIdPage({ params }) {
     return (
       <Container size="4">
         <Header />
-        <h1 size={"8"} className="m-2">
-          {userData.username} Profile Page
-        </h1>
+
+        <Heading size={"8"} className="m-2">
+          <Strong>{userData.username} Profile</Strong>
+        </Heading>
         <div id="profile-info">
           {Bio.map((item) => (
             <div key={item.id}>
-              <h2>Bio: {item.bio}</h2>
+              <Text type="p">Bio: {item.bio}</Text>
             </div>
           ))}
         </div>
-        <Flex direction={"column"} gap={"3"}>
-          <Heading>Your Reviews</Heading>
+        <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
-              <Text>
-                <TitleData TitleData={item.movie_id} />
-              </Text>
-              <br />
-              <Text>{item.review}</Text>
+              <Flex direction={"row"} gap={"3"}>
+                <div>
+                  <ImageData ImageData={item.movie_id} />
+                </div>
+                <div className="flex flex-col overflow-y-scroll w-fit h-fit">
+                  <Text>
+                    <TitleData TitleData={item.movie_id} />
+                  </Text>
+                  <br />
+                  <Text>{item.review}</Text>
+                </div>
+              </Flex>
             </Card>
           ))}
+          <Heading>Your Reviews</Heading>
         </Flex>
       </Container>
     );
