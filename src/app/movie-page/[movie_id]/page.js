@@ -1,4 +1,3 @@
-// import requests from "../../../utils/requestData";
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
 import BasicCarousel from "@/components/BasicCarousel";
@@ -14,10 +13,11 @@ import {
   Strong,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
-
 import Link from "next/link";
 import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export default async function MoviePageId({ params }) {
   const response = await fetch(
@@ -49,8 +49,8 @@ export default async function MoviePageId({ params }) {
       `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
       [user_id, review, movie_id]
     );
-    // revalidatePath("/");
-    // redirect("/");
+    revalidatePath(`/movie-page/${params.movie_id}`);
+    redirect(`/movie-page/${params.movie_id}`);
   }
 
   const userData = await currentUser();
@@ -64,13 +64,13 @@ export default async function MoviePageId({ params }) {
       [userId]
     );
   }
-  // m_reviews.movie_id WHERE ${params.movie_id}
+  //  WHERE m_reviews.user_id = m_users.clerk_id
   // async function getReview() {
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
-      // `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.user_id = m_users.clerk_id`
+      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id}`
+      // `SELECT * FROM m_reviews WHERE movie_id = ${params.movie_id}`
     )
   ).rows;
   // return reviewData;
@@ -212,12 +212,19 @@ export default async function MoviePageId({ params }) {
             </button>
           </form>
           <br />
-          <Flex>
+
+          
+
+          <Flex direction={"column-reverse"} gap={"3"}>
+
             {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
                   <Strong>{item.username}</Strong>
                 </Text>
+
+                <br />
+
                 <Text>{item.review}</Text>
               </Card>
             ))}
