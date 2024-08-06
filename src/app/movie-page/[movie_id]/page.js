@@ -77,8 +77,8 @@ export default async function MoviePageId({ params }) {
       <Header />
       <main>
         <div className="relative text-center">
-          <div className="w-full absolute top-[50%] left-0 text-center mt-10">
-            <h1 className="z-10 text-6xl font-bold text-center ">
+          <div className="w-full absolute top-[20%] md:top-[50%] left-0 text-center mt-10">
+            <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
               {data.title}
             </h1>
             <Text className="z-10 text-center ">{data.tagline}</Text>
@@ -171,11 +171,12 @@ export default async function MoviePageId({ params }) {
           <br></br>
           <Heading>Similar films</Heading>
           <div className="content-center">
-
             <BasicCarousel dataArray={similarData.results} />
           </div>
           <br></br>
-          <form action={addReview} className="flex flex-col">
+          <Heading>Leave a review</Heading>
+          <br></br>
+          <form action={addReview} className="flex flex-col gap-2">
             <input
               name="user_id"
               className="text-black"
@@ -195,6 +196,8 @@ export default async function MoviePageId({ params }) {
               placeholder="Your Review Here"
               id="review"
               className="text-white"
+              maxlength="250"
+              rows="3"
               required
             />
             <button
