@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
+import { Container } from "@radix-ui/themes";
 const apiKey = process.env.API_KEY;
 
 export default async function MoviePage() {
@@ -15,10 +16,12 @@ export default async function MoviePage() {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Media App</h1>
-      <ShowCase dataArray={data.results} />
-      <BasicCarousel dataArray={data.results} />
-    </main>
+    <Container size="4">
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <h1>Media App</h1>
+        <ShowCase dataArray={data.results} />
+        <BasicCarousel dataArray={data.results} />
+      </main>
+    </Container>
   );
 }
