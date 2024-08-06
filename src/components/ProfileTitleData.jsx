@@ -1,4 +1,4 @@
-import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
+import { Strong } from "@radix-ui/themes";
 const apiKey = process.env.API_KEY;
 
 export default async function TitleData({ TitleData }) {
@@ -8,7 +8,12 @@ export default async function TitleData({ TitleData }) {
     `https://api.themoviedb.org/3/movie/${TitleData}?api_key=${apiKey}&language=en-US&page=1`
   );
   const data = await response.json();
-  console.log(TitleData);
 
-  return <Strong>{data.title}</Strong>;
+  // console.log(TitleData);
+
+  return (
+    <>
+      <Strong>{data.title}</Strong>
+    </>
+  );
 }
