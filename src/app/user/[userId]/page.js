@@ -10,12 +10,7 @@ export default async function UserIdPage() {
   const { userId } = auth();
   if (userId) {
     const db = dbConnect();
-    await db.query(
-      `
-            SELECT * FROM m_users WHERE clerk_id = $1
-              `,
-      [userId]
-    );
+    await db.query(`SELECT * FROM m_users WHERE clerk_id = $1`, [userId]);
   }
 
   async function handleSubmit(formData) {

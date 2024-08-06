@@ -8,7 +8,6 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { Button, Flex, Text, Card } from "@radix-ui/themes";
-import Image from "next/image";
 
 const apiKey = process.env.API_KEY;
 
@@ -30,9 +29,13 @@ export default async function Home() {
       <br></br>
       <br></br>
       <Card>
-        <Flex direction="column" justify="between" wrap="wrap" gap={"5"}>
-
-
+        <Flex
+          direction="column"
+          justify="between"
+          align="center"
+          wrap="wrap"
+          gap={"5"}
+        >
           <SignedIn>
             <UserButton />
             <Button size="4" color="orange" variant="outline">
