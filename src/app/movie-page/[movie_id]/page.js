@@ -9,6 +9,7 @@ import {
   Text,
   DataList,
   Box,
+  Container,
 } from "@radix-ui/themes";
 import Link from "next/link";
 import { dbConnect } from "@/utils/dbConnection";
@@ -59,83 +60,86 @@ export default async function MoviePageId({ params }) {
     );
   }
   return (
-    <main>
-      <div className="relative text-center">
-        <div className="w-full absolute top-[50%] left-0 text-center mt-10">
-          <h1 className="z-10 text-6xl font-bold text-center ">{data.title}</h1>
-          <Text className="z-10 text-center ">{data.tagline}</Text>
-          <br></br>
-          <br></br>
-          <Button>
-            <Link href={data.homepage}>View film</Link>
-          </Button>
+    <Container size="4">
+      <main>
+        <div className="relative text-center">
+          <div className="w-full absolute top-[50%] left-0 text-center mt-10">
+            <h1 className="z-10 text-6xl font-bold text-center ">
+              {data.title}
+            </h1>
+            <Text className="z-10 text-center ">{data.tagline}</Text>
+            <br></br>
+            <br></br>
+            <Button>
+              <Link href={data.homepage}>View film</Link>
+            </Button>
+          </div>
+          <Image
+            className="opacity-40 relative -z-10"
+            src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+            width={1200}
+            height={1000}
+            alt={`backdrop for the ${data.original_title} film.`}
+          />
         </div>
-        <Image
-          className="opacity-40 relative -z-10"
-          src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
-          width={1200}
-          height={1000}
-          alt={`backdrop for the ${data.original_title} film.`}
-        />
-      </div>
-      {/* Adding datalist for the film  */}
-      <Flex direction="column" className="p-6">
-        <Box>
-          <DataList.Root
-            orientation={{ initial: "vertical", sm: "horizontal" }}
-          >
-            <DataList.Item>
-              <DataList.Label minWidth="88px">Release Date</DataList.Label>
-              <DataList.Value minWidth="200px">
-                {data.release_date}
-              </DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <DataList.Label minWidth="88px">Runtime</DataList.Label>
-              <DataList.Value minWidth="200px">{data.runtime}</DataList.Value>
-            </DataList.Item>
-            <DataList.Item>
-              <DataList.Label minWidth="88px">Genres</DataList.Label>
-              {/* I am trying to map multiple genres from the data  */}
-              <DataList.Value>
-                {data.genres.map((item) => (
-                  <p key={item.id} className="pr-2">
-                    {item.name}
-                  </p>
-                ))}
-              </DataList.Value>
-            </DataList.Item>
-          </DataList.Root>
-        </Box>
-        <Box>
-          <br></br>
-          <Heading>{data.title}</Heading>
-          <br></br>
-          <Text>{data.overview}</Text>
-          <br></br>
-          <br></br>
-        </Box>
-        {/* <Image
+        {/* Adding datalist for the film  */}
+        <Flex direction="column" className="p-6">
+          <Box>
+            <DataList.Root
+              orientation={{ initial: "vertical", sm: "horizontal" }}
+            >
+              <DataList.Item>
+                <DataList.Label minWidth="88px">Release Date</DataList.Label>
+                <DataList.Value minWidth="200px">
+                  {data.release_date}
+                </DataList.Value>
+              </DataList.Item>
+              <DataList.Item>
+                <DataList.Label minWidth="88px">Runtime</DataList.Label>
+                <DataList.Value minWidth="200px">{data.runtime}</DataList.Value>
+              </DataList.Item>
+              <DataList.Item>
+                <DataList.Label minWidth="88px">Genres</DataList.Label>
+                {/* I am trying to map multiple genres from the data  */}
+                <DataList.Value>
+                  {data.genres.map((item) => (
+                    <p key={item.id} className="pr-2">
+                      {item.name}
+                    </p>
+                  ))}
+                </DataList.Value>
+              </DataList.Item>
+            </DataList.Root>
+          </Box>
+          <Box>
+            <br></br>
+            <Heading>{data.title}</Heading>
+            <br></br>
+            <Text>{data.overview}</Text>
+            <br></br>
+            <br></br>
+          </Box>
+          {/* <Image
         src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
         width={500}
         height={500}
         alt={`Poster for the ${data.title} film.`}
       /> */}
-        <Card>
-          <iframe
-            width="100%"
-            height="650px"
-            src={`https://www.youtube.com/embed/${video[0].key}`}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </Card>
-      </Flex>
+          <Card>
+            <iframe
+              width="100%"
+              height="650px"
+              src={`https://www.youtube.com/embed/${video[0].key}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </Card>
+        </Flex>
 
-      {/* {data.production_companies.map((item) => (
+        {/* {data.production_companies.map((item) => (
         <div
           className="bg-white w-[100%] h-[100px] flex flex-row"
           key={item.id}
@@ -150,6 +154,7 @@ export default async function MoviePageId({ params }) {
           </div>
         </div>
       ))} */}
+
       <form action={addReview} className="flex flex-col">
         <input
           name="user_id"
@@ -180,6 +185,10 @@ export default async function MoviePageId({ params }) {
           Submit
         </button>
       </form>
-    </main>
+   
+
+      </main>
+    </Container>
+
   );
 }
