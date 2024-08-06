@@ -45,28 +45,27 @@ export default async function MoviePage() {
     <Container size="4">
       <Header />
       <main className="flex min-h-screen flex-col justify-between p-24">
-
         <Heading>Featured films</Heading>
         <br></br>
         <div className="flex flex-col items-center ">
-        <ShowCase dataArray={data.results} />
-  </div>
-         <Heading>Popular</Heading>
+          <ShowCase dataArray={data.results} />
+        </div>
+        <Heading>Popular</Heading>
         <br></br>
-         <div className="flex flex-col items-center ">
-        <BasicCarousel dataArray={popularData.results} />
-           </div>
-         <Heading>Top Rated</Heading>
+        <div className="flex flex-col items-center ">
+          <BasicCarousel dataArray={popularData.results} />
+        </div>
+        <Heading>Top Rated</Heading>
         <br></br>
-         <div className="flex flex-col items-center ">
-        <ShowCase dataArray={topData.results} />
-           </div>
-       <Heading>Coming Soon</Heading>
+        <div className="flex flex-col items-center ">
+          <ShowCase dataArray={topData.results} />
+        </div>
+        <Heading>Coming Soon</Heading>
         <br></br>
-         <div className="flex flex-col items-center ">
-        <BasicCarousel dataArray={comingSoonData.results} />
-           </div>
-          <Heading>History?</Heading>
+        <div className="flex flex-col items-center ">
+          <BasicCarousel dataArray={comingSoonData.results} />
+        </div>
+        <Heading>History?</Heading>
         <br></br>
         <ShowGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}

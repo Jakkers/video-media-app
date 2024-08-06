@@ -168,7 +168,7 @@ export default async function MoviePageId({ params }) {
         </div>
       ))} */}
           Similar Media
-          <div className="content-center">
+          <div className="flex flex-col items-center ">
             <BasicCarousel dataArray={similarData.results} />
           </div>
           <br></br>
