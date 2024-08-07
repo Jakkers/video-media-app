@@ -27,8 +27,9 @@ export default async function SearchBar() {
       console.error("Error fetching data:", error);
     }
     const searchQuery = formData.get("search-queries");
+
     redirect(`/search-results/${searchQuery}`);
-    // redirect(`/movie-page/${searchData[0].id}`);
+    
   }
 
   return (

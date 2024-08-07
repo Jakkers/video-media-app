@@ -3,7 +3,7 @@ import Image from "next/image";
 import "@radix-ui/themes/styles.css";
 import { Button, Container, Theme } from "@radix-ui/themes";
 import Style from "./showCase.module.css";
-export default function ShowCase({ dataArray }) {
+export default function ShowCase({ dataArray, format }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
@@ -11,7 +11,7 @@ export default function ShowCase({ dataArray }) {
       <div id={Style.main_box2}>
         {dataArray.map((item) => (
           <Theme key={item.id} id={Style.show_box}>
-            <Link href={`/movie-page/${item.id}`}>
+            <Link href={`/${format}-page/${item.id}`}>
               {/* <section id={Style.show_box}> */}
               <Image
                 src={`${base_url}${item.poster_path}`}
@@ -33,7 +33,8 @@ export default function ShowCase({ dataArray }) {
               <br></br>
               <h3 id={Style.item_overview}>{item.overview}</h3>
               <br></br>
-              <Link href={`/movie-page/${item.id}`}>
+
+              <Link href={`/{${format}-page/${item.id}`}>
                 <Button> Watch trailer</Button>
               </Link>
             </div>

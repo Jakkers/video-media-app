@@ -50,27 +50,27 @@ export default async function MoviePage() {
         {/* <Heading>Featured films</Heading> */}
         <br></br>
         <div>
-          <ShowCase dataArray={data.results} />
+          <ShowCase dataArray={data.results} format="movie" />
         </div>
         <br></br>
         <Heading>Popular</Heading>
         <br></br>
         <div>
-          <BasicCarousel dataArray={popularData.results} />
+          <BasicCarousel dataArray={popularData.results} format="movie" />
         </div>
         <br></br>
         <Heading>Top Rated</Heading>
         <br></br>
         <div>
-          <BasicCarousel dataArray={topData.results} />
+          <BasicCarousel dataArray={topData.results} format="movie" />
         </div>
         <br></br>
         <Heading>Coming Soon</Heading>
         <br></br>
         <div>
-          <BasicCarousel dataArray={comingSoonData.results} />
+          <BasicCarousel dataArray={comingSoonData.results} format="movie" />
         </div>
-<br></br>
+        <br></br>
         <DisplayGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>

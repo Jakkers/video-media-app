@@ -22,7 +22,7 @@ export async function DisplayTvGenres() {
 
           <Heading>{genresData[index].name}</Heading>
           {/* //!^need this form as fetch function strips out name */}
-          <BasicCarousel dataArray={item} />
+          <BasicCarousel dataArray={item} format="tv" />
         </div>
       ))}
     </>
