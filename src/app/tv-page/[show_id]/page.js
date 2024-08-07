@@ -27,14 +27,7 @@ export default async function MoviePageId({ params }) {
   );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
-  console.log("THERE");
-  console.log(data);
-  // const wrangledData = data.now_playing.results;
 
-  //   const res = await fetch(
-  //     `https://api.themoviedb.org/3/tv/${params.show_id}/videos?api_key=${apiKey}&language=en-US`
-  //   );
-  //   const video = (await res.json()).results;
 
   let similarRes = await fetch(
     `https://api.themoviedb.org/3/tv/${params.show_id}/similar?api_key=${apiKey}&language=en-US&page=2`
