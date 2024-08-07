@@ -7,4 +7,4 @@ const requests = {
 
 export default requests;
 
-console.log(requests);
+// console.log(requests);

@@ -15,8 +15,8 @@ export default async function SearchBar() {
     //   `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
     const searchData = (await response.json()).results;
 
-    console.log(searchQuery);
-    console.log(searchData[0].id);
+    // console.log(searchQuery);
+    // console.log(searchData[0].id);
     redirect(`/movie-page/${searchData[0].id}`);
 
     // const data = await res.json();
