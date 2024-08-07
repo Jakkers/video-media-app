@@ -1,8 +1,5 @@
 const apiKey = process.env.API_KEY;
 
-
-
-
 import Link from "next/link";
 import { dbConnect } from "@/utils/dbConnection";
 import { Button, DropdownMenu, Heading } from "@radix-ui/themes";
@@ -20,7 +17,6 @@ export async function DisplayGenres() {
       {dataArray.map((item, index) => (
         <div key={index} id={genresData[index].name}>
           {/* //! ^ this helps navigation with catergories menu  */}
-      
 
           {/* //? These are for styling, wil swap out later */}
           <br></br>
@@ -29,7 +25,7 @@ export async function DisplayGenres() {
           <Heading>{genresData[index].name}</Heading>
 
           {/* //!^need this form as fetch function strips out name */}
-          <BasicCarousel dataArray={item} />
+          <BasicCarousel dataArray={item} format="movie" />
         </div>
       ))}
     </>
@@ -41,5 +37,4 @@ export async function DoFetch() {
     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=53`
   );
   const data = await res.json();
-
 }

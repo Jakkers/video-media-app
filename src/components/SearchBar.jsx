@@ -9,7 +9,7 @@ export default async function SearchBar() {
     "use server";
     const searchQuery = formData.get("search-queries");
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${apiKey}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/search/multi?query=${searchQuery}&api_key=${apiKey}&language=en-US&page=1`
     );
     // const res = await fetch(
     //   `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`

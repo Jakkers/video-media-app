@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import Style from "./basicCar.module.css";
-export default function BasicCarousel({ dataArray }) {
+export default function BasicCarousel({ dataArray, format }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
     <div id={Style.main_box}>
       {dataArray.map((item) => (
         <div key={item.id} id={Style.imgs} className="relative">
-          <Link href={`/movie-page/${item.id}`}>
+          <Link href={`/${format}-page/${item.id}`}>
             <Image
               src={`${base_url}${item.poster_path}`}
               alt={`Poster for the ${item.original_title} film.`}
