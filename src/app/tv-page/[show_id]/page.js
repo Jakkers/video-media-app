@@ -28,17 +28,9 @@ export default async function MoviePageId({ params }) {
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
 
-  // console.log(data);
-
-  // const wrangledData = data.now_playing.results;
-
-  //   const res = await fetch(
-  //     `https://api.themoviedb.org/3/tv/${params.show_id}/videos?api_key=${apiKey}&language=en-US`
-  //   );
-  //   const video = (await res.json()).results;
 
   let similarRes = await fetch(
-    `https://api.themoviedb.org/3/tv/${params.show_id}/similar?api_key=${apiKey}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/tv/${params.show_id}/similar?api_key=${apiKey}&language=en-US&page=2`
   );
   let similarData = await similarRes.json();
 
@@ -105,9 +97,12 @@ export default async function MoviePageId({ params }) {
               <Link href={data.homepage}>View film</Link>
             </Button> */}
           </div>
+          <Heading>{data.name}</Heading>
           <Image
             className="opacity-40 relative -z-10"
-            src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+            src={`https://image.tmdb.org/t/p/original${
+              data.backdrop_path || data.poster_path
+            }`}
             width={1200}
             height={1000}
             alt={`backdrop for the ${data.original_title} film.`}
