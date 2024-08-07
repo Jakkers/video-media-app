@@ -26,10 +26,10 @@ export default function Header() {
   const { userId } = auth();
   //
   return (
-    <nav className="sticky top-0 sm:bottom-0 z-40 pt-4 max-w-[1450px] self-center">
+    <nav className="sticky top-0 z-40 pt-2 self-center">
       <Container size="4">
         <Card>
-          <Flex direction="row" justify="between" wrap="wrap">
+          <Flex gap="2" direction="row" justify="between" wrap="wrap">
             <Link href="/">
               <Heading>Eggscape</Heading>
             </Link>

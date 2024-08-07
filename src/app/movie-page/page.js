@@ -5,9 +5,12 @@ import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
 
+
 import { DisplayGenres } from "../../components/ShowGenres";
 
+
 import { Container, Heading } from "@radix-ui/themes";
+import ToastDemo from "../../components/Toast";
 
 const apiKey = process.env.API_KEY;
 
@@ -42,35 +45,34 @@ export default async function MoviePage() {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
-    <Container className="ml-6 mr-6" size="4">
+    <Container className="ml-2 mr-2" size="4">
       <Header />
-      <div className="flex flex-col items-center w-[15vw] "></div>
+
+      <ToastDemo />
+
       <br></br>
-      <main className="flex min-h-screen flex-col justify-between">
-        <Heading>Featured films</Heading>
+      <main>
+        {/* <Heading>Featured films</Heading> */}
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <ShowCase dataArray={data.results} />
         </div>
-
         <br></br>
         <Heading>Popular</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <BasicCarousel dataArray={popularData.results} />
         </div>
         <br></br>
-
         <Heading>Top Rated</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
-          <ShowCase dataArray={topData.results} />
+        <div>
+          <BasicCarousel dataArray={topData.results} />
         </div>
-
         <br></br>
         <Heading>Coming Soon</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <BasicCarousel dataArray={comingSoonData.results} />
         </div>
         <br></br>

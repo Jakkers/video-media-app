@@ -12,10 +12,10 @@ export default function BasicCarousel({ dataArray }) {
             <Image
               src={`${base_url}${item.poster_path}`}
               alt={`Poster for the ${item.original_title} film.`}
-              width={100}
+              width={150}
               height={80}
               id={Style.imgs}
-              className="p-[8px] hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-purple-500 "
+              className="hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-sky-500 "
             />
             {/* //!this inserts film data into a div and overlay on image with hover. may not iplement, but here incase helps accesibilty later?
             <div

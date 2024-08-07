@@ -4,16 +4,16 @@
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
-  width: 70vw;
   height: auto;
 }
 
 #imgs {
   width: 200px;
   height: auto;
-  padding: 20px;
+  padding: 5px;
   flex-shrink: 0;
   position: relative;
+  border-radius: 15px;
 }
 
 #img_info {
