@@ -103,10 +103,14 @@ export default async function UserIdPage({ params }) {
         </div>
       );
     } */}
-        {/* Achievements  */}
+
         {/* <button onClick={() => reset()}>Reset</button> */}
 
+        {/* Achievements  */}
+        {/* Achievements  */}
+
         <Heading>Achievements</Heading>
+        <br></br>
         <Flex gap={"1"}>
           {reviewBadge >= 1 ? (
             <Card className="m-0 p-0">
@@ -144,6 +148,7 @@ export default async function UserIdPage({ params }) {
           ) : null}
         </Flex>
         {/* Movie Reviews  */}
+        <br></br>
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
@@ -161,12 +166,13 @@ export default async function UserIdPage({ params }) {
               </Flex>
             </Card>
           ))}
+          {/* <br></br> */}
           <Heading>Your Movie Reviews</Heading>
         </Flex>
 
         {/* Tv Reviews  */}
         {/* Tv Reviews  */}
-
+        <br></br>
         <Flex direction={"column-reverse"} gap={"3"}>
           {showData.map((item) => (
             <Card key={item.id}>
@@ -184,6 +190,7 @@ export default async function UserIdPage({ params }) {
               </Flex>
             </Card>
           ))}
+          {/* <br></br> */}
           <Heading>Your Tv Reviews</Heading>
         </Flex>
       </Container>
