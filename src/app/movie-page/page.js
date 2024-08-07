@@ -4,8 +4,8 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
-
-import { ShowGenres } from "@/components/ShowGenres";
+// import { DoubleFetch } from "../../components/ShowGenres";
+import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 
 import { Container, Heading } from "@radix-ui/themes";
 
@@ -47,7 +47,6 @@ export default async function MoviePage() {
 
       <br></br>
       <main className="flex min-h-screen flex-col justify-between">
-
         <Heading>Featured films</Heading>
         <br></br>
         <div className="flex flex-col items-center ">
@@ -78,7 +77,8 @@ export default async function MoviePage() {
 
         <Heading>History?</Heading>
         <br></br>
-        <ShowGenres />
+        {/* <DoubleFetch /> */}
+        <ShowGenresMenu />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>
     </Container>

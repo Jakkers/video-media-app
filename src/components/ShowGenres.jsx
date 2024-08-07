@@ -4,13 +4,67 @@ import { Button, DropdownMenu } from "@radix-ui/themes";
 import BasicCarousel from "./BasicCarousel";
 const apiKey = process.env.API_KEY;
 
-export async function ShowGenresMenu(params) {
+async function getGenres() {
   const genresRes = await fetch(
     `  https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`
   );
 
   const genresData = await genresRes.json();
 
+  return genresData;
+}
+
+// const getWithPromiseAll = async (array) => {
+
+//  async function thisFetch(){
+
+//   );
+//   console.timeEnd("promise all");
+//   return data;
+// };
+
+// export async function DoubleGet() {
+//   const genresData =  getGenres();
+//   genresData.map((genre) => {
+//     let res = await fetch(
+//       `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre.id}`
+//     );
+//   })
+//   const dataArray = getWithPromiseAll(genresData);
+//   console.log("lookadataArray");
+
+//   console.log(dataArray);
+// }
+// export async function BuildGenresArray(array) {
+//   const genresData = getGenres();
+
+//   const dataArray = getWithPromiseAll(genresData);
+//   console.log(dataArray);
+// }
+
+// const genresData = getGenres();
+// export async function DoFetch() {
+//   let genresArray;
+
+//   const res = await fetch(
+//     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=53`
+//   );
+
+//   const data = await res.json();
+//   console.log("lookhere");
+//   console.log(data);
+// }
+
+// array.forEach((genre)=>(
+// let res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre.name}`);))
+
+// }
+
+export async function ShowGenresMenu(params) {
+  const genresData = await getGenres();
+  console.log("showME");
+
+  console.log(genresData.genres);
   return (
     <>
       <DropdownMenu.Root>
@@ -21,7 +75,7 @@ export async function ShowGenresMenu(params) {
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
-          {genresData.map((item) => (
+          {genresData.genres.map((item, index) => (
             <DropdownMenu.Item key={index}>
               <Link href={`#${item.name}`}>
                 <p>{item.name}</p>
@@ -34,11 +88,11 @@ export async function ShowGenresMenu(params) {
   );
 }
 
-export async function displayCategories() {}
-console.log(genresData);
-genresData.map((item, index) => {
-  `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genre=${definedGenre}&include_video=false&language=en-US&page=1&sort_by=popularity.desc``https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${definedGenre}`;
-});
+// export async function displayCategories() {}
+// console.log(genresData);
+// genresData.map((item, index) => {
+//   `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genre=${definedGenre}&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
+// });
 
 //   { id: 28, name: 'Action' },
 //   { id: 12, name: 'Adventure' },
