@@ -28,6 +28,8 @@ export default async function MoviePageId({ params }) {
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
 
+  // console.log(data);
+
   // const wrangledData = data.now_playing.results;
 
   //   const res = await fetch(

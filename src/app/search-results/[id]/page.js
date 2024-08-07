@@ -14,6 +14,7 @@ export default async function SearchPage({ params }) {
 
   const movieResults = (await movieResponse.json()).results;
   const tvResults = (await tvResponse.json()).results;
+  //   console.log(tvResults);
   //   movieResults, tvResults;
   //   setResults({
   //     movies: movieResults,
@@ -30,56 +31,56 @@ export default async function SearchPage({ params }) {
         <br></br>
         <Heading>Search Results</Heading>
         <br></br>
-        <Heading>Movies</Heading>
-        <br></br>
-        <Flex direction={"column"} gap={"3"}>
-          {movieResults.map((movies) => (
-            <Card key={movies.id}>
-              <Flex direction={"row"} gap={"3"}>
-                <div>
-                  <Link href={`/movie-page/${movies.id}`}>
-                    <Image
-                      src={`${base_url}${movies.poster_path}`}
-                      alt={`Poster for the ${movies.title} film.`}
-                      width={100}
-                      height={100}
-                      className="rounded-[15px]"
-                    />
-                  </Link>
-                </div>
-                <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
-                  <Strong>{movies.title}</Strong>
-                  <Text>{movies.overview}</Text>
-                </div>
-              </Flex>
-            </Card>
-          ))}
-        </Flex>
-        <br></br>
-        <Heading>TV Shows</Heading>
-        <br></br>
-        <Flex direction={"column"} gap={"3"}>
-          {tvResults.map((tv) => (
-            <Card key={tv.id}>
-              <Flex direction={"row"} gap={"3"}>
-                <div>
-                  <Link href={`/movie-page/${tv.id}`}>
-                    <Image
-                      src={`${base_url}${tv.poster_path}`}
-                      alt={`Poster for the ${tv.title} film.`}
-                      width={100}
-                      height={100}
-                      className="rounded-[15px]"
-                    />
-                  </Link>
-                </div>
-                <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
-                  <Strong>{tv.name}</Strong>
-                  <Text>{tv.overview}</Text>
-                </div>
-              </Flex>
-            </Card>
-          ))}
+        <Flex direction={"row"} gap={"4"}>
+          <Flex direction={"column"} gap={"3"}>
+            <Heading>Movies</Heading>
+            {movieResults.map((movies) => (
+              <Link href={`/movie-page/${movies.id}`}>
+                <Card key={movies.id}>
+                  <Flex direction={"row"} gap={"3"}>
+                    <div>
+                      <Image
+                        src={`${base_url}${movies.poster_path}`}
+                        alt={`Poster for the ${movies.title} film.`}
+                        width={100}
+                        height={100}
+                        className="rounded-[15px]"
+                      />
+                    </div>
+                    <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
+                      <Strong>{movies.title}</Strong>
+                      <Text>{movies.overview}</Text>
+                    </div>
+                  </Flex>
+                </Card>
+              </Link>
+            ))}
+          </Flex>
+
+          <Flex direction={"column"} gap={"3"}>
+            <Heading>TV Shows</Heading>
+            {tvResults.map((tv) => (
+              <Link href={`/tv-page/${tv.id}`}>
+                <Card key={tv.id}>
+                  <Flex direction={"row"} gap={"3"}>
+                    <div>
+                      <Image
+                        src={`${base_url}${tv.poster_path}`}
+                        alt={`Poster for the ${tv.title} film.`}
+                        width={100}
+                        height={100}
+                        className="rounded-[15px]"
+                      />
+                    </div>
+                    <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
+                      <Strong>{tv.name}</Strong>
+                      <Text>{tv.overview}</Text>
+                    </div>
+                  </Flex>
+                </Card>
+              </Link>
+            ))}
+          </Flex>
         </Flex>
         <br></br>
       </Container>
