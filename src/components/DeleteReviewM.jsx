@@ -8,7 +8,7 @@ export default function deleteButton({ userId, review }) {
   async function handleSubmit() {
     "use server";
     const db = dbConnect();
-    await db.query(`DELETE FROM s_reviews WHERE review = $1 RETURNING * `, [
+    await db.query(`DELETE FROM m_reviews WHERE review = $1 RETURNING * `, [
       review,
     ]);
     await db.query(
