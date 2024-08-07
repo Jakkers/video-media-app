@@ -45,6 +45,7 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
+            {/* showing genres  */}
             <ShowGenresMenu />
             {/* Adding a search bar */}
             <SearchBar />
