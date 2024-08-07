@@ -4,32 +4,33 @@ import { Button, DropdownMenu } from "@radix-ui/themes";
 
 const apiKey = process.env.API_KEY;
 
-async function getGenres() {
-  const genresRes = await fetch(
+async function getTvGenres() {
+  const genresTvRes = await fetch(
     `  https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`
   );
+  //! change ^
+  const genresTvData = await genresRes.json();
 
-  const genresData = await genresRes.json();
-
-  return genresData;
+  return genresTvData;
 }
 
-export async function ShowGenresMenu(params) {
-  const genresData = await getGenres();
+export async function ShowTvGenresMenu(params) {
+  const genresTvData = await getTvGenres();
 
   return (
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Button variant="soft">
-            Categories
+            Tv Categories
             <DropdownMenu.TriggerIcon />
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
-          {genresData.genres.map((item, index) => (
+          {genresTvData.genres.map((item, index) => (
             <DropdownMenu.Item key={index}>
-              <Link href={`/movie-page#${item.name}`}>
+              <Link href={`/show-page#${item.name}`}>
+                {/* //! ^ might need a change */}
                 <p>{item.name}</p>
               </Link>
             </DropdownMenu.Item>

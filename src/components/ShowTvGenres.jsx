@@ -2,12 +2,12 @@ const apiKey = process.env.API_KEY;
 
 import { Container, Heading } from "@radix-ui/themes";
 import BasicCarousel from "./BasicCarousel";
-import { getGenres } from "@/utils/genreFetch";
-import { fetchMoviesForAllGenres } from "@/utils/fetchMoviesByGenre";
+import { getTvGenres } from "../utils/gernesFetchTv";
+import { fetchShowsForAllGenres } from "@/utils/fetchShowsByGenre";
 
-export async function DisplayGenres() {
-  let genresData = await getGenres();
-  let dataArray = await fetchMoviesForAllGenres(genresData);
+export async function DisplayTvGenres() {
+  let genresData = await getTvGenres();
+  let dataArray = await fetchShowsForAllGenres(genresData);
 
   return (
     <>
@@ -27,11 +27,4 @@ export async function DisplayGenres() {
       ))}
     </>
   );
-}
-
-export async function DoFetch() {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=53`
-  );
-  const data = await res.json();
 }
