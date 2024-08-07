@@ -45,9 +45,6 @@ export default async function MoviePage() {
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-
-      {/* <ToastDemo /> */}
-
       <br></br>
       <main>
         {/* <Heading>Featured films</Heading> */}
