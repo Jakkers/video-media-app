@@ -18,6 +18,23 @@ import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import ToastDemo from "../../../components/Toast";
+
+//Metadata
+export async function generateMetadata({ params }) {
+  const response = await fetch(
+    // `https://api.themoviedb.org/3/movie/${params.show_id}?api_key=${apiKey}&language=en-US`
+
+    `https://api.themoviedb.org/3/tv/${params.show_id}?api_key=${apiKey}&language=en-US&page=1`
+  );
+  //We had to stringify the data, so we are parsing it back to json
+  const data = await response.json();
+
+  return {
+    title: `${data.name} TV show`,
+    description: `${data.name}: ${data.overview}`,
+  };
+}
 
 export default async function MoviePageId({ params }) {
   const response = await fetch(
@@ -27,7 +44,6 @@ export default async function MoviePageId({ params }) {
   );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
-
 
   let similarRes = await fetch(
     `https://api.themoviedb.org/3/tv/${params.show_id}/similar?api_key=${apiKey}&language=en-US&page=2`
@@ -88,16 +104,15 @@ export default async function MoviePageId({ params }) {
         <div className="relative text-center">
           <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
             <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
-              {data.title}
+              {data.name}
             </h1>
-            <Text className="z-10 text-center ">{data.tagline}</Text>
+            {/* <Text className="z-10 text-center ">{data.tagline}</Text>
             <br></br>
-            <br></br>
+            <br></br> */}
             {/* <Button>
               <Link href={data.homepage}>View film</Link>
             </Button> */}
           </div>
-          <Heading>{data.name}</Heading>
           <Image
             className="opacity-40 relative -z-10"
             src={`https://image.tmdb.org/t/p/original${
@@ -167,14 +182,16 @@ export default async function MoviePageId({ params }) {
             <br></br>
             <br></br>
           </Box>
+
           <Image
             src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
             width={500}
             height={500}
             alt={`Poster for the ${data.title} film.`}
           />
-          <Card>
-            {/* <iframe
+
+          {/* <Card> */}
+          {/* <iframe
               width="100%"
               height="650px"
               src={`https://www.youtube.com/embed/${video[0].key}`}
@@ -184,7 +201,7 @@ export default async function MoviePageId({ params }) {
               referrerpolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe> */}
-          </Card>
+          {/* </Card> */}
           {/* {data.production_companies.map((item) => (
 
         <div
@@ -236,13 +253,9 @@ export default async function MoviePageId({ params }) {
               rows="3"
               required
             />
-            <button
-              type="submit"
-              className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
-
-             w-32 p-1 justify-center text-base"
-            >
-              Submit
+            <button type="submit">
+              {" "}
+              <ToastDemo />
             </button>
           </form>
           <br />

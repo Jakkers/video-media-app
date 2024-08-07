@@ -29,13 +29,12 @@ export default async function SearchBar() {
     const searchQuery = formData.get("search-queries");
 
     redirect(`/search-results/${searchQuery}`);
-    
   }
 
   return (
     <>
       <form action={handleSubmit}>
-        <label for="search-queries"></label>
+        <label for="search-queries" aria-label="Search bar"></label>
 
         <input
           type="search"
@@ -44,7 +43,7 @@ export default async function SearchBar() {
           className="border-2 border-blue-400 mr-2 rounded-md"
         />
 
-        <button>
+        <button aria-label="Search icon, press to search">
           <FaSearch />
         </button>
         {/* 
