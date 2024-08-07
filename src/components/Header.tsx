@@ -5,7 +5,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/nextjs";
-
+import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import { auth } from "@clerk/nextjs/server";
 
 import SearchBar from "@/components/SearchBar";
@@ -45,6 +45,7 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
+            <ShowGenresMenu />
             {/* Adding a search bar */}
             <SearchBar />
             {/* Adding a DropdownMenu */}

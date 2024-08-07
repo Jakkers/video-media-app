@@ -5,8 +5,9 @@ import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
 
-// import { DoubleFetch } from "../../components/ShowGenres";
-import { ShowGenresMenu } from "@/components/CatergoriesMenu";
+
+import { DisplayGenres } from "../../components/ShowGenres";
+
 
 import { Container, Heading } from "@radix-ui/themes";
 import ToastDemo from "../../components/Toast";
@@ -46,7 +47,9 @@ export default async function MoviePage() {
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
+
       <ToastDemo />
+
       <br></br>
       <main>
         {/* <Heading>Featured films</Heading> */}
@@ -76,9 +79,7 @@ export default async function MoviePage() {
 
         <Heading>History?</Heading>
         <br></br>
-
-        <ShowGenresMenu />
-
+        <DisplayGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>
     </Container>
