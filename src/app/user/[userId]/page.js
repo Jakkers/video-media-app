@@ -8,6 +8,9 @@ import TitleData from "@/components/ProfileTitleData";
 import ImageData from "@/components/ProfileImgReviews";
 import Image from "next/image";
 
+//? react icons
+import { GiCosmicEgg } from "react-icons/gi";
+
 export default async function UserIdPage({ params }) {
   const userData = await currentUser();
   const { userId } = auth();
@@ -77,26 +80,28 @@ export default async function UserIdPage({ params }) {
         {/* Achievements  */}
 
         <Heading>Achievements</Heading>
-
-        {reviewBadge >= 0 ? (
-          <Card>
-            {" "}
-            <Text>Getting Started</Text>
-          </Card>
-        ) : null}
-        {reviewBadge >= 5 ? (
-          <Card>
-            {" "}
-            <Text>your hatching</Text>
-          </Card>
-        ) : null}
-        {reviewBadge >= 10 ? (
-          <Card>
-            {" "}
-            <Text>you&apos;ve got our attention</Text>
-          </Card>
-        ) : null}
-
+        <Flex gap={"3"}>
+          {reviewBadge >= 1 ? (
+            <Card>
+              {" "}
+              <Text size={"9"}>
+                <GiCosmicEgg />
+              </Text>
+            </Card>
+          ) : null}
+          {reviewBadge >= 5 ? (
+            <Card>
+              {" "}
+              <Text>your hatching</Text>
+            </Card>
+          ) : null}
+          {reviewBadge >= 10 ? (
+            <Card>
+              {" "}
+              <Text>you&apos;ve got our attention</Text>
+            </Card>
+          ) : null}
+        </Flex>
         {/* Reviews  */}
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
