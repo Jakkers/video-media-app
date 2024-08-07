@@ -83,7 +83,7 @@ export default function Header() {
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
                   {" "}
-                  <ShowTvGenresMenu />
+                  <ShowTvGenresMenu title="TV Categories" />
                 </DropdownMenu.Item>
 
                 <DropdownMenu.Separator />
