@@ -39,30 +39,37 @@ export default async function MoviePageId({ params }) {
   );
   const similarData = await similarRes.json();
 
-  async function addReview(formData) {
-    "use server";
-    const user_id = formData.get("user_id");
-    const review = formData.get("review");
-    const movie_id = formData.get("movie_id");
-    const db = dbConnect();
-    await db.query(
-      `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
-      [user_id, review, movie_id]
-    );
-    revalidatePath(`/movie-page/${params.movie_id}`);
-    redirect(`/movie-page/${params.movie_id}`);
-  }
-
   const userData = await currentUser();
   const { userId } = auth();
   if (userId) {
     const db = dbConnect();
     await db.query(
       `
-          SELECT * FROM social_users WHERE clerk_id = $1
+          SELECT * FROM m_users WHERE clerk_id = $1
             `,
       [userId]
     );
+  }
+
+  async function addReview(formData) {
+    "use server";
+    const user_id = formData.get("user_id");
+    const review = formData.get("review");
+    const movie_id = formData.get("movie_id");
+
+    const db = dbConnect();
+    await db.query(
+      `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
+      [user_id, review, movie_id]
+    );
+    await db.query(
+      `UPDATE m_users
+SET reviews_left = reviews_left + 1
+WHERE clerk_id = $1`,
+      [userId]
+    );
+    revalidatePath(`/movie-page/${params.movie_id}`);
+    redirect(`/movie-page/${params.movie_id}`);
   }
 
   const db = dbConnect();
@@ -148,7 +155,7 @@ export default async function MoviePageId({ params }) {
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </Card>
           {/* {data.production_companies.map((item) => (
@@ -183,12 +190,14 @@ export default async function MoviePageId({ params }) {
               defaultValue={userData.id}
               hidden
             />
+            <input name="" />
             <input
               name="movie_id"
               className="text-white"
               defaultValue={params.movie_id}
               hidden
             />
+            {/* <input name="reviews_left" defaultValue={1} hidden /> */}
             <label htmlFor="review">Review</label>
             <textarea
               name="review"
@@ -196,7 +205,7 @@ export default async function MoviePageId({ params }) {
               placeholder="Your Review Here"
               id="review"
               className="text-white"
-              maxlength="250"
+              maxLength="250"
               rows="3"
               required
             />
