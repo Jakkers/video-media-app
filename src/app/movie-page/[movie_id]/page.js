@@ -73,7 +73,7 @@ export default async function MoviePageId({ params }) {
   ).rows;
 
   return (
-    <Container className="ml-6 mr-6" size="4">
+    <Container className="ml-2 mr-2" size="4">
       <Header />
       <main>
         <div className="relative text-center">
@@ -170,7 +170,7 @@ export default async function MoviePageId({ params }) {
 
           <br></br>
           <Heading>Similar films</Heading>
-          <div className="content-center">
+          <div>
             <BasicCarousel dataArray={similarData.results} />
           </div>
           <br></br>

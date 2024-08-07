@@ -8,8 +8,8 @@ import ShowCase from "@/components/ShowCase";
 // import { DoubleFetch } from "../../components/ShowGenres";
 import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 
-
 import { Container, Heading } from "@radix-ui/themes";
+import ToastDemo from "../../components/Toast";
 
 const apiKey = process.env.API_KEY;
 
@@ -44,8 +44,9 @@ export default async function MoviePage() {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
-    <Container className="ml-6 mr-6" size="4">
+    <Container className="ml-2 mr-2" size="4">
       <Header />
+      <ToastDemo />
       <br></br>
       <main>
         {/* <Heading>Featured films</Heading> */}
