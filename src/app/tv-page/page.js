@@ -8,6 +8,12 @@ import { Container, Heading } from "@radix-ui/themes";
 import { DisplayTvGenres } from "../../components/ShowTvGenres";
 import { ShowTvGenresMenu } from "../../components/TVCatergoriesMenu";
 
+export const metadata = {
+  title: "TV Shows",
+  description:
+    "A selection of TV shows including featured, most popular and by genre",
+};
+
 export default async function TelevisonPage() {
   const apiKey = process.env.API_KEY;
   const response = await fetch(
@@ -26,15 +32,17 @@ export default async function TelevisonPage() {
   const airingData = await airingResponse.json();
 
   return (
-    <>
-      {" "}
-      <Heading>Popular </Heading>
-      <ShowCase dataArray={popularData.results} format="tv" />{" "}
+    <Container className="ml-2 mr-2" size="4">
+      <Header />
+      <br></br>
+      <ShowCase dataArray={popularData.results} format="tv" /> <br></br>
       <Heading>On Air </Heading>
       <BasicCarousel dataArray={airingData.results} format="tv" />
+      <br></br>
       <Heading>Top Rated </Heading>
+      <br></br>
       <ShowCase dataArray={data.results} format="tv" />
       <DisplayTvGenres />
-    </>
+    </Container>
   );
 }

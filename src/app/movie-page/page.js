@@ -12,6 +12,12 @@ import ToastDemo from "../../components/Toast";
 
 const apiKey = process.env.API_KEY;
 
+export const metadata = {
+  title: "Movies",
+  description:
+    "A selection of movies including featured, most popular and by genre",
+};
+
 export default async function MoviePage() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`

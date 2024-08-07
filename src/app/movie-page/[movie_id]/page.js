@@ -20,6 +20,19 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
 
+//Metadata
+export async function generateMetadata({ params }) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&language=en-US&page=1`
+  );
+  const data = await response.json();
+
+  return {
+    title: `${data.title} Movie`,
+    description: `${data.title}: ${data.overview}`,
+  };
+}
+
 export default async function MoviePageId({ params }) {
   const response = await fetch(
     // `https://api.themoviedb.org/3/movie/${params.movie_id}?api_key=${apiKey}&language=en-US`
@@ -28,6 +41,7 @@ export default async function MoviePageId({ params }) {
   );
   //We had to stringify the data, so we are parsing it back to json
   const data = await response.json();
+
   // const wrangledData = data.now_playing.results;
 
   const res = await fetch(

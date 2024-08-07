@@ -13,6 +13,22 @@ import ShowTitleData from "@/components/showsProfileTitle";
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
 
+//Metadata
+export async function generateMetadata() {
+  const { userId } = auth();
+  if (userId) {
+    const db = dbConnect();
+    const usersData = (
+      await db.query(`SELECT * FROM m_users WHERE clerk_id = $1`, [userId])
+    ).rows;
+
+    return {
+      title: `${usersData[0]?.username} Profile Page`,
+      description: `A place to see ${usersData[0]?.username} bio, acheivements and reviews`,
+    };
+  }
+}
+
 export default async function UserIdPage({ params }) {
   const userData = await currentUser();
   const { userId } = auth();
@@ -67,7 +83,7 @@ export default async function UserIdPage({ params }) {
         <Header />
         <br></br>
         <Heading size={"8"}>
-          <Strong>{userData.username} Profile</Strong>
+          <Strong>{usersData[0]?.username} Profile</Strong>
         </Heading>
         <br></br>
         <div id="profile-info">

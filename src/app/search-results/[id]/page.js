@@ -4,6 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 
+export const metadata = {
+  title: "Search Results",
+  description: "A selection of TV Shows and Movies based on your search",
+};
+
 export default async function SearchPage({ params }) {
   const movieResponse = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${params.id}&api_key=${apiKey}&language=en-US&page=1`
