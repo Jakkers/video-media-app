@@ -24,16 +24,20 @@ const ToastDemo = () => {
           }, 100);
         }}
       >
-        Add to calendar
+        Submit
       </button>
 
       <Toast.Root className="ToastRoot" open={open} onOpenChange={setOpen}>
-        <Toast.Title className="ToastTitle">Scheduled: Catch up</Toast.Title>
+        <Toast.Title className="ToastTitle">
+          Acheivement unlocked: Getting Started
+        </Toast.Title>
         <Toast.Description asChild>
           <time
             className="ToastDescription"
             dateTime={eventDateRef.current.toISOString()}
           >
+            <p>You have left your first review!</p>
+            <br></br>
             {prettyDate(eventDateRef.current)}
           </time>
         </Toast.Description>
@@ -42,7 +46,7 @@ const ToastDemo = () => {
           asChild
           altText="Goto schedule to undo"
         >
-          <button className="Button small green">Undo</button>
+          {/* <button className="Button small green">Undo</button> */}
         </Toast.Action>
       </Toast.Root>
       <Toast.Viewport className="ToastViewport" />

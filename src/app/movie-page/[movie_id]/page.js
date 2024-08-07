@@ -18,6 +18,7 @@ import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import ToastDemo from "../../../components/Toast";
 
 export default async function MoviePageId({ params }) {
   const response = await fetch(
@@ -209,13 +210,9 @@ WHERE clerk_id = $1`,
               rows="3"
               required
             />
-            <button
-              type="submit"
-              className="flex hover:bg-blue-500 h-8 hover:text-white bg-white rounded text-black items-center text-center
-
-             w-32 p-1 justify-center text-base"
-            >
-              Submit
+            <button type="submit">
+              {" "}
+              <ToastDemo />
             </button>
           </form>
           <br />
