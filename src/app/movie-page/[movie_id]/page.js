@@ -206,18 +206,19 @@ WHERE clerk_id = $1`,
             <input
               name="user_id"
               className="text-black"
-              // defaultValue={userData.id}
+              defaultValue={userData.id}
               hidden
             />
-            <input name="" />
+            {/* <input name="" /> */}
             <input
               name="movie_id"
               className="text-white"
               defaultValue={params.movie_id}
               hidden
             />
-            {/* <input name="reviews_left" defaultValue={1} hidden /> */}
-            <label htmlFor="review">Review</label>
+            <label htmlFor="review" hidden>
+              Review
+            </label>
             <textarea
               name="review"
               type="text"
