@@ -51,6 +51,10 @@ export default async function UserIdPage({ params }) {
     await db.query(`SELECT * FROM m_reviews WHERE user_id = $1`, [userId])
   ).rows;
 
+  const showData = (
+    await db.query(`SELECT * FROM s_reviews WHERE user_id = $1`, [userId])
+  ).rows;
+
   const reviewBadge = usersData[0].reviews_left;
 
   // console.log(reviewBadge);
@@ -80,29 +84,43 @@ export default async function UserIdPage({ params }) {
         {/* Achievements  */}
 
         <Heading>Achievements</Heading>
-        <Flex gap={"3"}>
+        <Flex gap={"1"}>
           {reviewBadge >= 1 ? (
-            <Card>
-              {" "}
-              <Text size={"9"}>
+            <Card className="m-0 p-0">
+              <Text
+                size={"9"}
+                className="flex flex-col text-orange-400 items-center "
+              >
                 <GiCosmicEgg />
+                <Text size={"2"}>Getting Started</Text>
               </Text>
             </Card>
           ) : null}
           {reviewBadge >= 5 ? (
             <Card>
               {" "}
-              <Text>your hatching</Text>
+              <Text
+                size={"9"}
+                className="flex flex-col text-gray-400 items-center "
+              >
+                <GiCosmicEgg />
+                <Text size={"2"}>Your Hatching</Text>
+              </Text>
             </Card>
           ) : null}
-          {reviewBadge >= 10 ? (
+          {reviewBadge >= 7 ? (
             <Card>
-              {" "}
-              <Text>you&apos;ve got our attention</Text>
+              <Text
+                size={"9"}
+                className="flex flex-col text-yellow-400 items-center "
+              >
+                <GiCosmicEgg />
+              </Text>
+              <Text size={"2"}>you&apos;ve got our attention</Text>
             </Card>
           ) : null}
         </Flex>
-        {/* Reviews  */}
+        {/* Movie Reviews  */}
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
@@ -119,7 +137,26 @@ export default async function UserIdPage({ params }) {
               </Flex>
             </Card>
           ))}
-          <Heading>Your Reviews</Heading>
+          <Heading>Your Movie Reviews</Heading>
+        </Flex>
+        {/* Tv Reviews  */}
+        <Flex direction={"column-reverse"} gap={"3"}>
+          {showData.map((item) => (
+            <Card key={item.id}>
+              <Flex direction={"row"} gap={"3"}>
+                {/* <div>
+                  <ImageData ImageData={item.movie_id} />
+                </div> */}
+                <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
+                  {/* <Text>
+                    <TitleData TitleData={item.movie_id} />
+                  </Text> */}
+                  <Text>{item.review}</Text>
+                </div>
+              </Flex>
+            </Card>
+          ))}
+          <Heading>Your Tv Reviews</Heading>
         </Flex>
       </Container>
     );
