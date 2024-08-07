@@ -14,7 +14,7 @@ async function getTvGenres() {
   return genresTvData;
 }
 
-export async function ShowTvGenresMenu(params) {
+export async function ShowTvGenresMenu({ title }) {
   const genresTvData = await getTvGenres();
 
   return (
@@ -22,7 +22,7 @@ export async function ShowTvGenresMenu(params) {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Button variant="soft">
-            Tv Categories
+            {title}
             <DropdownMenu.TriggerIcon />
           </Button>
         </DropdownMenu.Trigger>
