@@ -6,7 +6,7 @@ import { DisplayGenres } from "../../components/ShowGenres";
 
 import { Container, Heading } from "@radix-ui/themes";
 import { DisplayTvGenres } from "../../components/ShowTvGenres";
-import { ShowTvGenresMenu } from "@/components/TVCategoriesMenu";
+import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 
 export const metadata = {
   title: "TV Shows",

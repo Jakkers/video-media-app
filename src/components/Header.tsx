@@ -7,7 +7,7 @@ import {
 } from "@clerk/nextjs";
 import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import { auth } from "@clerk/nextjs/server";
-import { ShowTvGenresMenu } from "@/components/TVCategoriesMenu";
+import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 
 import SearchBar from "@/components/SearchBar";
 

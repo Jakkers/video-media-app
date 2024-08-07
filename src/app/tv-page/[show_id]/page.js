@@ -19,7 +19,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
-import { ShowTvGenresMenu } from "@/components/TVCategoriesMenu";
+import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 //Metadata
 export async function generateMetadata({ params }) {
   const response = await fetch(
