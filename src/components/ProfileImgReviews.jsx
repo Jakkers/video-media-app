@@ -22,7 +22,7 @@ export default async function ImageData({ ImageData }) {
           alt={`Poster for the ${data.original_title} film.`}
           width={100}
           height={100}
-          className="p-[8px]"
+          className="rounded-[15px]"
         />
       </Link>
     </>
