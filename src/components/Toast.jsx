@@ -2,14 +2,14 @@
 import * as React from "react";
 import * as Toast from "@radix-ui/react-toast";
 
-const ToastDemo = () => {
-  const [open, setOpen] = React.useState(false);
-  const eventDateRef = React.useRef(new Date());
-  const timerRef = React.useRef(0);
+const [open, setOpen] = React.useState(false);
+const eventDateRef = React.useRef(new Date());
+const timerRef = React.useRef(0);
 
-  React.useEffect(() => {
-    return () => clearTimeout(timerRef.current);
-  }, []);
+React.useEffect(() => {
+return () => clearTimeout(timerRef.current);
+ }, []);
+
 
   return (
     <Toast.Provider swipeDirection="right">
@@ -54,17 +54,18 @@ const ToastDemo = () => {
   );
 };
 
+
 function oneWeekAway(date) {
-  const now = new Date();
-  const inOneWeek = now.setDate(now.getDate() + 7);
-  return new Date(inOneWeek);
+const now = new Date();
+const inOneWeek = now.setDate(now.getDate() + 7);
+ return new Date(inOneWeek);
 }
 
 function prettyDate(date) {
-  return new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
-    timeStyle: "short",
-  }).format(date);
-}
+return new Intl.DateTimeFormat("en-US", {
+ dateStyle: "full",
+timeStyle: "short",
+ }).format(date);
+ }
 
 export default ToastDemo;

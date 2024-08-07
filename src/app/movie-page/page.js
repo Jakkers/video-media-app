@@ -70,6 +70,7 @@ export default async function MoviePage() {
         <div>
           <BasicCarousel dataArray={comingSoonData.results} />
         </div>
+<br></br>
         <DisplayGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>
