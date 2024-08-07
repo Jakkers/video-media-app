@@ -40,8 +40,8 @@ export default async function SearchPage({ params }) {
           <Flex direction={"column"} gap={"3"}>
             <Heading>Movies</Heading>
             {movieResults.map((movies) => (
-              <Link href={`/movie-page/${movies.id}`}>
-                <Card key={movies.id}>
+              <Link href={`/movie-page/${movies.id}`} key={movies.id}>
+                <Card>
                   <Flex direction={"row"} gap={"3"}>
                     <div>
                       <Image

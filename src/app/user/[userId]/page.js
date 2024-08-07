@@ -9,6 +9,8 @@ import ImageData from "@/components/ProfileImgReviews";
 import Image from "next/image";
 import ShowImage from "@/components/showsProfileimg";
 import ShowTitleData from "@/components/showsProfileTitle";
+import DeleteBtnM from "@/components/DeleteReviewM";
+import DeleteBtnS from "@/components/DeleteReviewS";
 
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
@@ -127,7 +129,7 @@ export default async function UserIdPage({ params }) {
               </Text>
             </Card>
           ) : null}
-          {reviewBadge >= 7 ? (
+          {reviewBadge >= 10 ? (
             <Card>
               <Text
                 size={"9"}
@@ -152,6 +154,7 @@ export default async function UserIdPage({ params }) {
                     <TitleData TitleData={item.movie_id} />
                   </Text>
                   <Text>{item.review}</Text>
+                  <DeleteBtnM review={item.review} userId={item.user_id} />
                 </div>
               </Flex>
             </Card>
@@ -174,6 +177,7 @@ export default async function UserIdPage({ params }) {
                     <ShowTitleData ShowTitleData={item.show_id} />
                   </Text>
                   <Text>{item.review}</Text>
+                  <DeleteBtnS review={item.review} userId={item.user_id} />
                 </div>
               </Flex>
             </Card>
