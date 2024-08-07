@@ -19,7 +19,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
-
+import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 //Metadata
 export async function generateMetadata({ params }) {
   const response = await fetch(
@@ -100,6 +100,9 @@ export default async function MoviePageId({ params }) {
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
+      <div className="fixed top-30 left-15 z-50 pt-2  ">
+        <ShowTvGenresMenu />
+      </div>
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">

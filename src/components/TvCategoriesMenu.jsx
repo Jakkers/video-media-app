@@ -6,10 +6,10 @@ const apiKey = process.env.API_KEY;
 
 async function getTvGenres() {
   const genresTvRes = await fetch(
-    `  https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`
+    `  https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en`
   );
-  //! change ^
-  const genresTvData = await genresRes.json();
+
+  const genresTvData = await genresTvRes.json();
 
   return genresTvData;
 }
@@ -29,8 +29,7 @@ export async function ShowTvGenresMenu(params) {
         <DropdownMenu.Content>
           {genresTvData.genres.map((item, index) => (
             <DropdownMenu.Item key={index}>
-              <Link href={`/show-page#${item.name}`}>
-                {/* //! ^ might need a change */}
+              <Link href={`/tv-page#${item.name}`}>
                 <p>{item.name}</p>
               </Link>
             </DropdownMenu.Item>

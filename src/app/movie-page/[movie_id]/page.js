@@ -19,6 +19,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
+import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 
 //Metadata
 export async function generateMetadata({ params }) {
@@ -97,6 +98,9 @@ WHERE clerk_id = $1`,
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
+      <div className="fixed top-30 left-15 z-50 pt-2  ">
+        <ShowGenresMenu />
+      </div>
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
@@ -202,7 +206,7 @@ WHERE clerk_id = $1`,
             <input
               name="user_id"
               className="text-black"
-              defaultValue={userData.id}
+              // defaultValue={userData.id}
               hidden
             />
             <input name="" />
