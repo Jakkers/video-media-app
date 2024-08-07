@@ -5,7 +5,7 @@ import { Button, Container, Theme } from "@radix-ui/themes";
 import Style from "./showCase.module.css";
 export default function ShowCase({ dataArray }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
-  // console.log(dataArray);
+
   return (
     <Container size="4">
       <div id={Style.main_box2}>

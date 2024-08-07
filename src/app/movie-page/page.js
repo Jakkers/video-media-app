@@ -46,7 +46,7 @@ export default async function MoviePage() {
     <Container className="ml-2 mr-2" size="4">
       <Header />
 
-      <ToastDemo />
+      {/* <ToastDemo /> */}
 
       <br></br>
       <main>
@@ -73,6 +73,7 @@ export default async function MoviePage() {
         <div>
           <BasicCarousel dataArray={comingSoonData.results} />
         </div>
+<br></br>
         <DisplayGenres />
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>
