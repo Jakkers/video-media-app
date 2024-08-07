@@ -7,19 +7,28 @@ import { FaSearch } from "react-icons/fa";
 export default async function SearchBar() {
   async function handleSubmit(formData) {
     "use server";
+    try {
+      const searchQuery = formData.get("search-queries");
+      const movieResponse = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${apiKey}&language=en-US&page=1`
+      );
+      const tvResponse = await fetch(
+        `https://api.themoviedb.org/3/search/tv?query=${searchQuery}&api_key=${apiKey}&language=en-US&page=1`
+      );
+      const movieResults = (await movieResponse.json()).results;
+      const tvResults = (await tvResponse.json()).results;
+      //   movieResults, tvResults;
+      //   setResults({
+      //     movies: movieResults,
+      //     tvShows: tvResults,
+      //   });
+      //   return tvResults, movieResults;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
     const searchQuery = formData.get("search-queries");
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${apiKey}&language=en-US&page=1`
-    );
-    // const res = await fetch(
-    //   `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
-    const searchData = (await response.json()).results;
-
-    // console.log(searchQuery);
-    // console.log(searchData[0].id);
-    redirect(`/movie-page/${searchData[0].id}`);
-
-    // const data = await res.json();
+    redirect(`/search-results/${searchQuery}`);
+    // redirect(`/movie-page/${searchData[0].id}`);
   }
 
   return (
