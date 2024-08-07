@@ -6,10 +6,10 @@ import Header from "@/components/Header";
 
 export default async function SearchPage({ params }) {
   const movieResponse = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${apiKey}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/search/movie?query=${params.id}&api_key=${apiKey}&language=en-US&page=1`
   );
   const tvResponse = await fetch(
-    `https://api.themoviedb.org/3/search/tv?query=${params}&api_key=${apiKey}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/search/tv?query=${params.id}&api_key=${apiKey}&language=en-US&page=1`
   );
 
   const movieResults = (await movieResponse.json()).results;
@@ -81,6 +81,7 @@ export default async function SearchPage({ params }) {
             </Card>
           ))}
         </Flex>
+        <br></br>
       </Container>
     </>
   );
