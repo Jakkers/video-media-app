@@ -2,8 +2,8 @@
 import { usePathname } from "next/navigation";
 export function HomeChecker() {
   const path = usePathname();
-  console.log("checked");
-  console.log(path);
+  // console.log("checked");
+  // console.log(path);
   if (path === "/") {
     return true;
   } else {

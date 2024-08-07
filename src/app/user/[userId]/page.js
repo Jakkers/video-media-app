@@ -48,6 +48,10 @@ export default async function UserIdPage({ params }) {
     await db.query(`SELECT * FROM m_reviews WHERE user_id = $1`, [userId])
   ).rows;
 
+  const reviewBadge = usersData[0].reviews_left;
+
+  // console.log(reviewBadge);
+
   if (usersData.length > 0) {
     return (
       <Container className="ml-2 mr-2" size="4">
@@ -65,6 +69,35 @@ export default async function UserIdPage({ params }) {
           ))}
         </div>
         <br></br>
+        {/* <div>
+          {isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please log in.</h1>}
+        </div>
+      );
+    } */}
+        {/* Achievements  */}
+
+        <Heading>Achievements</Heading>
+
+        {reviewBadge >= 0 ? (
+          <Card>
+            {" "}
+            <Text>Getting Started</Text>
+          </Card>
+        ) : null}
+        {reviewBadge >= 5 ? (
+          <Card>
+            {" "}
+            <Text>your hatching</Text>
+          </Card>
+        ) : null}
+        {reviewBadge >= 10 ? (
+          <Card>
+            {" "}
+            <Text>you&apos;ve got our attention</Text>
+          </Card>
+        ) : null}
+
+        {/* Reviews  */}
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
