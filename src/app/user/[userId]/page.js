@@ -100,7 +100,7 @@ export default async function UserIdPage({ params }) {
       );
     } */}
         {/* Achievements  */}
-        <button onClick={() => reset()}>Reset</button>
+        {/* <button onClick={() => reset()}>Reset</button> */}
 
         <Heading>Achievements</Heading>
         <Flex gap={"1"}>
