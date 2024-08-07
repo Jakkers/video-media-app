@@ -16,9 +16,9 @@ async function getGenres() {
 
 export async function ShowGenresMenu(params) {
   const genresData = await getGenres();
-  console.log("showME");
+  // console.log("showME");
 
-  console.log(genresData.genres);
+  // console.log(genresData.genres);
   return (
     <>
       <DropdownMenu.Root>
