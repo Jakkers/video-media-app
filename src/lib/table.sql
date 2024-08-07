@@ -19,6 +19,16 @@ CREATE TABLE IF NOT EXISTS m_reviews
  FOREIGN KEY ("user_id") REFERENCES m_users ("clerk_id")
 );
 
+CREATE TABLE IF NOT EXISTS m_shows
+(
+  id SERIAL PRIMARY KEY,
+  user_id TEXT,
+  review TEXT,
+  show_id BIGINT,
+  likes BIGINT,
+  FOREIGN KEY ("user_id") REFERENCES m_users ("clerk_id")
+)
+
 CREATE TABLE IF NOT EXISTS m_comments
 (
   id SERIAL PRIMARY KEY,
