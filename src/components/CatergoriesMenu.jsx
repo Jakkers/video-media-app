@@ -18,7 +18,7 @@ export async function ShowGenresMenu(params) {
   const genresData = await getGenres();
 
   return (
-    <>
+    <div>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Button variant="soft">
@@ -36,6 +36,6 @@ export async function ShowGenresMenu(params) {
           ))}
         </DropdownMenu.Content>
       </DropdownMenu.Root>
-    </>
+    </div>
   );
 }

@@ -6,7 +6,7 @@ import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
 
 import { DisplayGenres } from "../../components/ShowGenres";
-
+import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import { Container, Heading } from "@radix-ui/themes";
 import ToastDemo from "../../components/Toast";
 
@@ -23,12 +23,6 @@ export default async function MoviePage() {
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
   );
   const data = await response.json();
-
-  //! change
-  const historyRes = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=history`
-  );
-  const historyData = await historyRes.json();
 
   const popularRes = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
@@ -51,8 +45,12 @@ export default async function MoviePage() {
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
+      <div className="fixed top-30 left-15 z-50 pt-2  ">
+        <ShowGenresMenu className="" />
+      </div>
       <br></br>
       <main>
+        {" "}
         {/* <Heading>Featured films</Heading> */}
         <br></br>
         <div>

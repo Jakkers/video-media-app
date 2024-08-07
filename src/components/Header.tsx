@@ -7,6 +7,7 @@ import {
 } from "@clerk/nextjs";
 import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import { auth } from "@clerk/nextjs/server";
+import { ShowTvGenresMenu } from "@/components/TVCategoriesMenu";
 
 import SearchBar from "@/components/SearchBar";
 
@@ -22,9 +23,8 @@ import {
 import Link from "next/link";
 
 export default function Header() {
-  //? destructure the userId for Auth
   const { userId } = auth();
-  //
+
   return (
     <nav className="sticky top-0 z-40 pt-2 self-center">
       <Container size="4">
@@ -45,8 +45,8 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
-            {/* showing genres  */}
-            <ShowGenresMenu />
+            {/* showing genres if needed */}
+            {/* <ShowGenresMenu /> */}
             {/* Adding a search bar */}
             <SearchBar />
             {/* Adding a DropdownMenu */}
@@ -63,6 +63,7 @@ export default function Header() {
                     <p>Profile</p>
                   </Link>
                 </DropdownMenu.Item>
+                <DropdownMenu.Separator />
                 <DropdownMenu.Item>
                   {" "}
                   <Link href={"/movie-page"}>
@@ -71,9 +72,18 @@ export default function Header() {
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
                   {" "}
+                  <ShowGenresMenu />
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item>
+                  {" "}
                   <Link href={"/tv-page"}>
                     <p>TV Shows</p>
                   </Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  {" "}
+                  <ShowTvGenresMenu />
                 </DropdownMenu.Item>
 
                 <DropdownMenu.Separator />
