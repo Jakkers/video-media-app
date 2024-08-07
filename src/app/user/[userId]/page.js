@@ -72,11 +72,10 @@ export default async function UserIdPage({ params }) {
                 <div>
                   <ImageData ImageData={item.movie_id} />
                 </div>
-                <div className="flex flex-col w-fit h-fit">
+                <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
                   <Text>
                     <TitleData TitleData={item.movie_id} />
                   </Text>
-                  <br />
                   <Text>{item.review}</Text>
                 </div>
               </Flex>

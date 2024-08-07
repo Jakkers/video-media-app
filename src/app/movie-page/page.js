@@ -44,33 +44,29 @@ export default async function MoviePage() {
   return (
     <Container className="ml-6 mr-6" size="4">
       <Header />
-
       <br></br>
-      <main className="flex min-h-screen flex-col justify-between">
-        <Heading>Featured films</Heading>
+      <main>
+        {/* <Heading>Featured films</Heading> */}
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <ShowCase dataArray={data.results} />
         </div>
-
         <br></br>
         <Heading>Popular</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <BasicCarousel dataArray={popularData.results} />
         </div>
         <br></br>
-
         <Heading>Top Rated</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
-          <ShowCase dataArray={topData.results} />
+        <div>
+          <BasicCarousel dataArray={topData.results} />
         </div>
-
         <br></br>
         <Heading>Coming Soon</Heading>
         <br></br>
-        <div className="flex flex-col items-center ">
+        <div>
           <BasicCarousel dataArray={comingSoonData.results} />
         </div>
         <br></br>

@@ -3,15 +3,13 @@
   flex-direction: row;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  width: 70vw;
 }
 
 #imgs2 {
-  width: 25vw;
+  max-width: 600px;
   height: auto;
-
-  padding: 2px;
   flex-shrink: 0;
+  border-radius: 15px;
 }
 /* 
 #imgs3 {
@@ -24,8 +22,7 @@
 } */
 
 #show_info {
-  width: 45vw;
-  flex-shrink: 0;
+  max-width: 680px;
   padding: 3rem;
   text-align: left;
 }
@@ -52,8 +49,6 @@
   #imgs2 {
     width: 70vw;
     height: auto;
-
-    padding: 2px;
     flex-shrink: 0;
   }
 }
