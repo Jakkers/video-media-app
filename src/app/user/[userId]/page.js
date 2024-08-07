@@ -7,6 +7,8 @@ import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
 import TitleData from "@/components/ProfileTitleData";
 import ImageData from "@/components/ProfileImgReviews";
 import Image from "next/image";
+import ShowImage from "@/components/showsProfileimg";
+import ShowTitleData from "@/components/showsProfileTitle";
 
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
@@ -139,18 +141,21 @@ export default async function UserIdPage({ params }) {
           ))}
           <Heading>Your Movie Reviews</Heading>
         </Flex>
+
         {/* Tv Reviews  */}
+        {/* Tv Reviews  */}
+
         <Flex direction={"column-reverse"} gap={"3"}>
           {showData.map((item) => (
             <Card key={item.id}>
               <Flex direction={"row"} gap={"3"}>
-                {/* <div>
-                  <ImageData ImageData={item.movie_id} />
-                </div> */}
+                <div>
+                  <ShowImage ImageData={item.show_id} />
+                </div>
                 <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
-                  {/* <Text>
-                    <TitleData TitleData={item.movie_id} />
-                  </Text> */}
+                  <Text>
+                    <ShowTitleData ShowTitleData={item.show_id} />
+                  </Text>
                   <Text>{item.review}</Text>
                 </div>
               </Flex>
