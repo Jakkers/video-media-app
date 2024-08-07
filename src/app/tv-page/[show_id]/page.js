@@ -237,7 +237,6 @@ export default async function MoviePageId({ params }) {
               defaultValue={userData.id}
               hidden
             />
-            <input name="" />
             <input
               name="show_id"
               className="text-white"
@@ -245,7 +244,9 @@ export default async function MoviePageId({ params }) {
               hidden
             />
             {/* <input name="reviews_left" defaultValue={1} hidden /> */}
-            <label htmlFor="review">Review</label>
+            <label htmlFor="review" hidden>
+              Review
+            </label>
             <textarea
               name="review"
               type="text"

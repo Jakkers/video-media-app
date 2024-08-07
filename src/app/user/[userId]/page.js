@@ -14,6 +14,8 @@ import DeleteBtnS from "@/components/DeleteReviewS";
 
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
+import { MdEgg } from "react-icons/md";
+import { GiEggEye } from "react-icons/gi";
 
 //Metadata
 export async function generateMetadata() {
@@ -112,7 +114,7 @@ export default async function UserIdPage({ params }) {
                 size={"9"}
                 className="flex flex-col text-orange-400 items-center "
               >
-                <GiCosmicEgg />
+                <MdEgg />
                 <Text size={"2"}>Getting Started</Text>
               </Text>
             </Card>
@@ -124,7 +126,7 @@ export default async function UserIdPage({ params }) {
                 size={"9"}
                 className="flex flex-col text-gray-400 items-center "
               >
-                <GiCosmicEgg />
+                <GiEggEye />
                 <Text size={"2"}>Your Hatching</Text>
               </Text>
             </Card>
