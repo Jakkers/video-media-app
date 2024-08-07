@@ -34,7 +34,7 @@ export default function ShowCase({ dataArray, format }) {
               <h3 id={Style.item_overview}>{item.overview}</h3>
               <br></br>
 
-              <Link href={`/{${format}-page/${item.id}`}>
+              <Link href={`/${format}-page/${item.id}`}>
                 <Button> Watch trailer</Button>
               </Link>
             </div>

@@ -69,6 +69,12 @@ export default function Header() {
                     <p>Movies</p>
                   </Link>
                 </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  {" "}
+                  <Link href={"/tv-page"}>
+                    <p>TV Shows</p>
+                  </Link>
+                </DropdownMenu.Item>
 
                 <DropdownMenu.Separator />
                 <DropdownMenu.Item>
