@@ -50,12 +50,13 @@ export default async function UserIdPage({ params }) {
 
   if (usersData.length > 0) {
     return (
-      <Container size="4">
+      <Container className="ml-6 mr-6" size="4">
         <Header />
-
-        <Heading size={"8"} className="m-2">
+        <br></br>
+        <Heading size={"8"}>
           <Strong>{userData.username} Profile</Strong>
         </Heading>
+        <br></br>
         <div id="profile-info">
           {Bio.map((item) => (
             <div key={item.id}>
@@ -63,6 +64,7 @@ export default async function UserIdPage({ params }) {
             </div>
           ))}
         </div>
+        <br></br>
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
@@ -70,7 +72,7 @@ export default async function UserIdPage({ params }) {
                 <div>
                   <ImageData ImageData={item.movie_id} />
                 </div>
-                <div className="flex flex-col overflow-y-scroll w-fit h-fit">
+                <div className="flex flex-col w-fit h-fit">
                   <Text>
                     <TitleData TitleData={item.movie_id} />
                   </Text>
@@ -88,7 +90,9 @@ export default async function UserIdPage({ params }) {
     return (
       <Container size="4">
         <Header />
-        <h1>Create your Profile</h1>
+        <br></br>
+        <Heading>Create your profile</Heading>
+        <br></br>
         <form
           action={handleSubmit}
           className="flex flex-col items-center mt-10"

@@ -35,3 +35,31 @@
   /* padding: 20px; */
   flex-shrink: 0;
 }
+
+@media (width <= 800px) {
+  #show_box {
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px; */
+    flex-shrink: 0;
+  }
+  #show_info {
+    width: 70vw;
+    flex-shrink: 0;
+    padding: 1rem;
+    text-align: left;
+  }
+  #imgs2 {
+    width: 70vw;
+    height: auto;
+
+    padding: 2px;
+    flex-shrink: 0;
+  }
+}
+
+@media (width <= 1280px) {
+  #item_overview {
+    display: none;
+  }
+}

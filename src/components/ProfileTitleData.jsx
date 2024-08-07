@@ -1,4 +1,5 @@
 import { Strong } from "@radix-ui/themes";
+import Link from "next/link";
 const apiKey = process.env.API_KEY;
 
 export default async function TitleData({ TitleData }) {
@@ -13,7 +14,9 @@ export default async function TitleData({ TitleData }) {
 
   return (
     <>
-      <Strong>{data.title}</Strong>
+      <Link href={`/movie-page/${data.id}`}>
+        <Strong>{data.title}</Strong>
+      </Link>
     </>
   );
 }

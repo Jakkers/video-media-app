@@ -4,8 +4,10 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
+
 // import { DoubleFetch } from "../../components/ShowGenres";
 import { ShowGenresMenu } from "@/components/CatergoriesMenu";
+
 
 import { Container, Heading } from "@radix-ui/themes";
 
@@ -42,7 +44,7 @@ export default async function MoviePage() {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
   return (
-    <Container size="4">
+    <Container className="ml-6 mr-6" size="4">
       <Header />
 
       <br></br>
@@ -77,8 +79,9 @@ export default async function MoviePage() {
 
         <Heading>History?</Heading>
         <br></br>
-        {/* <DoubleFetch /> */}
+
         <ShowGenresMenu />
+
         {/* <BasicCarousel dataArray={historyData.results} /> */}
       </main>
     </Container>
