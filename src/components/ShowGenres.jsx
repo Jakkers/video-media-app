@@ -1,7 +1,7 @@
 const apiKey = process.env.API_KEY;
 import Link from "next/link";
 import { dbConnect } from "@/utils/dbConnection";
-import { Button, DropdownMenu } from "@radix-ui/themes";
+import { Button, DropdownMenu, Heading } from "@radix-ui/themes";
 import BasicCarousel from "./BasicCarousel";
 import { getGenres } from "@/utils/genreFetch";
 import { fetchMoviesForAllGenres } from "@/utils/fetchMoviesByGenre";
@@ -16,10 +16,8 @@ export async function DisplayGenres() {
         <div key={index} id={genresData[index].name}>
           {/* //! ^ this helps navigation with catergories menu  */}
           <br></br>
+          <Heading>{genresData[index].name}</Heading>
           <br></br>
-          <br></br>
-          <br></br>
-          <h1>{genresData[index].name}</h1>
           {/* //!^need this form as fetch function strips out name */}
           <BasicCarousel dataArray={item} />
         </div>
