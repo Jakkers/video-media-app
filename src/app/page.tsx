@@ -8,6 +8,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { Button, Flex, Text, Card } from "@radix-ui/themes";
+import Image from "next/image";
 
 const apiKey = process.env.API_KEY;
 
@@ -18,10 +19,15 @@ export default async function Home() {
   );
   const data = await response.json();
   return (
-    <main className="h-screen w-[100%] flex min-h-screen flex-col items-center  bg-gradient-to-r from-cyan-900 to-blue-900">
-      <h1 className="pt-[30vh] z-10 text-6xl font-bold text-center ">
-        Eggscape
-      </h1>
+    <main className="h-screen w-[100%] flex min-h-screen flex-col items-center  bg-gradient-to-r from-cyan-950 to-blue-950">
+      <Image
+        className="pt-[15vh] pr-10 pl-10"
+        src={"/eggscape-logo.png"}
+        alt="logo"
+        width={600}
+        height={375}
+      />
+
       <br></br>
       <Text className="z-10 text-center ">
         The home for finding and sharing movies
@@ -29,9 +35,6 @@ export default async function Home() {
       <br></br>
       <br></br>
       <Card>
-
-        
-
         <Flex
           direction="column"
           justify="between"
@@ -39,7 +42,6 @@ export default async function Home() {
           wrap="wrap"
           gap={"5"}
         >
-
           <SignedIn>
             <UserButton />
             <Button size="4" color="orange" variant="outline">
