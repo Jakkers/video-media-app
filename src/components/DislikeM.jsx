@@ -11,7 +11,7 @@ export default function DislikeButton({ params, likes, id }) {
     await db.query(
       `UPDATE m_reviews
 SET likes = ${likes} -1
-WHERE user_id = $1`,
+WHERE id = $1`,
       [id]
     );
     revalidatePath(`/movie-page/${params}`);

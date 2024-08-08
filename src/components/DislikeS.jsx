@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Button } from "@radix-ui/themes";
 import { SlDislike } from "react-icons/sl";
 
-export default function DislikeButtonS({ revId, likes, id }) {
+export default function DislikeButtonS({ params, likes, id }) {
   async function handleSubmit() {
     "use server";
     const db = dbConnect();
@@ -14,8 +14,8 @@ SET likes = ${likes} -1
 WHERE id = $1`,
       [id]
     );
-    revalidatePath(`/tv-page/${revId}`);
-    redirect(`/tv-page/${revId}`);
+    revalidatePath(`/tv-page/${params}`);
+    redirect(`/tv-page/${params}`);
   }
 
   return (
