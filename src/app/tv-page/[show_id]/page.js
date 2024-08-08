@@ -246,11 +246,12 @@ WHERE clerk_id = $1`,
             />
             <label htmlFor="spoiler">Includes Spoiler?</label>
             <input
-              className="h-6"
+              className="h-5 w-5"
               name="spoiler"
               id="spoiler"
               type="checkbox"
             />
+            <br></br>
             <button type="submit">
               {" "}
               <ToastDemo />
