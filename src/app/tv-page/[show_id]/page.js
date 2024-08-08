@@ -46,11 +46,6 @@ function spoilerCheck(item) {
   if (item.spoiler === true) {
     return (
       <>
-        {" "}
-        <Text>
-          <Strong></Strong>
-        </Text>
-        <br></br>{" "}
         <Accordion.Root type="single" collapsible>
           <Accordion.Item value="item-1">
             {/* <Card> */}{" "}
