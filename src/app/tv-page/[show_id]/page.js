@@ -97,7 +97,6 @@ export default async function MoviePageId({ params }) {
     )
   ).rows;
 
-
   //image variable
   let Backposter;
   if (data.poster_path) {
@@ -110,17 +109,16 @@ export default async function MoviePageId({ params }) {
   if (data.backdrop_path) {
     Mainposter = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
   } else {
-    Mainposter = "/Main-Fallback-image.jpg";
+    Mainposter = "/backdrop-fallback.jpg";
     //! ^ Here please
   }
-
 
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-      <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 ">
-        {/* <ShowTvGenresMenu title="Categories" /> */}
-      </div>
+      {/* <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 "> */}
+      {/* <ShowTvGenresMenu title="Categories" /> */}
+      {/* </div> */}
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
@@ -195,19 +193,12 @@ export default async function MoviePageId({ params }) {
           </Box>
           <Box>
             <br></br>
-            <Heading>{data.title}</Heading>
+            <Heading>{data.name}</Heading>
             <br></br>
             <Text>{data.overview}</Text>
             <br></br>
             <br></br>
           </Box>
-
-          <Image
-            src={Backposter}
-            width={500}
-            height={500}
-            alt={`Poster for the ${data.title} film.`}
-          />
           <br></br>
           <Heading>Similar </Heading>
           <div>
@@ -249,13 +240,13 @@ export default async function MoviePageId({ params }) {
             </button>
           </form>
           <br />
-          <Flex direction={"column-reverse"} gap={"3"}>
+          {/* <Flex direction={"column-reverse"} gap={"3"}>
             {reviewData.map((item) => (
               <div key={item.id}>
                 <PageReview item={item} />
               </div>
             ))}
-          </Flex>
+          </Flex> */}
         </Flex>
       </main>
     </Container>
