@@ -360,8 +360,8 @@ WHERE clerk_id = $1`,
                   <div className="ml-4">
                     <DeleteBtnS
                       review={item.review}
-                      userId={item.user_id}
-                      del={item.show_id}
+                      // userId={item.user_id}
+                      params={item.show_id}
                     />
                   </div>
                 </div>
