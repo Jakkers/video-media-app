@@ -5,11 +5,12 @@
   overflow-y: hidden;
   scroll-behavior: smooth;
   height: auto;
+  padding-bottom: 1rem;
 }
 
 #imgs {
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 250px;
   padding: 5px;
   flex-shrink: 0;
   position: relative;
@@ -17,8 +18,8 @@
 }
 
 #img_info {
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 250px;
   padding: 20px;
   flex-shrink: 0;
   position: absolute;

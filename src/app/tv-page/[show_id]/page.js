@@ -38,6 +38,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
+c
 function spoilerCheck(item) {
   if (item.spoiler === true) {
     return (
@@ -79,31 +80,31 @@ function spoilerCheck(item) {
         </Card>
       </>
     );
+
   }
-}
 
-async function addReview(formData) {
-  "use server";
-  const user_id = formData.get("user_id");
-  const review = formData.get("review");
-  const show_id = formData.get("show_id");
+  async function addReview(formData) {
+    "use server";
+    const user_id = formData.get("user_id");
+    const review = formData.get("review");
+    const show_id = formData.get("show_id");
+    const spoiler = formData.get("spoiler");
 
-  const db = dbConnect();
-  await db.query(
-    `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
-    [user_id, review, show_id]
-  );
-  await db.query(
-    `UPDATE m_users
+    const db = dbConnect();
+    await db.query(
+      `INSERT INTO s_reviews (user_id, review, show_id, spoiler) VALUES ($1,$2, $3, $4)`,
+      [user_id, review, show_id, spoiler]
+    );
+    await db.query(
+      `UPDATE m_users
 SET reviews_left = reviews_left + 1
 WHERE clerk_id = $1`,
-    [userId]
-  );
-  revalidatePath(`/tv-page/${params.show_id}`);
-  redirect(`/tv-page/${params.show_id}`);
-}
+      [user_id]
+    );
+    revalidatePath(`/tv-page/${params.show_id}`);
+    redirect(`/tv-page/${params.show_id}`);
+  }
 
-export default async function MoviePageId({ params }) {
   const response = await fetch(
     // `https://api.themoviedb.org/3/movie/${params.show_id}?api_key=${apiKey}&language=en-US`
 
@@ -155,16 +156,16 @@ export default async function MoviePageId({ params }) {
   if (data.backdrop_path) {
     Mainposter = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
   } else {
-    Mainposter = "/Main-Fallback-image.jpg";
+    Mainposter = "/backdrop-fallback.jpg";
     //! ^ Here please
   }
 
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-      <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 ">
-        {/* <ShowTvGenresMenu title="Categories" /> */}
-      </div>
+      {/* <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 "> */}
+      {/* <ShowTvGenresMenu title="Categories" /> */}
+      {/* </div> */}
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
@@ -239,21 +240,14 @@ export default async function MoviePageId({ params }) {
           </Box>
           <Box>
             <br></br>
-            <Heading>{data.title}</Heading>
+            <Heading>{data.name}</Heading>
             <br></br>
             <Text>{data.overview}</Text>
             <br></br>
             <br></br>
           </Box>
-
-          <Image
-            src={Backposter}
-            width={500}
-            height={500}
-            alt={`Poster for the ${data.title} film.`}
-          />
           <br></br>
-          <Heading>Similar </Heading>
+          <Heading>Similar TV shows</Heading>
           <div>
             <BasicCarousel dataArray={similarData.results} format="tv" />
           </div>
@@ -286,6 +280,13 @@ export default async function MoviePageId({ params }) {
               maxLength="250"
               rows="3"
               required
+            />
+            <label htmlFor="spoiler">Includes Spoiler?</label>
+            <input
+              className="h-6"
+              name="spoiler"
+              id="spoiler"
+              type="checkbox"
             />
             <button type="submit">
               {" "}

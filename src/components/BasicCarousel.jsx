@@ -18,10 +18,10 @@ export default function BasicCarousel({ dataArray, format }) {
       return (
         <div
           // id={Style.img_info}
-          className=" text-transparent hover:text-white
-     hover:bg-transparent z-10 absolute top-0 left-10 bg-transparent "
+          className=" text-white pointer-events-none
+      z-10 p-6 absolute bottom-2 justify-center bg-transparent "
         >
-          <div className="h-[220px] w-[170px]"></div>
+          <div className="h-[100%] w-[100%]"></div>
           <div>
             <h1>{item.name || item.title}</h1>
             {/* //! this is to render name if a show OR a movie but is currently unproven */}
