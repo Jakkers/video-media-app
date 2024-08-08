@@ -3,7 +3,15 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Header from "@/components/Header";
-import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
+import {
+  Container,
+  Flex,
+  Card,
+  Heading,
+  Text,
+  Strong,
+  Separator,
+} from "@radix-ui/themes";
 import TitleData from "@/components/ProfileTitleData";
 import ImageData from "@/components/ProfileImgReviews";
 import Image from "next/image";
@@ -13,6 +21,8 @@ import DeleteBtnM from "@/components/DeleteReviewM";
 import DeleteBtnS from "@/components/DeleteReviewS";
 import LikeBtnM from "@/components/LikeM";
 import DislikeBtnM from "@/components/DislikeM";
+import LiBtnS from "@/components/LikeS";
+import DisBtnS from "@/components/DislikeS";
 
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
@@ -154,39 +164,40 @@ export default async function UserIdPage({ params }) {
         <Flex direction={"column-reverse"} gap={"3"}>
           {reviewData.map((item) => (
             <Card key={item.id}>
-              <Flex direction={"row"} gap={"3"}>
-                <div>
+              <Flex direction={"row"} gap={"3"} className="mb-2">
+                <div className="flex flex-shrink-0">
                   <ImageData ImageData={item.movie_id} />
                 </div>
-                <div className="pl-2 pt-2 flex flex-col w-fit h-fit">
+                <Flex direction={"column"}>
                   <Text>
                     <TitleData TitleData={item.movie_id} />
                   </Text>
                   <Text>{item.review}</Text>
-
-                  <div className="flex flex-row">
-                    <LikeBtnM
-                      id={item.id}
-                      likes={item.likes}
-                      userId={item.user_id}
-                    />
-                    <br></br>
-                    <Text>{item.likes}</Text>
-                    <br></br>
-                    <DislikeBtnM
-                      userId={item.user_id}
-                      likes={item.likes}
-                      id={item.id}
-                    />
-                  </div>
-                  
-
-                  <div className="w-6 pt-2">
-                    <DeleteBtnM review={item.review} userId={item.user_id} />
-                  </div>
-
-                </div>
+                </Flex>
               </Flex>
+
+              <Separator size={"4"} />
+
+              <div className="flex flex-row justify-between mt-2">
+                <div className="flex flex-row">
+                  <LikeBtnM
+                    id={item.id}
+                    likes={item.likes}
+                    userId={item.user_id}
+                  />
+                  <br></br>
+                  <Text className=" ml-2 mr-2">{item.likes}</Text>
+                  <br></br>
+                  <DislikeBtnM
+                    userId={item.user_id}
+                    likes={item.likes}
+                    id={item.id}
+                  />
+                </div>
+                <div className="ml-4">
+                  <DeleteBtnM review={item.review} userId={item.user_id} />
+                </div>
+              </div>
             </Card>
           ))}
           {/* <br></br> */}
@@ -208,6 +219,21 @@ export default async function UserIdPage({ params }) {
                     <ShowTitleData ShowTitleData={item.show_id} />
                   </Text>
                   <Text>{item.review}</Text>
+                  <div className="flex flex-row">
+                    <LiBtnS
+                      id={item.id}
+                      likes={item.likes}
+                      userId={item.user_id}
+                    />
+                    <br></br>
+                    <Text className=" ml-1 mr-1">{item.likes}</Text>
+                    <br></br>
+                    <DisBtnS
+                      userId={item.user_id}
+                      likes={item.likes}
+                      id={item.id}
+                    />
+                  </div>
                   <div className="w-6 pt-2">
                     <DeleteBtnS review={item.review} userId={item.user_id} />
                   </div>
