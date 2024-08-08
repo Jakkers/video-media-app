@@ -4,13 +4,22 @@ import Style from "./basicCar.module.css";
 export default function BasicCarousel({ dataArray, format }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
+  function isPresent(item) {
+    let Backposter = "/Fallback-image.jpg";
+    if (item.poster_path) {
+      return `${base_url}${item.poster_path}`;
+    } else {
+      return Backposter;
+    }
+  }
+
   return (
     <div id={Style.main_box}>
       {dataArray.map((item) => (
         <div key={item.id} id={Style.imgs} className="relative">
           <Link href={`/${format}-page/${item.id}`}>
             <Image
-              src={`${base_url}${item.poster_path}`}
+              src={isPresent(item)}
               alt={`Poster for the ${item.original_title} film.`}
               width={150}
               height={80}

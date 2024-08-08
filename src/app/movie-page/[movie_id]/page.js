@@ -1,6 +1,7 @@
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
 import BasicCarousel from "@/components/BasicCarousel";
+import { PageReview } from "@/components/PageReview";
 import {
   Button,
   Card,
