@@ -36,7 +36,7 @@ export default async function SearchPage({ params }) {
         <br></br>
         <Heading>Search Results</Heading>
         <br></br>
-        <Flex direction={"row"} gap={"4"}>
+        <div className="flex flex-col md:flex-row gap-4">
           <Flex direction={"column"} gap={"3"}>
             <Heading>Movies</Heading>
             {movieResults.map((movies) => (
@@ -86,7 +86,7 @@ export default async function SearchPage({ params }) {
               </Link>
             ))}
           </Flex>
-        </Flex>
+        </div>
         <br></br>
       </Container>
     </>

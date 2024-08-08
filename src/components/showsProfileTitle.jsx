@@ -14,9 +14,9 @@ export default async function ShowTitleData({ ShowTitleData }) {
 
   return (
     <>
-      {/* <Link href={`/movie-page/${data.id}`}> */}
-      <Strong>{data.name}</Strong>
-      {/* </Link> */}
+      <Link href={`/tv-page/${data.id}`}>
+        <Strong>{data.name}</Strong>
+      </Link>
     </>
   );
 }

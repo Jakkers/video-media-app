@@ -97,6 +97,7 @@ export default async function MoviePageId({ params }) {
     )
   ).rows;
 
+
   //image variable
   let Backposter;
   if (data.poster_path) {
@@ -113,6 +114,7 @@ export default async function MoviePageId({ params }) {
     //! ^ Here please
   }
 
+
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
@@ -121,7 +123,7 @@ export default async function MoviePageId({ params }) {
       </div>
       <main>
         <div className="relative text-center">
-          <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
+          <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
             <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
               {data.name}
             </h1>
@@ -206,36 +208,6 @@ export default async function MoviePageId({ params }) {
             height={500}
             alt={`Poster for the ${data.title} film.`}
           />
-
-          {/* <Card> */}
-          {/* <iframe
-              width="100%"
-              height="650px"
-              src={`https://www.youtube.com/embed/${video[0].key}`}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe> */}
-          {/* </Card> */}
-          {/* {data.production_companies.map((item) => (
-
-        <div
-          className="bg-white w-[100%] h-[100px] flex flex-row"
-          key={item.id}
-        >
-          <div className="justify-around">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${item.logo_path}`}
-              alt="Image 1"
-              width={100}
-              height={100}
-            />
-          </div>
-        </div>
-      ))} */}
-
           <br></br>
           <Heading>Similar </Heading>
           <div>

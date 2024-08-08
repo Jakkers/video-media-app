@@ -11,6 +11,8 @@ import ShowImage from "@/components/showsProfileimg";
 import ShowTitleData from "@/components/showsProfileTitle";
 import DeleteBtnM from "@/components/DeleteReviewM";
 import DeleteBtnS from "@/components/DeleteReviewS";
+import LikeBtnM from "@/components/LikeM";
+import DislikeBtnM from "@/components/DislikeM";
 
 //? react icons
 import { GiCosmicEgg } from "react-icons/gi";
@@ -161,9 +163,28 @@ export default async function UserIdPage({ params }) {
                     <TitleData TitleData={item.movie_id} />
                   </Text>
                   <Text>{item.review}</Text>
+
+                  <div className="flex flex-row">
+                    <LikeBtnM
+                      id={item.id}
+                      likes={item.likes}
+                      userId={item.user_id}
+                    />
+                    <br></br>
+                    <Text>{item.likes}</Text>
+                    <br></br>
+                    <DislikeBtnM
+                      userId={item.user_id}
+                      likes={item.likes}
+                      id={item.id}
+                    />
+                  </div>
+                  
+
                   <div className="w-6 pt-2">
                     <DeleteBtnM review={item.review} userId={item.user_id} />
                   </div>
+
                 </div>
               </Flex>
             </Card>

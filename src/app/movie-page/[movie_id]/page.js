@@ -166,9 +166,11 @@ WHERE clerk_id = $1`,
         height={500}
         alt={`Poster for the ${data.title} film.`}
       /> */}
+
           <Card>
             <iframe
               width="100%"
+              className="h-[250px] sm:h-[350px] md:h-[650px]"
               height="650px"
               src={`https://www.youtube.com/embed/${video[0].key}`}
               title="YouTube video player"
@@ -178,6 +180,7 @@ WHERE clerk_id = $1`,
               allowFullScreen
             ></iframe>
           </Card>
+
           {/* {data.production_companies.map((item) => (
 
         <div
