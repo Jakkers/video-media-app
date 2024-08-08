@@ -16,15 +16,15 @@ export default async function ShowImageData({ ImageData }) {
 
   return (
     <>
-      {/* <Link href={`/movie-page/${data.id}`}> */}
-      <Image
-        src={`${base_url}${data.poster_path}`}
-        alt={`Poster for the ${data.original_title} film.`}
-        width={100}
-        height={100}
-        className="rounded-[15px]"
-      />
-      {/* </Link> */}
+      <Link href={`/tv-page/${data.id}`}>
+        <Image
+          src={`${base_url}${data.poster_path}`}
+          alt={`Poster for the ${data.original_title} film.`}
+          width={100}
+          height={100}
+          className="rounded-[15px]"
+        />
+      </Link>
     </>
   );
 }

@@ -198,36 +198,6 @@ export default async function MoviePageId({ params }) {
             height={500}
             alt={`Poster for the ${data.title} film.`}
           />
-
-          {/* <Card> */}
-          {/* <iframe
-              width="100%"
-              height="650px"
-              src={`https://www.youtube.com/embed/${video[0].key}`}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe> */}
-          {/* </Card> */}
-          {/* {data.production_companies.map((item) => (
-
-        <div
-          className="bg-white w-[100%] h-[100px] flex flex-row"
-          key={item.id}
-        >
-          <div className="justify-around">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${item.logo_path}`}
-              alt="Image 1"
-              width={100}
-              height={100}
-            />
-          </div>
-        </div>
-      ))} */}
-
           <br></br>
           <Heading>Similar </Heading>
           <div>
