@@ -1,5 +1,7 @@
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import BasicCarousel from "@/components/BasicCarousel";
 import {
   Button,
@@ -36,14 +38,49 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function MoviePageId({ params }) {
-  function spoilerCheck(item) {
-    console.log("proofItsrunning");
-    if (item.has_spoiler === true) {
-      return <> accordion</>;
-    } else {
-      return <PageReviewCard item={item} />;
-    }
+c
+function spoilerCheck(item) {
+  if (item.spoiler === true) {
+    return (
+      <>
+        {" "}
+        <Text>
+          <Strong></Strong>
+        </Text>
+        <br></br>{" "}
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item value="item-1">
+            <Card>
+              {" "}
+              <Accordion.Header>
+                {item.username}
+                <br></br>
+                <Accordion.Trigger className="AccordionTrigger">
+                  Warning Spoilers{" "}
+                  <ChevronDownIcon className="AccordionChevron" aria-hidden />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content>
+                <Text>{item.review}</Text>
+              </Accordion.Content>{" "}
+            </Card>
+          </Accordion.Item>
+        </Accordion.Root>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Card>
+          <Text>
+            <Strong>{item.username}</Strong>
+          </Text>
+          <br />
+          <Text>{item.review}</Text>
+        </Card>
+      </>
+    );
+
   }
 
   async function addReview(formData) {
@@ -259,15 +296,7 @@ WHERE clerk_id = $1`,
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
             {reviewData.map((item) => (
-              <div key={item.id}>
-                <Card>
-                  <Text>
-                    <Strong>{item.username}</Strong>
-                  </Text>
-                  <br />
-                  <Text>{item.review}</Text>
-                </Card>
-              </div>
+              <div key={item.id}>{spoilerCheck(item)}</div>
             ))}
           </Flex>
         </Flex>
