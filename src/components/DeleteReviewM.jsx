@@ -24,17 +24,10 @@ WHERE clerk_id = $1`,
 
   return (
     <>
-      {/* <form action={handleSubmit}>
-        <Button
-          color="red"
-          className="flex bg-red-600 rounded text-white items-center text-center
-             w-fit justify-center p-1 text-xs hover:bg-red-200 hover:text-red-600"
-          type="submit"
-        > */}
       {/* Call out box for delete  */}
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button variant="solid" color="red">
+          <Button variant="solid" color="red" size={"1"}>
             <MdOutlineDeleteOutline />
           </Button>
         </AlertDialog.Trigger>
@@ -53,10 +46,10 @@ WHERE clerk_id = $1`,
             <AlertDialog.Action>
               <Button variant="solid" color="red">
                 <form action={handleSubmit}>
-                  <button type="submit">
+                  <Button type="submit" size={"1"}>
                     {" "}
                     <MdOutlineDeleteOutline />
-                  </button>
+                  </Button>
                 </form>
               </Button>
             </AlertDialog.Action>
