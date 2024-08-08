@@ -20,9 +20,9 @@ export async function DisplayGenres() {
 
           {/* //? These are for styling, wil swap out later */}
           <br></br>
-          <br></br>
 
           <Heading>{genresData[index].name}</Heading>
+          <br></br>
 
           {/* //!^need this form as fetch function strips out name */}
           <BasicCarousel dataArray={item} format="movie" />

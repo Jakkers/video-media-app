@@ -209,7 +209,7 @@ export default async function MoviePageId({ params }) {
             <br></br>
           </Box>
           <br></br>
-          <Heading>Similar </Heading>
+          <Heading>Similar TV shows</Heading>
           <div>
             <BasicCarousel dataArray={similarData.results} format="tv" />
           </div>
