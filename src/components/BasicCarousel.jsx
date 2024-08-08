@@ -44,8 +44,8 @@ export default function BasicCarousel({ dataArray, format }) {
               id={Style.imgs}
               className="hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-sky-500"
             />
-            {/* //!this inserts film data into a div and overlay on image with hover. may not iplement, but here incase helps accesibilty later? */}
             {checkPoster(item)}
+            {/* //? this implements an overlay showing the name if no poster is avaiable */}
           </Link>
         </div>
       ))}
