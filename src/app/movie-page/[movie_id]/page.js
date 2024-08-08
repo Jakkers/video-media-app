@@ -147,9 +147,7 @@ WHERE clerk_id = $1`,
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-      <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[470px]:top-24 max-[470px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 ">
-        {/* <ShowGenresMenu /> */}
-      </div>
+      <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[470px]:top-24 max-[470px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 "></div>
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
@@ -208,12 +206,6 @@ WHERE clerk_id = $1`,
             <br></br>
             <br></br>
           </Box>
-          {/* <Image
-        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-        width={500}
-        height={500}
-        alt={`Poster for the ${data.title} film.`}
-      /> */}
 
           <Card>
             <iframe
@@ -228,23 +220,6 @@ WHERE clerk_id = $1`,
               allowFullScreen
             ></iframe>
           </Card>
-
-          {/* {data.production_companies.map((item) => (
-
-        <div
-          className="bg-white w-[100%] h-[100px] flex flex-row"
-          key={item.id}
-        >
-          <div className="justify-around">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${item.logo_path}`}
-              alt="Image 1"
-              width={100}
-              height={100}
-            />
-          </div>
-        </div>
-      ))} */}
 
           <br></br>
           <Heading>Similar films</Heading>
@@ -261,7 +236,7 @@ WHERE clerk_id = $1`,
               defaultValue={userData.id}
               hidden
             />
-            {/* <input name="" /> */}
+
             <input
               name="movie_id"
               className="text-white"
@@ -296,29 +271,11 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-            {/* {reviewData.map((item) => (
-              <Card key={item.id}>
-                <Text>
-                  <Strong>{item.username}</Strong>
-                </Text>
-                <br />
-                <Text>{item.review}</Text>
-              </Card>
-            ))} */}
             {reviewData.map((item) => (
               <Card key={item.id}>
                 <Flex direction={"row"} gap={"3"} className="mb-2">
-                  {/* <div className="flex flex-shrink-0">
-                  <ImageData ImageData={item.movie_id} />
-                </div> */}
                   <Flex direction={"column"}>
-                    <Text>{/* <TitleData TitleData={item.movie_id} /> */}</Text>
-                    {/* <Strong>{item.username}</Strong> */}
-                    <div key={item.id}>
-                      {spoilerCheck(item)}
-
-                      {/* <Text>{item.review}</Text> */}
-                    </div>
+                    <div key={item.id}>{spoilerCheck(item)}</div>
                   </Flex>
                 </Flex>
 
@@ -329,14 +286,12 @@ WHERE clerk_id = $1`,
                     <LikeBtnM
                       id={item.id}
                       likes={item.likes}
-                      // userId={item.user_id}
                       params={params.movie_id}
                     />
                     <br></br>
                     <Text className=" ml-2 mr-2">{item.likes}</Text>
                     <br></br>
                     <DislikeBtnM
-                      // userId={item.user_id}
                       likes={item.likes}
                       id={item.id}
                       params={params.movie_id}
