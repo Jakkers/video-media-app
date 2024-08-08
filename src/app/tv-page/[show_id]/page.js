@@ -97,11 +97,14 @@ export default async function MoviePageId({ params }) {
     )
   ).rows;
 
+  //image variable
+  const fallBackPoster = "/Fallback-image.jpg";
+
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
       <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 ">
-        <ShowTvGenresMenu title="Categories" />
+        {/* <ShowTvGenresMenu title="Categories" /> */}
       </div>
       <main>
         <div className="relative text-center">
@@ -187,7 +190,10 @@ export default async function MoviePageId({ params }) {
           </Box>
 
           <Image
-            src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+            src={
+              `https://image.tmdb.org/t/p/w500${data.poster_path}` ||
+              fallBackPoster
+            }
             width={500}
             height={500}
             alt={`Poster for the ${data.title} film.`}
