@@ -36,37 +36,38 @@ export async function generateMetadata({ params }) {
   };
 }
 
-function spoilerCheck(item) {
-  console.log("proofItsrunning");
-  if (item.has_spoiler === true) {
-    return <> accordion</>;
-  } else {
-    return <PageReviewCard item={item} />;
+export default async function MoviePageId({ params }) {
+  function spoilerCheck(item) {
+    console.log("proofItsrunning");
+    if (item.has_spoiler === true) {
+      return <> accordion</>;
+    } else {
+      return <PageReviewCard item={item} />;
+    }
   }
-}
 
-async function addReview(formData) {
-  "use server";
-  const user_id = formData.get("user_id");
-  const review = formData.get("review");
-  const show_id = formData.get("show_id");
+  async function addReview(formData) {
+    "use server";
+    const user_id = formData.get("user_id");
+    const review = formData.get("review");
+    const show_id = formData.get("show_id");
+    const spoiler = formData.get("spoiler");
 
-  const db = dbConnect();
-  await db.query(
-    `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
-    [user_id, review, show_id]
-  );
-  await db.query(
-    `UPDATE m_users
+    const db = dbConnect();
+    await db.query(
+      `INSERT INTO s_reviews (user_id, review, show_id, spoiler) VALUES ($1,$2, $3, $4)`,
+      [user_id, review, show_id, spoiler]
+    );
+    await db.query(
+      `UPDATE m_users
 SET reviews_left = reviews_left + 1
 WHERE clerk_id = $1`,
-    [userId]
-  );
-  revalidatePath(`/tv-page/${params.show_id}`);
-  redirect(`/tv-page/${params.show_id}`);
-}
+      [user_id]
+    );
+    revalidatePath(`/tv-page/${params.show_id}`);
+    redirect(`/tv-page/${params.show_id}`);
+  }
 
-export default async function MoviePageId({ params }) {
   const response = await fetch(
     // `https://api.themoviedb.org/3/movie/${params.show_id}?api_key=${apiKey}&language=en-US`
 
@@ -243,13 +244,20 @@ export default async function MoviePageId({ params }) {
               rows="3"
               required
             />
+            <label htmlFor="spoiler">Includes Spoiler?</label>
+            <input
+              className="h-6"
+              name="spoiler"
+              id="spoiler"
+              type="checkbox"
+            />
             <button type="submit">
               {" "}
               <ToastDemo />
             </button>
           </form>
           <br />
-          {/* <Flex direction={"column-reverse"} gap={"3"}>
+          <Flex direction={"column-reverse"} gap={"3"}>
             {reviewData.map((item) => (
               <div key={item.id}>
                 <Card>
@@ -261,7 +269,7 @@ export default async function MoviePageId({ params }) {
                 </Card>
               </div>
             ))}
-          </Flex> */}
+          </Flex>
         </Flex>
       </main>
     </Container>
