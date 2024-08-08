@@ -1,5 +1,7 @@
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import BasicCarousel from "@/components/BasicCarousel";
 import {
   Button,
@@ -40,14 +42,54 @@ export async function generateMetadata({ params }) {
   };
 }
 
+
+  
+
 export default async function MoviePageId({ params }) {
-  function spoilerCheck(item) {
-    console.log("proofItsrunning");
-    if (item.has_spoiler === true) {
-      return <> accordion</>;
-    } else {
-      return <PageReviewCard item={item} />;
-    }
+
+function spoilerCheck(item) {
+  if (item.spoiler === true) {
+    return (
+      <>
+        {" "}
+        <Text>
+          <Strong></Strong>
+        </Text>
+        <br></br>{" "}
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item value="item-1">
+            <Card>
+              {" "}
+              <Accordion.Header>
+                {item.username}
+                <br></br>
+                <Accordion.Trigger className="AccordionTrigger">
+                  Warning Spoilers{" "}
+                  <ChevronDownIcon className="AccordionChevron" aria-hidden />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content>
+                <Text>{item.review}</Text>
+              </Accordion.Content>{" "}
+            </Card>
+          </Accordion.Item>
+        </Accordion.Root>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Card>
+          <Text>
+            <Strong>{item.username}</Strong>
+          </Text>
+          <br />
+          <Text>{item.review}</Text>
+        </Card>
+      </>
+    );
+
+
   }
 
   async function addReview(formData) {
@@ -56,10 +98,16 @@ export default async function MoviePageId({ params }) {
     const review = formData.get("review");
     const show_id = formData.get("show_id");
 
+
+    
+
+    const spoiler = formData.get("spoiler");
+
     const db = dbConnect();
     await db.query(
-      `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
-      [user_id, review, show_id]
+      `INSERT INTO s_reviews (user_id, review, show_id, spoiler) VALUES ($1,$2, $3, $4)`,
+      [user_id, review, show_id, spoiler]
+
     );
     await db.query(
       `UPDATE m_users
@@ -129,16 +177,16 @@ WHERE clerk_id = $1`,
   if (data.backdrop_path) {
     Mainposter = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
   } else {
-    Mainposter = "/Main-Fallback-image.jpg";
+    Mainposter = "/backdrop-fallback.jpg";
     //! ^ Here please
   }
 
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-      <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 ">
-        {/* <ShowTvGenresMenu title="Categories" /> */}
-      </div>
+      {/* <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 "> */}
+      {/* <ShowTvGenresMenu title="Categories" /> */}
+      {/* </div> */}
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
@@ -213,21 +261,14 @@ WHERE clerk_id = $1`,
           </Box>
           <Box>
             <br></br>
-            <Heading>{data.title}</Heading>
+            <Heading>{data.name}</Heading>
             <br></br>
             <Text>{data.overview}</Text>
             <br></br>
             <br></br>
           </Box>
-
-          <Image
-            src={Backposter}
-            width={500}
-            height={500}
-            alt={`Poster for the ${data.title} film.`}
-          />
           <br></br>
-          <Heading>Similar </Heading>
+          <Heading>Similar TV shows</Heading>
           <div>
             <BasicCarousel dataArray={similarData.results} format="tv" />
           </div>
@@ -261,6 +302,14 @@ WHERE clerk_id = $1`,
               rows="3"
               required
             />
+            <label htmlFor="spoiler">Includes Spoiler?</label>
+            <input
+              className="h-5 w-5"
+              name="spoiler"
+              id="spoiler"
+              type="checkbox"
+            />
+            <br></br>
             <button type="submit">
               {" "}
               <ToastDemo />
@@ -268,6 +317,7 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
+
             {/* {reviewData.map((item) => (
               <div key={item.id}>
                 <Card>
@@ -289,8 +339,11 @@ WHERE clerk_id = $1`,
                     <Text>
                       {/* <TitleData TitleData={item.movie_id} /> */}
                       <Strong>{item.username}</Strong>
+              <div key={item.id}>{spoilerCheck(item)}
+                      
                     </Text>
                     <Text>{item.review}</Text>
+                    </div>
                   </Flex>
                 </Flex>
 
@@ -323,7 +376,8 @@ WHERE clerk_id = $1`,
                   </div>
                 </div>
               </Card>
-            ))}
+
+           
           </Flex>
         </Flex>
       </main>

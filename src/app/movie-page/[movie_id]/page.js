@@ -1,6 +1,8 @@
 const apiKey = process.env.API_KEY;
 import Image from "next/image";
 import BasicCarousel from "@/components/BasicCarousel";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { PageReview } from "@/components/PageReview";
 import {
   Button,
@@ -37,6 +39,50 @@ export async function generateMetadata({ params }) {
     title: `${data.title} Movie`,
     description: `${data.title}: ${data.overview}`,
   };
+}
+
+function spoilerCheck(item) {
+  if (item.spoiler === true) {
+    return (
+      <>
+        {" "}
+        <Text>
+          <Strong></Strong>
+        </Text>
+        <br></br>{" "}
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item value="item-1">
+            <Card>
+              {" "}
+              <Accordion.Header>
+                {item.username}
+                <br></br>
+                <Accordion.Trigger className="AccordionTrigger">
+                  Warning Spoilers{" "}
+                  <ChevronDownIcon className="AccordionChevron" aria-hidden />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content>
+                <Text>{item.review}</Text>
+              </Accordion.Content>{" "}
+            </Card>
+          </Accordion.Item>
+        </Accordion.Root>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Card>
+          <Text>
+            <Strong>{item.username}</Strong>
+          </Text>
+          <br />
+          <Text>{item.review}</Text>
+        </Card>
+      </>
+    );
+  }
 }
 
 export default async function MoviePageId({ params }) {
@@ -244,6 +290,7 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
+
             {/* {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
@@ -263,8 +310,11 @@ WHERE clerk_id = $1`,
                     <Text>
                       {/* <TitleData TitleData={item.movie_id} /> */}
                       <Strong>{item.username}</Strong>
+                     <div key={item.id}>{spoilerCheck(item)}
+
                     </Text>
                     <Text>{item.review}</Text>
+</div>
                   </Flex>
                 </Flex>
 
@@ -297,7 +347,8 @@ WHERE clerk_id = $1`,
                   </div>
                 </div>
               </Card>
-            ))}
+
+           
           </Flex>
         </Flex>
       </main>

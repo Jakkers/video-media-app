@@ -15,10 +15,8 @@ export async function DisplayTvGenres() {
         <div key={index} id={genresData[index].name}>
           {/* //! ^ this helps navigation with catergories menu  */}
           <br></br>
-          <br></br>
+
           {/* //? These are for styling, wil swap out later */}
-          <br></br>
-          <br></br>
 
           <Heading>{genresData[index].name}</Heading>
           {/* //!^need this form as fetch function strips out name */}
