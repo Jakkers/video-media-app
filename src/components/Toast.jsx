@@ -45,9 +45,7 @@ const ToastDemo = () => {
           className="ToastAction"
           asChild
           altText="Goto schedule to undo"
-        >
-          {/* <button className="Button small green">Undo</button> */}
-        </Toast.Action>
+        ></Toast.Action>
       </Toast.Root>
       <Toast.Viewport className="ToastViewport" />
     </Toast.Provider>

@@ -11,7 +11,6 @@ import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 
 import SearchBar from "@/components/SearchBar";
 
-//importing theme
 import {
   Button,
   Flex,
@@ -19,7 +18,7 @@ import {
   Card,
   Container,
   DropdownMenu,
-} from "@radix-ui/themes";
+} from "@radix-ui/themes"; //<--import theme
 import Link from "next/link";
 
 export default function Header() {
@@ -45,7 +44,7 @@ export default function Header() {
                 <SignInButton>Sign In</SignInButton>
               </Button>
             </SignedOut>
-            {/* showing genres if needed */}
+
             {/* <ShowGenresMenu /> */}
             {/* Adding a search bar */}
             <SearchBar />

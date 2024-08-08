@@ -1,6 +1,6 @@
 const apiKey = process.env.API_KEY;
 
-import { Container, Heading } from "@radix-ui/themes";
+import { Heading } from "@radix-ui/themes";
 import BasicCarousel from "./BasicCarousel";
 import { getTvGenres } from "../utils/gernesFetchTv";
 import { fetchShowsForAllGenres } from "@/utils/fetchShowsByGenre";
@@ -13,13 +13,11 @@ export async function DisplayTvGenres() {
     <>
       {dataArray.map((item, index) => (
         <div key={index} id={genresData[index].name}>
-          {/* //! ^ this helps navigation with catergories menu  */}
+          {/* //? ^ this helps navigation with catergories menu as fetch function strips out name */}
           <br></br>
-
-          {/* //? These are for styling, wil swap out later */}
-
+          <br></br>
           <Heading>{genresData[index].name}</Heading>
-          {/* //!^need this form as fetch function strips out name */}
+          {/* //?^need this included as fetch function strips out name*/}
           <BasicCarousel dataArray={item} format="tv" />
         </div>
       ))}

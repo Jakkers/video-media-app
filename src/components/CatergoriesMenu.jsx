@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { dbConnect } from "@/utils/dbConnection";
 import { Button, DropdownMenu } from "@radix-ui/themes";
 
 const apiKey = process.env.API_KEY;

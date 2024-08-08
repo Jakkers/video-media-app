@@ -12,15 +12,6 @@
   flex-shrink: 0;
   border-radius: 15px;
 }
-/* 
-#imgs3 {
-  width: 45vw;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  flex-shrink: 0;
-} */
 
 #show_info {
   max-width: 680px;
@@ -30,7 +21,7 @@
 #show_box {
   display: flex;
   flex-direction: row;
-  /* padding: 20px; */
+
   flex-shrink: 0;
 }
 
@@ -38,7 +29,7 @@
   #show_box {
     display: flex;
     flex-direction: column;
-    /* padding: 20px; */
+
     flex-shrink: 0;
   }
   #show_info {

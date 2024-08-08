@@ -21,7 +21,6 @@ export default function ShowCase({ dataArray, format }) {
         {dataArray.map((item) => (
           <Theme key={item.id} id={Style.show_box}>
             <Link href={`/${format}-page/${item.id}`}>
-              {/* <section id={Style.show_box}> */}
               <Image
                 src={isPresent(item)}
                 alt={`Poster for the ${item.original_title} film.`}
@@ -48,34 +47,9 @@ export default function ShowCase({ dataArray, format }) {
                 <Button> Watch trailer</Button>
               </Link>
             </div>
-            {/* </section> */}
-            {/* <
-              //!might want to put this data into a div and overlay on image? maybe just on hover?
-               */}
           </Theme>
         ))}
       </div>
     </Container>
   );
 }
-
-// <div className="relative text-center">
-// <div className="w-full absolute top-[50%] left-0 text-center mt-10">
-//   <h1 className="z-10 text-6xl font-bold text-center ">
-//     {data.title}
-//   </h1>
-//   <Text className="z-10 text-center ">{data.tagline}</Text>
-//   <br></br>
-//   <br></br>
-//   <Button>
-//     <Link href={data.homepage}>View film</Link>
-//   </Button>
-// </div>
-// <Image
-//   className="opacity-40 relative -z-10"
-//   src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
-//   width={1200}
-//   height={1000}
-//   alt={`backdrop for the ${data.original_title} film.`}
-// />
-// </div>

@@ -17,12 +17,6 @@ export default async function SearchBar() {
       );
       const movieResults = (await movieResponse.json()).results;
       const tvResults = (await tvResponse.json()).results;
-      //   movieResults, tvResults;
-      //   setResults({
-      //     movies: movieResults,
-      //     tvShows: tvResults,
-      //   });
-      //   return tvResults, movieResults;
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -46,13 +40,6 @@ export default async function SearchBar() {
         <button aria-label="Search icon, press to search">
           <FaSearch />
         </button>
-        {/* 
-          <label for="browser">Search films</label>
-          <input list="search-queries" name="browser" id="browser" />
-
-          <datalist id="search-queries">
-            <option value={data.title} />
-          </datalist> */}
       </form>
     </>
   );
