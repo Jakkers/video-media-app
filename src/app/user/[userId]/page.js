@@ -82,7 +82,7 @@ export default async function UserIdPage({ params }) {
     )
   ).rows;
 
-  const reviewBadge = usersData[0].reviews_left;
+  const reviewBadge = usersData[0]?.reviews_left;
 
   if (usersData.length > 0) {
     return (
