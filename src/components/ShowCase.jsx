@@ -25,14 +25,15 @@ export default function ShowCase({ dataArray, format }) {
               id={Style.show_info}
               className="w-[70vw] xl:w-[50vw] text-center mr-[20px]"
             >
-              <h1 className="z-10 text-3xl font-bold md:text-5xl">
-                {item.name}
+              <h1 className="z-10 text-3xl font-bold md:text-5xl pb-2 md:pb-4">
+                {item.title || item.name}
               </h1>
-              <br></br>
-              <p>{`Average Score: ${item.vote_average} / 10`}</p>
-              <br></br>
-              <h3 id={Style.item_overview}>{item.overview}</h3>
-              <br></br>
+
+              <p className="pb-3 md:pb-4">{`Average Score: ${item.vote_average} / 10`}</p>
+
+              <h3 className="pb-2 md:pb-5" id={Style.item_overview}>
+                {item.overview}
+              </h3>
 
               <Link href={`/${format}-page/${item.id}`}>
                 <Button> Watch trailer</Button>

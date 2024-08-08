@@ -97,7 +97,7 @@ export default async function MoviePageId({ params }) {
     )
   ).rows;
 
-  //image variable
+  //fallback poster image variable
   const fallBackPoster = "/Fallback-image.jpg";
 
   return (
@@ -108,7 +108,7 @@ export default async function MoviePageId({ params }) {
       </div>
       <main>
         <div className="relative text-center">
-          <div className="w-full absolute top-[0] sm:top-[50%] left-0 text-center mt-10">
+          <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
             <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
               {data.name}
             </h1>
