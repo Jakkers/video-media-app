@@ -10,7 +10,7 @@ import { auth } from "@clerk/nextjs/server";
 import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 
 import SearchBar from "@/components/SearchBar";
-
+import Image from "next/image";
 import {
   Button,
   Flex,
@@ -30,7 +30,13 @@ export default function Header() {
         <Card>
           <Flex gap="2" direction="row" justify="between" wrap="wrap">
             <Link href="/">
-              <Heading>Eggscape</Heading>
+              <Image
+                className="pt-1"
+                src={"/eggscape-logo.png"}
+                alt="logo"
+                width={150}
+                height={25}
+              />
             </Link>
             {/* Signed in buttons  */}
             <SignedIn>

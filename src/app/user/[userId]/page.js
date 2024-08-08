@@ -139,7 +139,7 @@ export default async function UserIdPage({ params }) {
               >
                 <GiCosmicEgg />
               </Text>
-              <Text size={"2"}>you&apos;ve Got Our Attention</Text>
+              <Text size={"2"}>You&apos;ve Got Our Attention</Text>
             </Card>
           ) : null}
           {reviewBadge >= 20 ? (
