@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Button } from "@radix-ui/themes";
 import { AlertDialog, Flex } from "@radix-ui/themes";
 
-export default function deleteButton({ userId, review, params }) {
+export default function deleteButton({ userId, review, params, user_id }) {
   async function handleSubmit() {
     "use server";
     const db = dbConnect();
@@ -21,44 +21,47 @@ WHERE clerk_id = $1`,
     revalidatePath(`/movie-page/${params}`);
     redirect(`/movie-page/${params}`);
   }
+  if (userId === user_id) {
+    return (
+      <>
+        {/* Call out box for delete  */}
+        <AlertDialog.Root>
+          <AlertDialog.Trigger>
+            <Button variant="solid" color="red" size={"1"}>
+              <MdOutlineDeleteOutline />
+            </Button>
+          </AlertDialog.Trigger>
+          <AlertDialog.Content maxWidth="450px">
+            <AlertDialog.Title>Delete review</AlertDialog.Title>
+            <AlertDialog.Description size="2">
+              Are you sure? This review will be deleted permanently.
+            </AlertDialog.Description>
 
-  return (
-    <>
-      {/* Call out box for delete  */}
-      <AlertDialog.Root>
-        <AlertDialog.Trigger>
-          <Button variant="solid" color="red" size={"1"}>
-            <MdOutlineDeleteOutline />
-          </Button>
-        </AlertDialog.Trigger>
-        <AlertDialog.Content maxWidth="450px">
-          <AlertDialog.Title>Delete review</AlertDialog.Title>
-          <AlertDialog.Description size="2">
-            Are you sure? This review will be deleted permanently.
-          </AlertDialog.Description>
+            <Flex gap="3" mt="4" justify="end">
+              <AlertDialog.Cancel>
+                <Button variant="soft" color="gray">
+                  Cancel
+                </Button>
+              </AlertDialog.Cancel>
+              <AlertDialog.Action>
+                <Button variant="solid" color="red">
+                  <form action={handleSubmit}>
+                    <Button type="submit" size={"1"}>
+                      {" "}
+                      <MdOutlineDeleteOutline />
+                    </Button>
+                  </form>
+                </Button>
+              </AlertDialog.Action>
+            </Flex>
+          </AlertDialog.Content>
+        </AlertDialog.Root>
 
-          <Flex gap="3" mt="4" justify="end">
-            <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
-                Cancel
-              </Button>
-            </AlertDialog.Cancel>
-            <AlertDialog.Action>
-              <Button variant="solid" color="red">
-                <form action={handleSubmit}>
-                  <Button type="submit" size={"1"}>
-                    {" "}
-                    <MdOutlineDeleteOutline />
-                  </Button>
-                </form>
-              </Button>
-            </AlertDialog.Action>
-          </Flex>
-        </AlertDialog.Content>
-      </AlertDialog.Root>
-
-      {/* </Button>
+        {/* </Button>
       </form> */}
-    </>
-  );
+      </>
+    );
+  } else {
+    return <></>;
+  }
 }
