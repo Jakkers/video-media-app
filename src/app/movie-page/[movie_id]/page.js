@@ -52,20 +52,19 @@ function spoilerCheck(item) {
         <br></br>{" "}
         <Accordion.Root type="single" collapsible>
           <Accordion.Item value="item-1">
-            <Card>
-              {" "}
-              <Accordion.Header>
-                {item.username}
-                <br></br>
-                <Accordion.Trigger className="AccordionTrigger">
-                  Warning Spoilers{" "}
-                  <ChevronDownIcon className="AccordionChevron" aria-hidden />
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content>
-                <Text>{item.review}</Text>
-              </Accordion.Content>{" "}
-            </Card>
+            {/* <Card> */}{" "}
+            <Accordion.Header>
+              {item.username}
+              <br></br>
+              <Accordion.Trigger className="AccordionTrigger">
+                Warning Spoilers{" "}
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content>
+              <Text>{item.review}</Text>
+            </Accordion.Content>{" "}
+            {/* </Card> */}
           </Accordion.Item>
         </Accordion.Root>
       </>
@@ -73,13 +72,13 @@ function spoilerCheck(item) {
   } else {
     return (
       <>
-        <Card>
-          <Text>
-            <Strong>{item.username}</Strong>
-          </Text>
-          <br />
-          <Text>{item.review}</Text>
-        </Card>
+        {/* <Card> */}
+        <Text>
+          <Strong>{item.username}</Strong>
+        </Text>
+        <br />
+        <Text>{item.review}</Text>
+        {/* </Card> */}
       </>
     );
   }
@@ -290,7 +289,6 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-
             {/* {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
@@ -307,14 +305,13 @@ WHERE clerk_id = $1`,
                   <ImageData ImageData={item.movie_id} />
                 </div> */}
                   <Flex direction={"column"}>
-                    <Text>
-                      {/* <TitleData TitleData={item.movie_id} /> */}
-                      <Strong>{item.username}</Strong>
-                     <div key={item.id}>{spoilerCheck(item)}
+                    <Text>{/* <TitleData TitleData={item.movie_id} /> */}</Text>
+                    {/* <Strong>{item.username}</Strong> */}
+                    <div key={item.id}>
+                      {spoilerCheck(item)}
 
-                    </Text>
-                    <Text>{item.review}</Text>
-</div>
+                      {/* <Text>{item.review}</Text> */}
+                    </div>
                   </Flex>
                 </Flex>
 
@@ -347,8 +344,7 @@ WHERE clerk_id = $1`,
                   </div>
                 </div>
               </Card>
-
-           
+            ))}
           </Flex>
         </Flex>
       </main>
