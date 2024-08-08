@@ -3,6 +3,7 @@
   flex-direction: row;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  padding-bottom: 1rem;
 }
 
 #imgs2 {
