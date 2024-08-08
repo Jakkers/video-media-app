@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS m_reviews
  FOREIGN KEY ("user_id") REFERENCES m_users ("clerk_id")
 );
 
-CREATE TABLE IF NOT EXISTS m_shows
+CREATE TABLE IF NOT EXISTS s_reviews
 (
   id SERIAL PRIMARY KEY,
   user_id TEXT,
