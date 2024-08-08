@@ -141,7 +141,7 @@ WHERE clerk_id = $1`,
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.likes, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id} ORDER BY m_reviews.id ASC`
+      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.spoiler, m_reviews.likes, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id} ORDER BY m_reviews.id ASC`
     )
   ).rows;
 

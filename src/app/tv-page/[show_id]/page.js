@@ -144,7 +144,7 @@ WHERE clerk_id = $1`,
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
+      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.spoiler, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
     )
   ).rows;
 
@@ -168,7 +168,6 @@ WHERE clerk_id = $1`,
     Mainposter = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
   } else {
     Mainposter = "/backdrop-fallback.jpg";
-    //! ^ Here please
   }
 
   return (
