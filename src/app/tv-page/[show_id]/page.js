@@ -42,11 +42,6 @@ export async function generateMetadata({ params }) {
   };
 }
 
-
-  
-
-export default async function MoviePageId({ params }) {
-
 function spoilerCheck(item) {
   if (item.spoiler === true) {
     return (
@@ -58,20 +53,19 @@ function spoilerCheck(item) {
         <br></br>{" "}
         <Accordion.Root type="single" collapsible>
           <Accordion.Item value="item-1">
-            <Card>
-              {" "}
-              <Accordion.Header>
-                {item.username}
-                <br></br>
-                <Accordion.Trigger className="AccordionTrigger">
-                  Warning Spoilers{" "}
-                  <ChevronDownIcon className="AccordionChevron" aria-hidden />
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content>
-                <Text>{item.review}</Text>
-              </Accordion.Content>{" "}
-            </Card>
+            {/* <Card> */}{" "}
+            <Accordion.Header>
+              {item.username}
+              <br></br>
+              <Accordion.Trigger className="AccordionTrigger">
+                Warning Spoilers{" "}
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content>
+              <Text>{item.review}</Text>
+            </Accordion.Content>{" "}
+            {/* </Card> */}
           </Accordion.Item>
         </Accordion.Root>
       </>
@@ -79,27 +73,24 @@ function spoilerCheck(item) {
   } else {
     return (
       <>
-        <Card>
-          <Text>
-            <Strong>{item.username}</Strong>
-          </Text>
-          <br />
-          <Text>{item.review}</Text>
-        </Card>
+        {/* <Card> */}
+        <Text>
+          <Strong>{item.username}</Strong>
+        </Text>
+        <br />
+        <Text>{item.review}</Text>
+        {/* </Card> */}
       </>
     );
-
-
   }
+}
 
+export default async function MoviePageId({ params }) {
   async function addReview(formData) {
     "use server";
     const user_id = formData.get("user_id");
     const review = formData.get("review");
     const show_id = formData.get("show_id");
-
-
-    
 
     const spoiler = formData.get("spoiler");
 
@@ -107,7 +98,6 @@ function spoilerCheck(item) {
     await db.query(
       `INSERT INTO s_reviews (user_id, review, show_id, spoiler) VALUES ($1,$2, $3, $4)`,
       [user_id, review, show_id, spoiler]
-
     );
     await db.query(
       `UPDATE m_users
@@ -317,7 +307,6 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-
             {/* {reviewData.map((item) => (
               <div key={item.id}>
                 <Card>
@@ -338,11 +327,12 @@ WHERE clerk_id = $1`,
                   <Flex direction={"column"}>
                     <Text>
                       {/* <TitleData TitleData={item.movie_id} /> */}
-                      <Strong>{item.username}</Strong>
-              <div key={item.id}>{spoilerCheck(item)}
-                      
+                      {/* <Strong>{item.username}</Strong> */}
                     </Text>
-                    <Text>{item.review}</Text>
+                    <div key={item.id}>
+                      {spoilerCheck(item)}
+
+                      {/* <Text>{item.review}</Text> */}
                     </div>
                   </Flex>
                 </Flex>
@@ -376,8 +366,7 @@ WHERE clerk_id = $1`,
                   </div>
                 </div>
               </Card>
-
-           
+            ))}
           </Flex>
         </Flex>
       </main>
