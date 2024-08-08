@@ -163,6 +163,7 @@ export default async function UserIdPage({ params }) {
                     <TitleData TitleData={item.movie_id} />
                   </Text>
                   <Text>{item.review}</Text>
+
                   <div className="flex flex-row">
                     <LikeBtnM
                       id={item.id}
@@ -178,7 +179,12 @@ export default async function UserIdPage({ params }) {
                       id={item.id}
                     />
                   </div>
-                  <DeleteBtnM review={item.review} userId={item.user_id} />
+                  
+
+                  <div className="w-6 pt-2">
+                    <DeleteBtnM review={item.review} userId={item.user_id} />
+                  </div>
+
                 </div>
               </Flex>
             </Card>
@@ -202,7 +208,9 @@ export default async function UserIdPage({ params }) {
                     <ShowTitleData ShowTitleData={item.show_id} />
                   </Text>
                   <Text>{item.review}</Text>
-                  <DeleteBtnS review={item.review} userId={item.user_id} />
+                  <div className="w-6 pt-2">
+                    <DeleteBtnS review={item.review} userId={item.user_id} />
+                  </div>
                 </div>
               </Flex>
             </Card>
