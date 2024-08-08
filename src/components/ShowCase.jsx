@@ -6,6 +6,15 @@ import Style from "./showCase.module.css";
 export default function ShowCase({ dataArray, format }) {
   const base_url = `https://image.tmdb.org/t/p/w500`;
 
+  function isPresent(item) {
+    let Backposter = "/Fallback-image.jpg";
+    if (item.poster_path) {
+      return `${base_url}${item.poster_path}`;
+    } else {
+      return Backposter;
+    }
+  }
+
   return (
     <Container size="4">
       <div id={Style.main_box2}>
@@ -14,7 +23,7 @@ export default function ShowCase({ dataArray, format }) {
             <Link href={`/${format}-page/${item.id}`}>
               {/* <section id={Style.show_box}> */}
               <Image
-                src={`${base_url}${item.poster_path}`}
+                src={isPresent(item)}
                 alt={`Poster for the ${item.original_title} film.`}
                 width={400}
                 height={400}

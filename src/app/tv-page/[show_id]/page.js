@@ -13,7 +13,7 @@ import {
   Strong,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
-import { PageReview } from "@/components/PageReview";
+import { PageReviewCard } from "@/components/PageReview";
 import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -34,6 +34,15 @@ export async function generateMetadata({ params }) {
     title: `${data.name} TV show`,
     description: `${data.name}: ${data.overview}`,
   };
+}
+
+function spoilerCheck(item) {
+  console.log("proofItsrunning");
+  if (item.has_spoiler === true) {
+    return <> accordion</>;
+  } else {
+    return <PageReviewCard item={item} />;
+  }
 }
 
 async function addReview(formData) {
@@ -97,7 +106,6 @@ export default async function MoviePageId({ params }) {
     )
   ).rows;
 
-
   //image variable
   let Backposter;
   if (data.poster_path) {
@@ -113,7 +121,6 @@ export default async function MoviePageId({ params }) {
     Mainposter = "/Main-Fallback-image.jpg";
     //! ^ Here please
   }
-
 
   return (
     <Container className="ml-2 mr-2" size="4">
@@ -252,7 +259,13 @@ export default async function MoviePageId({ params }) {
           <Flex direction={"column-reverse"} gap={"3"}>
             {reviewData.map((item) => (
               <div key={item.id}>
-                <PageReview item={item} />
+                <Card>
+                  <Text>
+                    <Strong>{item.username}</Strong>
+                  </Text>
+                  <br />
+                  <Text>{item.review}</Text>
+                </Card>
               </div>
             ))}
           </Flex>
