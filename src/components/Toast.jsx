@@ -29,7 +29,7 @@ const ToastDemo = () => {
 
       <Toast.Root className="ToastRoot" open={open} onOpenChange={setOpen}>
         <Toast.Title className="ToastTitle">
-          Acheivement unlocked: Getting Started
+          Achievement unlocked: Getting Started
         </Toast.Title>
         <Toast.Description asChild>
           <time
