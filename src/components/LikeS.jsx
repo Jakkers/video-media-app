@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Button } from "@radix-ui/themes";
 import { SlLike } from "react-icons/sl";
 
-export default function LikeButtonS({ id, likes, userId }) {
+export default function LikeButtonS({ id, likes, revId }) {
   async function handleSubmit() {
     "use server";
     const db = dbConnect();
@@ -14,8 +14,8 @@ SET likes = ${likes} +1
 WHERE id = $1`,
       [id]
     );
-    revalidatePath(`/user/${userId}`);
-    redirect(`/user/${userId}`);
+    revalidatePath(`/tv-page/${revId}`);
+    redirect(`/tv-page/${revId}`);
   }
 
   return (

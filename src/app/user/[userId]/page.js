@@ -82,11 +82,17 @@ export default async function UserIdPage({ params }) {
   ).rows;
 
   const reviewData = (
-    await db.query(`SELECT * FROM m_reviews WHERE user_id = $1`, [userId])
+    await db.query(
+      `SELECT * FROM m_reviews WHERE user_id = $1 ORDER BY id ASC`,
+      [userId]
+    )
   ).rows;
 
   const showData = (
-    await db.query(`SELECT * FROM s_reviews WHERE user_id = $1`, [userId])
+    await db.query(
+      `SELECT * FROM s_reviews WHERE user_id = $1 ORDER BY id ASC`,
+      [userId]
+    )
   ).rows;
 
   const reviewBadge = usersData[0].reviews_left;
@@ -219,7 +225,7 @@ export default async function UserIdPage({ params }) {
                     <ShowTitleData ShowTitleData={item.show_id} />
                   </Text>
                   <Text>{item.review}</Text>
-                  <div className="flex flex-row">
+                  {/* <div className="flex flex-row">
                     <LiBtnS
                       id={item.id}
                       likes={item.likes}
@@ -236,7 +242,7 @@ export default async function UserIdPage({ params }) {
                   </div>
                   <div className="w-6 pt-2">
                     <DeleteBtnS review={item.review} userId={item.user_id} />
-                  </div>
+                  </div> */}
                 </div>
               </Flex>
             </Card>

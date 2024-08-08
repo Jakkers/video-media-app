@@ -13,6 +13,7 @@ import {
   Box,
   Container,
   Strong,
+  Separator,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
 import { PageReviewCard } from "@/components/PageReview";
@@ -22,6 +23,9 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
 import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
+import LiBtnS from "@/components/LikeS";
+import DeleteBtnS from "@/components/DeleteReviewS";
+import DisBtnS from "@/components/DislikeS";
 //Metadata
 export async function generateMetadata({ params }) {
   const response = await fetch(
@@ -38,7 +42,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
-c
+
+  
+
+export default async function MoviePageId({ params }) {
+
 function spoilerCheck(item) {
   if (item.spoiler === true) {
     return (
@@ -81,6 +89,7 @@ function spoilerCheck(item) {
       </>
     );
 
+
   }
 
   async function addReview(formData) {
@@ -88,12 +97,17 @@ function spoilerCheck(item) {
     const user_id = formData.get("user_id");
     const review = formData.get("review");
     const show_id = formData.get("show_id");
+
+
+    
+
     const spoiler = formData.get("spoiler");
 
     const db = dbConnect();
     await db.query(
       `INSERT INTO s_reviews (user_id, review, show_id, spoiler) VALUES ($1,$2, $3, $4)`,
       [user_id, review, show_id, spoiler]
+
     );
     await db.query(
       `UPDATE m_users
@@ -140,7 +154,14 @@ WHERE clerk_id = $1`,
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id}`
+      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
+    )
+  ).rows;
+
+  const reviewDataS = (
+    await db.query(
+      `SELECT * FROM m_reviews WHERE user_id = $1 ORDER BY id ASC`,
+      [userId]
     )
   ).rows;
 
@@ -296,9 +317,67 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
+
+            {/* {reviewData.map((item) => (
+              <div key={item.id}>
+                <Card>
+                  <Text>
+                    <Strong>{item.username}</Strong>
+                  </Text>
+                  <br />
+                  <Text>{item.review}</Text>
+                </Card>
+              </div>
+            ))} */}
             {reviewData.map((item) => (
-              <div key={item.id}>{spoilerCheck(item)}</div>
-            ))}
+              <Card key={item.id}>
+                <Flex direction={"row"} gap={"3"} className="mb-2">
+                  {/* <div className="flex flex-shrink-0">
+                  <ImageData ImageData={item.movie_id} />
+                </div> */}
+                  <Flex direction={"column"}>
+                    <Text>
+                      {/* <TitleData TitleData={item.movie_id} /> */}
+                      <Strong>{item.username}</Strong>
+              <div key={item.id}>{spoilerCheck(item)}
+                      
+                    </Text>
+                    <Text>{item.review}</Text>
+                    </div>
+                  </Flex>
+                </Flex>
+
+                <Separator size={"4"} />
+
+                <div className="flex flex-row justify-between mt-2">
+                  {/* <div className="flex flex-row">
+                    <LiBtnS
+                      id={item.id}
+                      likes={item.likes}
+                      // userId={item.user_id}
+                      revId={item.show_id}
+                    />
+                    <br></br>
+                    <Text className=" ml-2 mr-2">{item.likes}</Text>
+                    <br></br>
+                    <DisBtnS
+                      // userId={item.user_id}
+                      likes={item.likes}
+                      id={item.id}
+                      revId={item.id}
+                    />
+                  </div> */}
+                  <div className="ml-4">
+                    <DeleteBtnS
+                      review={item.review}
+                      userId={item.user_id}
+                      del={item.show_id}
+                    />
+                  </div>
+                </div>
+              </Card>
+
+           
           </Flex>
         </Flex>
       </main>
