@@ -144,7 +144,7 @@ WHERE clerk_id = $1`,
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.spoiler, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
+      `SELECT s_reviews.id, s_reviews.user_id, s_reviews.review, s_reviews.spoiler, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
     )
   ).rows;
 
@@ -339,12 +339,12 @@ WHERE clerk_id = $1`,
                 <Separator size={"4"} />
 
                 <div className="flex flex-row justify-between mt-2">
-                  {/* <div className="flex flex-row">
+                  <div className="flex flex-row">
                     <LiBtnS
                       id={item.id}
                       likes={item.likes}
                       // userId={item.user_id}
-                      revId={item.show_id}
+                      params={params.show_id}
                     />
                     <br></br>
                     <Text className=" ml-2 mr-2">{item.likes}</Text>
@@ -353,9 +353,9 @@ WHERE clerk_id = $1`,
                       // userId={item.user_id}
                       likes={item.likes}
                       id={item.id}
-                      revId={item.id}
+                      params={params.show_id}
                     />
-                  </div> */}
+                  </div>
                   <div className="ml-4">
                     <DeleteBtnS
                       review={item.review}
