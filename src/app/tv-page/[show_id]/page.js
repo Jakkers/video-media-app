@@ -66,13 +66,11 @@ function spoilerCheck(item) {
   } else {
     return (
       <>
-        {/* <Card> */}
         <Text>
           <Strong>{item.username}</Strong>
         </Text>
         <br />
         <Text>{item.review}</Text>
-        {/* </Card> */}
       </>
     );
   }
@@ -103,8 +101,6 @@ WHERE clerk_id = $1`,
   }
 
   const response = await fetch(
-    // `https://api.themoviedb.org/3/movie/${params.show_id}?api_key=${apiKey}&language=en-US`
-
     `https://api.themoviedb.org/3/tv/${params.show_id}?api_key=${apiKey}&language=en-US&page=1`
   );
   //We had to stringify the data, so we are parsing it back to json
@@ -132,6 +128,23 @@ WHERE clerk_id = $1`,
             `,
       [userId]
     );
+  }
+
+  // conditionaly rendering the live and dislike buttons
+  function likeCheck(item) {
+    if (item.user_id != userId) {
+      return (
+        <div className="flex flex-row">
+          <LiBtnS id={item.id} likes={item.likes} params={params.show_id} />
+          <br></br>
+          <Text className=" ml-2 mr-2">{item.likes}</Text>
+          <br></br>
+          <DisBtnS likes={item.likes} id={item.id} params={params.show_id} />
+        </div>
+      );
+    } else {
+      return <></>;
+    }
   }
 
   const db = dbConnect();
@@ -255,7 +268,7 @@ WHERE clerk_id = $1`,
               defaultValue={params.show_id}
               hidden
             />
-            {/* <input name="reviews_left" defaultValue={1} hidden /> */}
+
             <label htmlFor="review" hidden>
               Review
             </label>
@@ -296,21 +309,8 @@ WHERE clerk_id = $1`,
                 <Separator size={"4"} />
 
                 <div className="flex flex-row justify-between mt-2">
-                  <div className="flex flex-row">
-                    <LiBtnS
-                      id={item.id}
-                      likes={item.likes}
-                      params={params.show_id}
-                    />
-                    <br></br>
-                    <Text className=" ml-2 mr-2">{item.likes}</Text>
-                    <br></br>
-                    <DisBtnS
-                      likes={item.likes}
-                      id={item.id}
-                      params={params.show_id}
-                    />
-                  </div>
+                  {/* condittionally rendering like buttons  */}
+                  <div key={item.id}>{likeCheck(item)}</div>
                   <div className="ml-4">
                     <DeleteBtnS
                       review={item.review}

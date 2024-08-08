@@ -43,11 +43,6 @@ function spoilerCheck(item) {
   if (item.spoiler === true) {
     return (
       <>
-        {" "}
-        <Text>
-          <Strong></Strong>
-        </Text>
-        <br></br>{" "}
         <Accordion.Root type="single" collapsible>
           <Accordion.Item value="item-1">
             {/* <Card> */}{" "}
@@ -135,6 +130,26 @@ WHERE clerk_id = $1`,
     );
     revalidatePath(`/movie-page/${params.movie_id}`);
     redirect(`/movie-page/${params.movie_id}`);
+  }
+  // conditionaly rendering the live and dislike buttons
+  function likeCheck(item) {
+    if (item.user_id != userId) {
+      return (
+        <div className="flex flex-row">
+          <LikeBtnM id={item.id} likes={item.likes} params={params.movie_id} />
+          <br></br>
+          <Text className=" ml-2 mr-2">{item.likes}</Text>
+          <br></br>
+          <DislikeBtnM
+            likes={item.likes}
+            id={item.id}
+            params={params.movie_id}
+          />
+        </div>
+      );
+    } else {
+      return <></>;
+    }
   }
 
   const db = dbConnect();
@@ -282,21 +297,9 @@ WHERE clerk_id = $1`,
                 <Separator size={"4"} />
 
                 <div className="flex flex-row justify-between mt-2">
-                  <div className="flex flex-row">
-                    <LikeBtnM
-                      id={item.id}
-                      likes={item.likes}
-                      params={params.movie_id}
-                    />
-                    <br></br>
-                    <Text className=" ml-2 mr-2">{item.likes}</Text>
-                    <br></br>
-                    <DislikeBtnM
-                      likes={item.likes}
-                      id={item.id}
-                      params={params.movie_id}
-                    />
-                  </div>
+                  {/* condittionally rendering like buttons  */}
+                  <div key={item.id}>{likeCheck(item)}</div>
+
                   <div className="ml-4">
                     <DeleteBtnM
                       review={item.review}
