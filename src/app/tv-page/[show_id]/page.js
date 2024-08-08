@@ -11,6 +11,7 @@ import {
   Box,
   Container,
   Strong,
+  Separator,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
 import { PageReviewCard } from "@/components/PageReview";
@@ -20,6 +21,9 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
 import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
+import LiBtnS from "@/components/LikeS";
+import DeleteBtnS from "@/components/DeleteReviewS";
+import DisBtnS from "@/components/DislikeS";
 //Metadata
 export async function generateMetadata({ params }) {
   const response = await fetch(
@@ -36,37 +40,37 @@ export async function generateMetadata({ params }) {
   };
 }
 
-function spoilerCheck(item) {
-  console.log("proofItsrunning");
-  if (item.has_spoiler === true) {
-    return <> accordion</>;
-  } else {
-    return <PageReviewCard item={item} />;
+export default async function MoviePageId({ params }) {
+  function spoilerCheck(item) {
+    console.log("proofItsrunning");
+    if (item.has_spoiler === true) {
+      return <> accordion</>;
+    } else {
+      return <PageReviewCard item={item} />;
+    }
   }
-}
 
-async function addReview(formData) {
-  "use server";
-  const user_id = formData.get("user_id");
-  const review = formData.get("review");
-  const show_id = formData.get("show_id");
+  async function addReview(formData) {
+    "use server";
+    const user_id = formData.get("user_id");
+    const review = formData.get("review");
+    const show_id = formData.get("show_id");
 
-  const db = dbConnect();
-  await db.query(
-    `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
-    [user_id, review, show_id]
-  );
-  await db.query(
-    `UPDATE m_users
+    const db = dbConnect();
+    await db.query(
+      `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
+      [user_id, review, show_id]
+    );
+    await db.query(
+      `UPDATE m_users
 SET reviews_left = reviews_left + 1
 WHERE clerk_id = $1`,
-    [userId]
-  );
-  revalidatePath(`/tv-page/${params.show_id}`);
-  redirect(`/tv-page/${params.show_id}`);
-}
+      [user_id]
+    );
+    revalidatePath(`/tv-page/${params.show_id}`);
+    redirect(`/tv-page/${params.show_id}`);
+  }
 
-export default async function MoviePageId({ params }) {
   const response = await fetch(
     // `https://api.themoviedb.org/3/movie/${params.show_id}?api_key=${apiKey}&language=en-US`
 
@@ -102,7 +106,14 @@ export default async function MoviePageId({ params }) {
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id}`
+      `SELECT s_reviews.user_id, s_reviews.review, s_reviews.likes, s_reviews.show_id, m_users.username, m_users.clerk_id FROM s_reviews JOIN m_users ON s_reviews.user_id = m_users.clerk_id WHERE s_reviews.show_id = ${params.show_id} ORDER BY s_reviews.id ASC`
+    )
+  ).rows;
+
+  const reviewDataS = (
+    await db.query(
+      `SELECT * FROM m_reviews WHERE user_id = $1 ORDER BY id ASC`,
+      [userId]
     )
   ).rows;
 
@@ -257,7 +268,7 @@ export default async function MoviePageId({ params }) {
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-            {reviewData.map((item) => (
+            {/* {reviewData.map((item) => (
               <div key={item.id}>
                 <Card>
                   <Text>
@@ -267,6 +278,51 @@ export default async function MoviePageId({ params }) {
                   <Text>{item.review}</Text>
                 </Card>
               </div>
+            ))} */}
+            {reviewData.map((item) => (
+              <Card key={item.id}>
+                <Flex direction={"row"} gap={"3"} className="mb-2">
+                  {/* <div className="flex flex-shrink-0">
+                  <ImageData ImageData={item.movie_id} />
+                </div> */}
+                  <Flex direction={"column"}>
+                    <Text>
+                      {/* <TitleData TitleData={item.movie_id} /> */}
+                      <Strong>{item.username}</Strong>
+                    </Text>
+                    <Text>{item.review}</Text>
+                  </Flex>
+                </Flex>
+
+                <Separator size={"4"} />
+
+                <div className="flex flex-row justify-between mt-2">
+                  {/* <div className="flex flex-row">
+                    <LiBtnS
+                      id={item.id}
+                      likes={item.likes}
+                      // userId={item.user_id}
+                      revId={item.show_id}
+                    />
+                    <br></br>
+                    <Text className=" ml-2 mr-2">{item.likes}</Text>
+                    <br></br>
+                    <DisBtnS
+                      // userId={item.user_id}
+                      likes={item.likes}
+                      id={item.id}
+                      revId={item.id}
+                    />
+                  </div> */}
+                  <div className="ml-4">
+                    <DeleteBtnS
+                      review={item.review}
+                      userId={item.user_id}
+                      del={item.show_id}
+                    />
+                  </div>
+                </div>
+              </Card>
             ))}
           </Flex>
         </Flex>

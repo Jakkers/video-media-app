@@ -4,18 +4,18 @@ import { redirect } from "next/navigation";
 import { Button } from "@radix-ui/themes";
 import { SlLike } from "react-icons/sl";
 
-export default function LikeButton({ id, likes, userId }) {
+export default function LikeButton({ id, likes, params }) {
   async function handleSubmit() {
     "use server";
     const db = dbConnect();
     await db.query(
       `UPDATE m_reviews
 SET likes = ${likes} +1
-WHERE id = $1`,
+WHERE user_id = $1`,
       [id]
     );
-    revalidatePath(`/user/${userId}`);
-    redirect(`/user/${userId}`);
+    revalidatePath(`/movie-page/${params}`);
+    redirect(`/movie-page/${params}`);
   }
 
   return (

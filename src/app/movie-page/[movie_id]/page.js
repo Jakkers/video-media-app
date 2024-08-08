@@ -12,6 +12,7 @@ import {
   Box,
   Container,
   Strong,
+  Separator,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
 import Link from "next/link";
@@ -21,6 +22,9 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
 import { ShowGenresMenu } from "@/components/CatergoriesMenu";
+import LikeBtnM from "@/components/LikeM";
+import DislikeBtnM from "@/components/DislikeM";
+import DeleteBtnM from "@/components/DeleteReviewM";
 
 //Metadata
 export async function generateMetadata({ params }) {
@@ -92,7 +96,7 @@ WHERE clerk_id = $1`,
   const db = dbConnect();
   const reviewData = (
     await db.query(
-      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id}`
+      `SELECT m_reviews.user_id, m_reviews.review, m_reviews.likes, m_reviews.movie_id, m_users.username, m_users.clerk_id FROM m_reviews JOIN m_users ON m_reviews.user_id = m_users.clerk_id WHERE m_reviews.movie_id = ${params.movie_id} ORDER BY m_reviews.id ASC`
     )
   ).rows;
 
@@ -240,13 +244,58 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-            {reviewData.map((item) => (
+            {/* {reviewData.map((item) => (
               <Card key={item.id}>
                 <Text>
                   <Strong>{item.username}</Strong>
                 </Text>
                 <br />
                 <Text>{item.review}</Text>
+              </Card>
+            ))} */}
+            {reviewData.map((item) => (
+              <Card key={item.id}>
+                <Flex direction={"row"} gap={"3"} className="mb-2">
+                  {/* <div className="flex flex-shrink-0">
+                  <ImageData ImageData={item.movie_id} />
+                </div> */}
+                  <Flex direction={"column"}>
+                    <Text>
+                      {/* <TitleData TitleData={item.movie_id} /> */}
+                      <Strong>{item.username}</Strong>
+                    </Text>
+                    <Text>{item.review}</Text>
+                  </Flex>
+                </Flex>
+
+                <Separator size={"4"} />
+
+                <div className="flex flex-row justify-between mt-2">
+                  {/* <div className="flex flex-row">
+                    <LikeBtnM
+                      id={item.id}
+                      likes={item.likes}
+                      // userId={item.user_id}
+                      params={item.movie_id}
+                    />
+                    <br></br>
+                    <Text className=" ml-2 mr-2">{item.likes}</Text>
+                    <br></br>
+                    <DislikeBtnM
+                      // userId={item.user_id}
+                      likes={item.likes}
+                      id={item.id}
+                      params={item.movie_id}
+                    />
+                  </div> */}
+                  <div className="ml-4">
+                    <DeleteBtnM
+                      review={item.review}
+                      // userId={item.user_id}
+                      params={item.movie_id}
+                    />
+                  </div>
+                </div>
               </Card>
             ))}
           </Flex>
