@@ -13,6 +13,8 @@ import ShowTitleData from "@/components/showsProfileTitle";
 import { GiCosmicEgg } from "react-icons/gi";
 import { MdEgg } from "react-icons/md";
 import { GiEggEye } from "react-icons/gi";
+import { FaTheRedYeti } from "react-icons/fa";
+import { FaThemeco } from "react-icons/fa";
 
 //Metadata
 export async function generateMetadata() {
@@ -125,7 +127,7 @@ export default async function UserIdPage({ params }) {
                 className="flex flex-col text-gray-400 items-center "
               >
                 <GiEggEye />
-                <Text size={"2"}>Your Hatching</Text>
+                <Text size={"2"}>You&apos;re Hatching</Text>
               </Text>
             </Card>
           ) : null}
@@ -137,7 +139,29 @@ export default async function UserIdPage({ params }) {
               >
                 <GiCosmicEgg />
               </Text>
-              <Text size={"2"}>you&apos;ve got our attention</Text>
+              <Text size={"2"}>you&apos;ve Got Our Attention</Text>
+            </Card>
+          ) : null}
+          {reviewBadge >= 20 ? (
+            <Card>
+              <Text
+                size={"9"}
+                className="flex flex-col text-red-500 items-center "
+              >
+                <FaTheRedYeti />
+              </Text>
+              <Text size={"2"}>You&apos;re Growing</Text>
+            </Card>
+          ) : null}
+          {reviewBadge >= 100 ? (
+            <Card>
+              <Text
+                size={"9"}
+                className="flex flex-col text-purple-500 items-center "
+              >
+                <FaThemeco />
+              </Text>
+              <Text size={"2"}>You&apos;re A Pro</Text>
             </Card>
           ) : null}
         </Flex>
