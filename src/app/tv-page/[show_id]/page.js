@@ -13,7 +13,7 @@ import {
   Strong,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
-import Link from "next/link";
+import { PageReview } from "@/components/PageReview";
 import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -34,6 +34,27 @@ export async function generateMetadata({ params }) {
     title: `${data.name} TV show`,
     description: `${data.name}: ${data.overview}`,
   };
+}
+
+async function addReview(formData) {
+  "use server";
+  const user_id = formData.get("user_id");
+  const review = formData.get("review");
+  const show_id = formData.get("show_id");
+
+  const db = dbConnect();
+  await db.query(
+    `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
+    [user_id, review, show_id]
+  );
+  await db.query(
+    `UPDATE m_users
+SET reviews_left = reviews_left + 1
+WHERE clerk_id = $1`,
+    [userId]
+  );
+  revalidatePath(`/tv-page/${params.show_id}`);
+  redirect(`/tv-page/${params.show_id}`);
 }
 
 export default async function MoviePageId({ params }) {
@@ -69,27 +90,6 @@ export default async function MoviePageId({ params }) {
     );
   }
 
-  async function addReview(formData) {
-    "use server";
-    const user_id = formData.get("user_id");
-    const review = formData.get("review");
-    const show_id = formData.get("show_id");
-
-    const db = dbConnect();
-    await db.query(
-      `INSERT INTO s_reviews (user_id, review, show_id) VALUES ($1,$2, $3)`,
-      [user_id, review, show_id]
-    );
-    await db.query(
-      `UPDATE m_users
-  SET reviews_left = reviews_left + 1
-  WHERE clerk_id = $1`,
-      [userId]
-    );
-    revalidatePath(`/tv-page/${params.show_id}`);
-    redirect(`/tv-page/${params.show_id}`);
-  }
-
   const db = dbConnect();
   const reviewData = (
     await db.query(
@@ -98,7 +98,20 @@ export default async function MoviePageId({ params }) {
   ).rows;
 
   //image variable
-  const fallBackPoster = "/Fallback-image.jpg";
+  let Backposter;
+  if (data.poster_path) {
+    Backposter = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+  } else {
+    Backposter = "/Fallback-image.jpg";
+  }
+
+  let Mainposter;
+  if (data.backdrop_path) {
+    Mainposter = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
+  } else {
+    Mainposter = "/Main-Fallback-image.jpg";
+    //! ^ Here please
+  }
 
   return (
     <Container className="ml-2 mr-2" size="4">
@@ -121,9 +134,7 @@ export default async function MoviePageId({ params }) {
           </div>
           <Image
             className="opacity-40 relative -z-10"
-            src={`https://image.tmdb.org/t/p/original${
-              data.backdrop_path || data.poster_path
-            }`}
+            src={Mainposter}
             width={1200}
             height={1000}
             alt={`backdrop for the ${data.original_title} film.`}
@@ -190,10 +201,7 @@ export default async function MoviePageId({ params }) {
           </Box>
 
           <Image
-            src={
-              `https://image.tmdb.org/t/p/w500${data.poster_path}` ||
-              fallBackPoster
-            }
+            src={Backposter}
             width={500}
             height={500}
             alt={`Poster for the ${data.title} film.`}
@@ -271,13 +279,9 @@ export default async function MoviePageId({ params }) {
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
             {reviewData.map((item) => (
-              <Card key={item.id}>
-                <Text>
-                  <Strong>{item.username}</Strong>
-                </Text>
-                <br />
-                <Text>{item.review}</Text>
-              </Card>
+              <div key={item.id}>
+                <PageReview item={item} />
+              </div>
             ))}
           </Flex>
         </Flex>
