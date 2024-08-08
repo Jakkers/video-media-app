@@ -141,13 +141,6 @@ WHERE clerk_id = $1`,
     )
   ).rows;
 
-  const reviewDataS = (
-    await db.query(
-      `SELECT * FROM m_reviews WHERE user_id = $1 ORDER BY id ASC`,
-      [userId]
-    )
-  ).rows;
-
   //image variable
   let Backposter;
   if (data.poster_path) {
@@ -166,21 +159,13 @@ WHERE clerk_id = $1`,
   return (
     <Container className="ml-2 mr-2" size="4">
       <Header />
-      {/* <div className="fixed z-50 pt-2 min-[1245px]:top-3 min-[1245px]:right-40 min-[1245px]:pl-5 max-[1244px]:right-0 pr-5 max-[615px]:right-5 max-[530px]:pr-24  min-[1220px]:pr-2 max-[1244px]: top-15  max-[616px]:top-12 max-[482px]:top-24 max-[482px]:right-60  max-[470px]:pr-30 max-[440px]:pr-0 max-[440px]:right-5 max-[341px]:top-20 max-[341px]:pt-4 max-[309px]:top-32 max-[616px]:pt-3 max-[309px]:pt-2 max-[616px]:pr-6 "> */}
-      {/* <ShowTvGenresMenu title="Categories" /> */}
-      {/* </div> */}
+
       <main>
         <div className="relative text-center">
           <div className="w-full absolute top-[20%] sm:top-[50%] left-0 text-center mt-10">
             <h1 className="z-10 text-3xl md:text-5xl font-bold text-center ">
               {data.name}
             </h1>
-            {/* <Text className="z-10 text-center ">{data.tagline}</Text>
-            <br></br>
-            <br></br> */}
-            {/* <Button>
-              <Link href={data.homepage}>View film</Link>
-            </Button> */}
           </div>
           <Image
             className="opacity-40 relative -z-10"
@@ -299,33 +284,12 @@ WHERE clerk_id = $1`,
           </form>
           <br />
           <Flex direction={"column-reverse"} gap={"3"}>
-            {/* {reviewData.map((item) => (
-              <div key={item.id}>
-                <Card>
-                  <Text>
-                    <Strong>{item.username}</Strong>
-                  </Text>
-                  <br />
-                  <Text>{item.review}</Text>
-                </Card>
-              </div>
-            ))} */}
             {reviewData.map((item) => (
               <Card key={item.id}>
                 <Flex direction={"row"} gap={"3"} className="mb-2">
-                  {/* <div className="flex flex-shrink-0">
-                  <ImageData ImageData={item.movie_id} />
-                </div> */}
                   <Flex direction={"column"}>
-                    <Text>
-                      {/* <TitleData TitleData={item.movie_id} /> */}
-                      {/* <Strong>{item.username}</Strong> */}
-                    </Text>
-                    <div key={item.id}>
-                      {spoilerCheck(item)}
-
-                      {/* <Text>{item.review}</Text> */}
-                    </div>
+                    <Text></Text>
+                    <div key={item.id}>{spoilerCheck(item)}</div>
                   </Flex>
                 </Flex>
 
@@ -336,14 +300,12 @@ WHERE clerk_id = $1`,
                     <LiBtnS
                       id={item.id}
                       likes={item.likes}
-                      // userId={item.user_id}
                       params={params.show_id}
                     />
                     <br></br>
                     <Text className=" ml-2 mr-2">{item.likes}</Text>
                     <br></br>
                     <DisBtnS
-                      // userId={item.user_id}
                       likes={item.likes}
                       id={item.id}
                       params={params.show_id}
