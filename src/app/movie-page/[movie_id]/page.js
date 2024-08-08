@@ -3,7 +3,6 @@ import Image from "next/image";
 import BasicCarousel from "@/components/BasicCarousel";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { PageReview } from "@/components/PageReview";
 import {
   Button,
   Card,
@@ -23,7 +22,6 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
-import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import LikeBtnM from "@/components/LikeM";
 import DislikeBtnM from "@/components/DislikeM";
 import DeleteBtnM from "@/components/DeleteReviewM";
@@ -54,7 +52,7 @@ function spoilerCheck(item) {
           <Accordion.Item value="item-1">
             {/* <Card> */}{" "}
             <Accordion.Header>
-              {item.username}
+              <Strong>{item.username}</Strong>
               <br></br>
               <Accordion.Trigger className="AccordionTrigger">
                 Warning Spoilers{" "}

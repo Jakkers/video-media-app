@@ -6,7 +6,6 @@ import BasicCarousel from "@/components/BasicCarousel";
 import ShowCase from "@/components/ShowCase";
 
 import { DisplayGenres } from "../../components/ShowGenres";
-import { ShowGenresMenu } from "@/components/CatergoriesMenu";
 import { Container, Heading } from "@radix-ui/themes";
 import ToastDemo from "../../components/Toast";
 

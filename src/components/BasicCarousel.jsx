@@ -17,14 +17,13 @@ export default function BasicCarousel({ dataArray, format }) {
     if (!item.poster_path) {
       return (
         <div
-          // id={Style.img_info}
           className=" text-white pointer-events-none
       z-10 p-6 absolute bottom-2 justify-center bg-transparent "
         >
           <div className="h-[100%] w-[100%]"></div>
           <div>
             <h1>{item.name || item.title}</h1>
-            {/* //! this is to render name if a show OR a movie but is currently unproven */}
+            {/* //? ^this is to render name if a show OR a movie as different API's label differently */}
           </div>
         </div>
       );
@@ -45,7 +44,7 @@ export default function BasicCarousel({ dataArray, format }) {
               className="hover:p-[1px] hover:w-[104px] hover: h-[84px] hover:border-2 border-sky-500"
             />
             {checkPoster(item)}
-            {/* //? this implements an overlay showing the name if no poster is avaiable */}
+            {/* //? ^this implements an overlay showing the name if no poster is avaiable */}
           </Link>
         </div>
       ))}

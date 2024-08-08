@@ -16,15 +16,13 @@ export async function DisplayGenres() {
     <>
       {dataArray.map((item, index) => (
         <div key={index} id={genresData[index].name}>
-          {/* //! ^ this helps navigation with catergories menu  */}
+          {/* //? ^ this helps navigation with catergories menu  */}
 
-          {/* //? These are for styling, wil swap out later */}
           <br></br>
 
           <Heading>{genresData[index].name}</Heading>
-          <br></br>
 
-          {/* //!^need this form as fetch function strips out name */}
+          {/* //?^need this method as fetch function strips out name */}
           <BasicCarousel dataArray={item} format="movie" />
         </div>
       ))}

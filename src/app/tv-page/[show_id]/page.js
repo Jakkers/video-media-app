@@ -16,13 +16,11 @@ import {
   Separator,
 } from "@radix-ui/themes";
 import Header from "@/components/Header";
-import { PageReviewCard } from "@/components/PageReview";
 import { dbConnect } from "@/utils/dbConnection";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import ToastDemo from "../../../components/Toast";
-import { ShowTvGenresMenu } from "@/components/TvCategoriesMenu";
 import LiBtnS from "@/components/LikeS";
 import DeleteBtnS from "@/components/DeleteReviewS";
 import DisBtnS from "@/components/DislikeS";
@@ -50,7 +48,7 @@ function spoilerCheck(item) {
           <Accordion.Item value="item-1">
             {/* <Card> */}{" "}
             <Accordion.Header>
-              {item.username}
+              <Strong>{item.username}</Strong>
               <br></br>
               <Accordion.Trigger className="AccordionTrigger">
                 Warning Spoilers{" "}
