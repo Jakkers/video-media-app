@@ -122,11 +122,12 @@ export default async function MoviePageId({ params }) {
     const user_id = formData.get("user_id");
     const review = formData.get("review");
     const movie_id = formData.get("movie_id");
+    const spoiler = formData.get("spoiler");
 
     const db = dbConnect();
     await db.query(
-      `INSERT INTO m_reviews (user_id, review, movie_id) VALUES ($1,$2, $3)`,
-      [user_id, review, movie_id]
+      `INSERT INTO m_reviews (user_id, review, movie_id, spoiler) VALUES ($1,$2, $3, $4)`,
+      [user_id, review, movie_id, spoiler]
     );
     await db.query(
       `UPDATE m_users
@@ -282,6 +283,14 @@ WHERE clerk_id = $1`,
               rows="3"
               required
             />
+            <label htmlFor="spoiler">Includes Spoiler?</label>
+            <input
+              className="h-5 w-5"
+              name="spoiler"
+              id="spoiler"
+              type="checkbox"
+            />
+            <br></br>
             <button type="submit">
               {" "}
               <ToastDemo />
@@ -338,7 +347,8 @@ WHERE clerk_id = $1`,
                   <div className="ml-4">
                     <DeleteBtnM
                       review={item.review}
-                      // userId={item.user_id}
+                      user_id={item.user_id}
+                      userId={userId}
                       params={item.movie_id}
                     />
                   </div>
