@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 // import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // Importing radix theme
 import "@radix-ui/themes/styles.css";
@@ -58,7 +59,10 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Theme appearance="dark">{children}</Theme>
+          <Theme appearance="dark">
+            {children}
+            <Footer />
+          </Theme>
         </body>
       </html>
     </ClerkProvider>
