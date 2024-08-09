@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 //How to tell clerk what routes are protected
-const isProtected = createRouteMatcher([]);
+const isProtected = createRouteMatcher(["/userId"]);
 
 // We use this function to define public and protected routes
 export default clerkMiddleware((auth, req) => {
