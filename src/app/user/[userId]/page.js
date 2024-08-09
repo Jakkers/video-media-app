@@ -3,7 +3,15 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Header from "@/components/Header";
-import { Container, Flex, Card, Heading, Text, Strong } from "@radix-ui/themes";
+import {
+  Container,
+  Flex,
+  Card,
+  Heading,
+  Text,
+  Strong,
+  Button,
+} from "@radix-ui/themes";
 import TitleData from "@/components/ProfileTitleData";
 import ImageData from "@/components/ProfileImgReviews";
 import ShowImage from "@/components/showsProfileimg";
@@ -216,34 +224,49 @@ export default async function UserIdPage({ params }) {
       <Container size="4">
         <Header />
         <br></br>
-        <Heading>Create your profile</Heading>
+        <Heading>Create Your Profile</Heading>
         <br></br>
+
         <form
           action={handleSubmit}
-          className="flex flex-col items-center mt-10"
+          // className="flex flex-col items-center mt-10"
         >
-          <input name="clerk_id" defaultValue={userData.id} hidden></input>
-          <label htmlFor="username">Enter a username:</label>
-          <input
-            className="text-black"
-            name="username"
-            placeholder="Enter your username"
-            required
-          />
-          <label htmlFor="bio">Enter your bio</label>
-          <textarea
-            className="resize text-black"
-            name="bio"
-            required
-            placeholder="Write your bio here!"
-          />
-          <button
+          <Flex direction={"column"} gap={"4"}>
+            <input name="clerk_id" defaultValue={userData.id} hidden></input>
+            <Text>
+              <Strong>
+                <label htmlFor="username">Enter a username:</label>
+              </Strong>
+            </Text>
+            <input
+              className="text-white"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+            <Text>
+              <Strong>
+                <label htmlFor="bio">Enter your bio</label>
+              </Strong>
+            </Text>
+            <textarea
+              className="resize text-white"
+              name="bio"
+              required
+              placeholder="Write your bio here!"
+              maxLength="500"
+            />
+          </Flex>
+          <br></br>
+          <Button
+            color="orange"
             type="submit"
+            // size={"3"}
             className="flex bg-white rounded text-black items-center text-center
-             w-fit p-1 mt-2 justify-center hover:bg-gray-600 hover:text-white"
+               w-fit p-1 mt-4 justify-center hover:bg-blue-500 hover:text-white"
           >
             Create profile
-          </button>
+          </Button>
         </form>
       </Container>
     );
