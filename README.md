@@ -52,6 +52,22 @@ https://www.themoviedb.org/?language=en-GB
 
 ## Reflections
 
+- Components are split up, rather than long page.js returns everything
+- Also CSS pseudos and implemented Tailwind
+- Fully functional on mobile
+- Added additional accessibility features, tab navigation and aria labeling
+- Well planned excellent UI
+- Lighthouse scores above 90%
+- Very sensible code: comments to explain decisions & evidence of refactoring to reduce repetition and aid readability
+- Relational tables with foreign keys and full CRUD implementation
+- User id used in app to associate data with users
+- Forms have validation features to enforce data requirements and inform user
+- Uses let /const, arrow functions, template literals and Typescript
+- Use of a third party libary - eg Radix, MUI, framer motion or other
+- And uses query strings for filtering, or sorting, or searching etc.
+- Manage state concisely using objects useState and passing props
+- Active and engaged and supportive and asking for and giving help...
+
 Please also provide an assignment reflection in your project README.md file.
 (Required)
 🎯 Please mention the requirements you met and which goals you achieved for this assignment.
