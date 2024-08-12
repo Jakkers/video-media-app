@@ -16,39 +16,43 @@ The user needs a platform to find and share movies, with a gamified element that
 
 ## User stories (MVP)
 
-As a user, I would like to be able to find movies via catagory.
-As a user, I would like to share comments on the movie page.
-As a user, I would like to be able to log in to my profile.
-As a user, I would like to be able to view a trailer.
-As a user, I would like to be able to view movie information.
-As a user, I would like to be able to use the app on a variety of devices.
+- As a user, I would like to be able to find movies via catagory.
+- As a user, I would like to share comments on the movie page.
+- As a user, I would like to be able to log in to my profile.
+- As a user, I would like to be able to view a trailer.
+- As a user, I would like to be able to view movie information.
+- As a user, I would like to be able to use the app on a variety of devices.
 
 ## Stretch user stories
 
-As a user, I would like to share movie comments on my profile and have other people visit and visit other peoples.
-As a user, I would like the gamified element to have achievements, a sense of humour and badges to display on profile. (Consider using toast component)
-As a user, I would like to have my content dynamically showed to me to make suggestions for movies that I like. (Recommendations)
-As a user, I would like to see a list of what’s currently popular or new.
+- As a user, I would like to share movie comments on my profile and have other people visit and visit other peoples.
+- As a user, I would like the gamified element to have achievements, a sense of humour and badges to display on profile. (Consider using toast component)
+- As a user, I would like to have my content dynamically showed to me to make suggestions for movies that I like. (Recommendations)
+- As a user, I would like to see a list of what’s currently popular or new.
 
 ## Wireframes
 
-![wireframe Desktop](https://media.discordapp.net/attachments/1245025828329357403/1268870332261863477/Screenshot_2024-08-02_at_10.56.20.png?ex=66b5e815&is=66b49695&hm=19aad4cac69408de4dd94d3b9e868c912e99810919a4bc17c22e14a910dec427&=&format=webp&quality=lossless&width=1774&height=1170)
-![review and edit page wireframe mobile](https://media.discordapp.net/attachments/1245025828329357403/1268870332589015110/Screenshot_2024-08-02_at_10.56.29.png?ex=66b5e815&is=66b49695&hm=c1752eb003217dd1e4cda9cb041c3ffb1658890d7b525da1ea887467a855feb7&=&format=webp&quality=lossless&width=1598&height=1170)
-![category page and profile page wireframe mobile](https://media.discordapp.net/attachments/1245025828329357403/1268870332941598812/Screenshot_2024-08-02_at_10.56.40.png?ex=66b5e815&is=66b49695&hm=356c6211d53b2eaf49de0d65542d9a586ef416fe473b918a3c514f0ab3a7f504&=&format=webp&quality=lossless&width=1576&height=1170)
-![Home screen and Movie page wireframe mobile](https://media.discordapp.net/attachments/1245025828329357403/1268870333306372128/Screenshot_2024-08-02_at_10.56.50.png?ex=66b5e815&is=66b49695&hm=c427eeb406e2bb793ba08fbc8250c959b54de71416e1673a11df58d7fdd03c98&=&format=webp&quality=lossless&width=1482&height=1170)
-![Homescreen/Log-In wireframe mobile](https://media.discordapp.net/attachments/1245025828329357403/1268870333612425296/Screenshot_2024-08-02_at_10.56.56.png?ex=66b5e816&is=66b49696&hm=90774246eee6023f23f11ccce09ce1c33f273948628fd2c7bd9fe5fc7b5ccfb7&=&format=webp&quality=lossless&width=996&height=1170)
+![wireframe Desktop](/public/DesktopMediaApp.png)
+![review and edit page wireframe mobile](/public/ReviewPage.png)
+![category page and profile page wireframe mobile](/public/CategoryPage.png)
+![Home screen and Movie page wireframe mobile](/public/HomeScreen.png)
+![Homescreen/Log-In wireframe mobile](/public/sign-in.png)
 
 ## Database Schema
 
-![DrawSql Schema](https://cdn.discordapp.com/attachments/1245025828329357403/1271156098040074400/Screenshot_2024-08-08_at_18.20.26.png?ex=66b64fde&is=66b4fe5e&hm=0525a2c673bd88eeeb5d66e7add4200d8a481bf793e6947a38530b679a36cca8&)
+![DrawSql Schema](/public/drawsql.png)
 
 ## Lighthouse Report Score
 
-![Lighthouse Score](https://cdn.discordapp.com/attachments/1245025828329357403/1270786947945857024/Screenshot_2024-08-07_at_17.53.04.png?ex=66b64992&is=66b4f812&hm=b8d0c3ffc97d15278bdf4b08fe5f2d5d3d22daa3f0792f6890401b4adf208473&)
+![Lighthouse Score](/public/lighthouse.png)
 
 ## API
 
 https://www.themoviedb.org/?language=en-GB
+
+## Project Presentation
+
+https://docs.google.com/presentation/d/17YGRm_8CYNRWEJQ0DMdwBdN-x4TLj2xfAODfIt-uf6s/edit?usp=sharing
 
 ## Reflections
 
